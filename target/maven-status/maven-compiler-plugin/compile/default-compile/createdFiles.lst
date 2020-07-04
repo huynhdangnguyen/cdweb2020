@@ -1,0 +1,9 @@
+com\cdweb\config\JPAConfig.class
+com\cdweb\entity\VehicleEntity.class
+com\cdweb\service\IVehicleService.class
+com\cdweb\entity\BaseEntity.class
+com\cdweb\controller\HomeController.class
+com\cdweb\repository\IVehicleRepossitory.class
+com\cdweb\service\impl\VehicleService.class
+com\cdweb\model\Vehicle.class
+com\cdweb\converter\Convert.class
