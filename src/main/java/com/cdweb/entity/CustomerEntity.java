@@ -77,7 +77,7 @@ public class CustomerEntity extends BaseEntity{
 	}
 
 	public void setRentDetailEntities(Set<RentDetailEntity> rentDetailEntities) {
-		RentDetailEntities = RentDetailEntities;
+		RentDetailEntities = rentDetailEntities;
 	}
 }	
 	
