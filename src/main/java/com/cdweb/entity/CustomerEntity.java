@@ -74,12 +74,12 @@ public class CustomerEntity extends BaseEntity{
 	}
 
 	public Set<RentDetailEntity> getRentDetailEntities() {
-		return RentDetailEntities;
+		return RentDetailKhang;
 	}
 
 	public void setRentDetailEntities(Set<RentDetailEntity> rentDetailEntities) {
-		RentDetailEntities = rentDetailEntities;
+		RentDetailEntities = rentDetailEntities_Khang;
 	}
-
+//Khang nè
 }	
 	
