@@ -17,7 +17,7 @@ public class HomeController {
 	@Autowired
 	VehicleService vehicleService;
 	
-	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
+	@RequestMapping(value = "/trang-chu")
 	public String Home(Model model) {
 		model.addAttribute("hello", "hello world");
 		List<Vehicle> list = vehicleService.findAll();
