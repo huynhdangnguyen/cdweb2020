@@ -1,6 +1,5 @@
 package com.cdweb.entity;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -74,7 +73,7 @@ public class CustomerEntity extends BaseEntity{
 	}
 
 	public Set<RentDetailEntity> getRentDetailEntities() {
-		return RentDetailKhang;
+		return RentDetailEntities;
 	}
 
 	public void setRentDetailEntities(Set<RentDetailEntity> rentDetailEntities) {
