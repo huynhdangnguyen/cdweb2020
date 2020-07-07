@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 
-public class Vehicle {
+public class VehicleModel {
 	private Long id;
 
 	private String name;
@@ -19,11 +19,11 @@ public class Vehicle {
 
 	private Date modifiedDate;
 
-	public Vehicle() {
+	public VehicleModel() {
 		super();
 	}
 
-	public Vehicle(Long id, String name, int status, String createdBy, Date createdDate, String modifiedBy,
+	public VehicleModel(Long id, String name, int status, String createdBy, Date createdDate, String modifiedBy,
 			Date modifiedDate) {
 		this.id = id;
 		this.name = name;

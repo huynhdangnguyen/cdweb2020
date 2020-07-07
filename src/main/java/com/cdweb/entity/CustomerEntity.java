@@ -1,5 +1,7 @@
 package com.cdweb.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -30,7 +32,7 @@ public class CustomerEntity extends BaseEntity{
 	private String phoneNo;
 	
 	@OneToMany(fetch = FetchType.LAZY ,mappedBy = "customerEntity")
-	Set<RentDetailEntity> RentDetailEntities;
+	List<RentDetailEntity> RentDetailEntities = new ArrayList<>();
 
 	public String getId() {
 		return id;
@@ -72,11 +74,11 @@ public class CustomerEntity extends BaseEntity{
 		this.phoneNo = phoneNo;
 	}
 
-	public Set<RentDetailEntity> getRentDetailEntities() {
+	public List<RentDetailEntity> getRentDetailEntities() {
 		return RentDetailEntities;
 	}
 
-	public void setRentDetailEntities(Set<RentDetailEntity> rentDetailEntities) {
+	public void setRentDetailEntities(List<RentDetailEntity> rentDetailEntities) {
 		RentDetailEntities = rentDetailEntities;
 	}
 }	

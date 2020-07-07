@@ -3,31 +3,53 @@ package com.cdweb.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
+import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
+//@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
 	@Column(name = "status")
 	private int status;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "createdby")
-	private UserEntity createdBy;
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "createdby")
+//	private UserEntity createdBy;
 
+	@Column(name = "createdby")
+//	@CreatedBy
+	private String createdBy;
+	
 	@Column(name = "createddate")
+//	@CreatedDate
 	private Date createdDate;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "modifiedby")
-	private UserEntity userEntity;
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "modifiedby")
+//	private UserEntity userEntity;
 
+	@Column(name = "modifiedby")
+//	@LastModifiedBy
+	private String modifiedby;
+	
 	@Column(name = "modifieddate")
+//	@LastModifiedDate
 	private Date modifiedDate;
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public String getModifiedby() {
+		return modifiedby;
+	}
 
 	public int getStatus() {
 		return status;
@@ -37,21 +59,21 @@ public class BaseEntity {
 		this.status = status;
 	}
 
-	public UserEntity getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(UserEntity createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public UserEntity getUserEntity() {
-		return userEntity;
-	}
-
-	public void setUserEntity(UserEntity userEntity) {
-		this.userEntity = userEntity;
-	}
+//	public UserEntity getCreatedBy() {
+//		return createdBy;
+//	}
+//
+//	public void setCreatedBy(UserEntity createdBy) {
+//		this.createdBy = createdBy;
+//	}
+//
+//	public UserEntity getUserEntity() {
+//		return userEntity;
+//	}
+//
+//	public void setUserEntity(UserEntity userEntity) {
+//		this.userEntity = userEntity;
+//	}
 
 	public Date getCreatedDate() {
 		return createdDate;

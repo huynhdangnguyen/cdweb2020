@@ -8,9 +8,7 @@
 <title>Home Page</title>
 </head>
 <body>
-	<h1>Trang chủ</h1>
-	<h1>Menu</h1>
-	<a href="<c:url value="/login"></c:url>"> login page</a>
-	<h1>${hello}</h1>
+	<h1>Đây là trang nhân viên</h1>
+	<a href="<c:url value='/thoat'/>">Đăng xuất</a>
 </body>
 </html>

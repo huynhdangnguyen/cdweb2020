@@ -7,22 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdweb.entity.VehicleEntity;
-import com.cdweb.model.Vehicle;
-import com.cdweb.repository.IVehicleRepossitory;
-import com.cdweb.service.IVehicleService;
+import com.cdweb.model.VehicleModel;
+import com.cdweb.repository.intf.VehicleRepossitory;
+import com.cdweb.service.intf.VehicleService;
 
 @Service
-public class VehicleService implements IVehicleService {
+public class VehicleServiceImpl implements VehicleService {
 	
 	@Autowired
-	public IVehicleRepossitory iVehicleRepossitory;
+	public VehicleRepossitory iVehicleRepossitory;
 	
 	@Override
-	public List<Vehicle> findAll() {
+	public List<VehicleModel> findAll() {
 		List<VehicleEntity> listVehicleEntity = iVehicleRepossitory.findAll();
-		List<Vehicle> res = new ArrayList<>();
+		List<VehicleModel> res = new ArrayList<>();
 		for(VehicleEntity vehicleEntity : listVehicleEntity) {
-			Vehicle vehicle = new Vehicle();
+			VehicleModel vehicle = new VehicleModel();
 			vehicle.setId(vehicleEntity.getId());
 			vehicle.setName(vehicleEntity.getName());
 			vehicle.setStatus(vehicleEntity.getStatus());

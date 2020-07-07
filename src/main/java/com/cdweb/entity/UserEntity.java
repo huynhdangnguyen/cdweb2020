@@ -1,5 +1,7 @@
 package com.cdweb.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,11 +37,18 @@ public class UserEntity extends BaseEntity {
 
 	@Column(name = "phoneno")
 	private String phoneNo;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "managerId")
+	private List<UserEntity> UserEntity = new ArrayList<>();
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "managerid")
+	private UserEntity managerId;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_role") })
-	private Set<RoleEntity> roleEntities;
+	private List<RoleEntity> roleEntities = new ArrayList<RoleEntity>();
 
 	public String getId() {
 		return id;
@@ -87,11 +98,11 @@ public class UserEntity extends BaseEntity {
 		this.phoneNo = phoneNo;
 	}
 
-	public Set<RoleEntity> getRoleEntitys() {
+	public List<RoleEntity> getRoleEntitys() {
 		return roleEntities;
 	}
 
-	public void setRoleEntitys(Set<RoleEntity> roleEntitys) {
+	public void setRoleEntitys(List<RoleEntity> roleEntitys) {
 		this.roleEntities = roleEntitys;
 	}
 
