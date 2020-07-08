@@ -4,24 +4,12 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta http-equiv="Content-Language" content="en" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-<meta name="msapplication-tap-highlight" content="no" />
-
-
-<link href="<c:url value='/ui-assets/main.css'/>" rel="stylesheet" />
-<script type="text/javascript" src="<c:url value='/ui-assets/scripts/main.js'/>"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-	<div
-		class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 		<div class="app-header header-shadow">
 			<div class="app-header__logo">
-				<div class="logo-src"></div>
+				<div style="background-image: url(<c:url value='/ui-assets/images/logo.png'/>); height: 50px; width: 97px; background-size: contain; background-repeat: no-repeat;"></div>
 				<div class="header__pane ml-auto">
 					<div>
 						<button type="button"
@@ -87,7 +75,7 @@ pageEncoding="UTF-8"%>
 									<div class="btn-group">
 										<a data-toggle="dropdown" aria-haspopup="true"
 											aria-expanded="false" class="p-0 btn"> <img width="42"
-											class="rounded-circle" src="assets/images/avatars/1.jpg"
+											class="rounded-circle" src="<c:url value='/ui-assets/images/avatars/1.jpg'/>"
 											alt="" /> <i class="fa fa-angle-down ml-2 opacity-8"></i>
 										</a>
 										<div tabindex="-1" role="menu" aria-hidden="true"
@@ -112,7 +100,7 @@ pageEncoding="UTF-8"%>
 								<div class="widget-content-right header-user-info ml-3">
 									<button type="button"
 										class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-										<i class="fa text-white fa-calendar pr-1 pl-1"></i>
+										<i class="fa text-white fa-calendar "></i>
 									</button>
 								</div>
 							</div>
@@ -121,6 +109,5 @@ pageEncoding="UTF-8"%>
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

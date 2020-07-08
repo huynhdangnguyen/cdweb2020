@@ -19,11 +19,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/trang-chu")
 	public String Home(Model model) {
-		model.addAttribute("hello", "hello world");
-		List<Vehicle> list = vehicleService.findAll();
-		for(Vehicle vehicle : list) {
-			System.out.println(vehicle.toString());
-		}
+		model.addAttribute("page", "home");
+//		List<Vehicle> list = vehicleService.findAll();
+//		for(Vehicle vehicle : list) {
+//			System.out.println(vehicle.toString());
+//		}
 		return "home";
 	}
 }
