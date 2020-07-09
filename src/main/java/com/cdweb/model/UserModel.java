@@ -1,70 +1,52 @@
 package com.cdweb.model;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-public class UserModel extends User {
+import com.cdweb.entity.RoleEntity;
 
-	private String name;
+public class UserModel extends PersonModel{
 
-	private String addr;
+	private List<UserModel> listEmployee;
 
-	private Integer gender;
+	private UserModel manager;
 
-	private String phoneNo;
+	private List<RoleModel>	listRole;
 	
-	public UserModel(String id, String password, boolean enabled, boolean accountNonExpired,
-			boolean credentialsNonExpired, boolean accountNonLocked,
-			Collection<? extends GrantedAuthority> authorities) {
-		super(id, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+	public UserModel() {
+		super();
 	}
 
-
-	public String getName() {
-		return name;
+	public List<UserModel> getListEmployee() {
+		return listEmployee;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setListEmployee(List<UserModel> listEmployee) {
+		this.listEmployee = listEmployee;
 	}
 
-
-
-	public String getAddr() {
-		return addr;
+	public UserModel getManager() {
+		return manager;
 	}
 
-
-
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setManager(UserModel manager) {
+		this.manager = manager;
 	}
 
-
-
-	public Integer getGender() {
-		return gender;
+	public List<RoleModel> getRoleModel() {
+		return listRole;
 	}
 
-
-
-	public void setGender(Integer gender) {
-		this.gender = gender;
-	}
-
-
-
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-
-
-
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-
-
+	public void setRoleEntities(List<RoleModel> listRole) {
+		this.listRole = listRole;
+	} 
+	
 }

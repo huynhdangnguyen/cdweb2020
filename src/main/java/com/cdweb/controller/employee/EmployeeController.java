@@ -14,16 +14,8 @@ import com.cdweb.service.impl.VehicleServiceImpl;
 @Controller
 public class EmployeeController {
 	
-//	@Autowired
-//	VehicleService vehicleService;
-	
 	@RequestMapping(value = "/nhan-vien/trang-chu")
 	public String Home(Model model) {
-		model.addAttribute("hello", "hello world");
-//		List<VehicleModel> list = vehicleService.findAll();
-//		for(VehicleModel vehicle : list) {
-//			System.out.println(vehicle.toString());
-//		}
 		return "/employee/home";
 	}
 }

@@ -1,5 +1,6 @@
 package com.cdweb.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,7 +15,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
 //@EntityListeners(AuditingEntityListener.class)
-public class BaseEntity {
+public class BaseEntity implements Serializable{
+
+	private static final long serialVersionUID = 110184593472651504L;
 
 	@Column(name = "status")
 	private int status;

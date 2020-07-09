@@ -1,6 +1,6 @@
 package com.cdweb.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,13 +21,13 @@ public class RoleEntity extends BaseEntity{
 	private String name;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roleEntities")
-	private Set<UserEntity> userEntities;
+	private List<UserEntity> userEntities;
 	
-	public Set<UserEntity> getUserEntities() {
+	public List<UserEntity> getUserEntities() {
 		return userEntities;
 	}
 
-	public void setUserEntities(Set<UserEntity> userEntities) {
+	public void setUserEntities(List<UserEntity> userEntities) {
 		this.userEntities = userEntities;
 	}
 

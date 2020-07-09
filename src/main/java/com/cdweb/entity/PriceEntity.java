@@ -23,7 +23,7 @@ public class PriceEntity extends BaseEntity{
 	
 	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_vehicletype")
-	private VehicleEntity VehicleEntity;
+	private VehicleEntity vehicleEntity;
 
 	@Column(name = "dayprice")
 	private Integer dayPrice;
@@ -45,12 +45,12 @@ public class PriceEntity extends BaseEntity{
 
 
 	public VehicleEntity getVehicleEntity() {
-		return VehicleEntity;
+		return vehicleEntity;
 	}
 
 
 	public void setVehicleEntity(VehicleEntity vehicleEntity) {
-		VehicleEntity = vehicleEntity;
+		this.vehicleEntity = vehicleEntity;
 	}
 
 

@@ -5,15 +5,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cdweb.model.UserModel;
+import com.cdweb.model.MyUserModel;
+import com.cdweb.model.VehicleModel;
+import com.cdweb.service.impl.VehicleServiceImpl;
 import com.cdweb.util.SecurityUtils;
 
 @Controller
@@ -34,7 +36,7 @@ public class LoginController {
 	@RequestMapping(value = "/thoat")
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		UserModel userModel = (UserModel) auth.getPrincipal();
+		MyUserModel userModel = (MyUserModel) auth.getPrincipal();
 		if (userModel != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}

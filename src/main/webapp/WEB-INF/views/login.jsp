@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login</title>
+<title>Đăng nhập</title>
 </head>
 <body>
 	<h1>${login}</h1>

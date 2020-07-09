@@ -1,19 +1,23 @@
 package com.cdweb.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AbstractModel {
+public class BaseModel implements Serializable{
+
+	private static final long serialVersionUID = -8541975859628878832L;
+
 	private int status;
 
 	private String createdBy;
 	
 	private Date createdDate;
 
-	private String modifiedby;
+	private String modifiedBy;
 	
 	private Date modifiedDate;
 	
-	public AbstractModel() {
+	public BaseModel() {
 	}
 
 	public int getStatus() {
@@ -40,12 +44,12 @@ public class AbstractModel {
 		this.createdDate = createdDate;
 	}
 
-	public String getModifiedby() {
-		return modifiedby;
+	public String getModifiedBy() {
+		return modifiedBy;
 	}
 
-	public void setModifiedby(String modifiedby) {
-		this.modifiedby = modifiedby;
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
 	}
 
 	public Date getModifiedDate() {

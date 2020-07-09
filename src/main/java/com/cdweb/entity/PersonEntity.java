@@ -1,14 +1,25 @@
-package com.cdweb.model;
+package com.cdweb.entity;
 
-public class PersonModel extends BaseModel{
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public class PersonEntity extends BaseEntity{
+	@Id
+	@Column(name = "id")
 	private String id;
 	
+	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "addr")
 	private String addr;
 	
+	@Column(name = "gender")
 	private Integer gender;
 	
+	@Column(name = "phoneno")
 	private String phoneNo;
 	
 	public String getId() {

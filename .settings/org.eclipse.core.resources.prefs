@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/cdweb/controller/LoginController.java=UTF-8
 encoding//src/main/java/com/cdweb/entity/CustomerEntity.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/login.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/manager/home.jsp=UTF-8

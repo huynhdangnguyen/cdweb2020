@@ -3,6 +3,7 @@ package com.cdweb.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +23,9 @@ public class VehicleServiceImpl implements VehicleService {
 		List<VehicleEntity> listVehicleEntity = iVehicleRepossitory.findAll();
 		List<VehicleModel> res = new ArrayList<>();
 		for(VehicleEntity vehicleEntity : listVehicleEntity) {
-			VehicleModel vehicle = new VehicleModel();
-			vehicle.setId(vehicleEntity.getId());
-			vehicle.setName(vehicleEntity.getName());
-			vehicle.setStatus(vehicleEntity.getStatus());
-//			vehicle.setCreatedBy(vehicleEntity.getCreatedBy());
-			vehicle.setCreatedDate(vehicleEntity.getCreatedDate());
-//			vehicle.setModifiedBy(vehicleEntity.getModifiedBy());
-			vehicle.setModifiedDate(vehicleEntity.getModifiedDate());
-			res.add(vehicle);
+			VehicleModel vehicleModel = new VehicleModel();
+			BeanUtils.copyProperties(vehicleEntity, vehicleModel);
+			res.add(vehicleModel);
 		}
 		return res;
 	}

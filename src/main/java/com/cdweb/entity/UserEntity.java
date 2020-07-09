@@ -17,46 +17,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class UserEntity extends BaseEntity {
-
-	@Id
-	@Column(name = "id")
-	private String id;
+public class UserEntity extends PersonEntity {
 
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "name")
-	private String name;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "manager")
+	private List<UserEntity> listEmployee = new ArrayList<>();
 
-	@Column(name = "addr")
-	private String addr;
-
-	@Column(name = "gender")
-	private Integer gender;
-
-	@Column(name = "phoneno")
-	private String phoneNo;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "managerId")
-	private List<UserEntity> UserEntity = new ArrayList<>();
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "managerid")
-	private UserEntity managerId;
+	private UserEntity manager;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_role") })
 	private List<RoleEntity> roleEntities = new ArrayList<RoleEntity>();
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getPassword() {
 		return password;
@@ -66,44 +42,29 @@ public class UserEntity extends BaseEntity {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+
+	public List<UserEntity> getListEmployee() {
+		return listEmployee;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setListEmployee(List<UserEntity> listEmployee) {
+		this.listEmployee = listEmployee;
 	}
 
-	public String getAddr() {
-		return addr;
+	public UserEntity getManager() {
+		return manager;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setManager(UserEntity manager) {
+		this.manager = manager;
 	}
 
-	public Integer getGender() {
-		return gender;
-	}
-
-	public void setGender(Integer gender) {
-		this.gender = gender;
-	}
-
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-
-	public List<RoleEntity> getRoleEntitys() {
+	public List<RoleEntity> getRoleEntities() {
 		return roleEntities;
 	}
 
-	public void setRoleEntitys(List<RoleEntity> roleEntitys) {
-		this.roleEntities = roleEntitys;
+	public void setRoleEntities(List<RoleEntity> roleEntities) {
+		this.roleEntities = roleEntities;
 	}
 
 }

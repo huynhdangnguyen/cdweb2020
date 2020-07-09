@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.cdweb.model.UserModel;
+import com.cdweb.model.MyUserModel;
 
 public class SecurityUtils {
 	
-	public static UserModel getPrincipal() {
-		UserModel userModel = (UserModel) (SecurityContextHolder.getContext()).getAuthentication().getPrincipal();
+	public static MyUserModel getPrincipal() {
+		MyUserModel userModel = (MyUserModel) (SecurityContextHolder.getContext()).getAuthentication().getPrincipal();
         return userModel;
     }
 	
