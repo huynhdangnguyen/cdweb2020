@@ -2,6 +2,7 @@ package com.cdweb.entity;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,16 +33,20 @@ public class HistoryEntity {
 	private CustomerEntity customerEntity;
 	
 	@Column(name = "plateinimage")
+	@Basic(fetch = FetchType.LAZY)
 	private byte[] plateInImage;
 	
 	@Column(name = "faceinimage")
+	@Basic(fetch = FetchType.LAZY)
 	private byte[] faceInImage;
 	
 	@Column(name = "plateoutimage")
+	@Basic(fetch = FetchType.LAZY)
 	private byte[] plateOutImage;
 	
 	@Column(name = "faceoutimage")
-	private byte[] FaceOutImage;
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] faceOutImage;
 	
 	@Column(name = "plateno")
 	private String plateNo;
@@ -103,11 +108,11 @@ public class HistoryEntity {
 	}
 
 	public byte[] getFaceOutImage() {
-		return FaceOutImage;
+		return faceOutImage;
 	}
 
 	public void setFaceOutImage(byte[] faceOutImage) {
-		FaceOutImage = faceOutImage;
+		faceOutImage = faceOutImage;
 	}
 
 	public String getPlateNo() {

@@ -7,33 +7,33 @@ import com.cdweb.entity.CustomerEntity;
 import com.cdweb.entity.RentDetailEntity;
 import com.cdweb.entity.UserEntity;
 
-public class HistoryModel implements Serializable{
+public class HistoryModel implements Serializable {
 	private static final long serialVersionUID = -7992601649460503747L;
 
 	private Long id;
-	
+
 	private RentDetailModel rentDetailModel;
 
 	private CustomerModel customerModel;
-	
+
 	private byte[] plateInImage;
-	
+
 	private byte[] faceInImage;
-	
+
 	private byte[] plateOutImage;
-	
-	private byte[] FaceOutImage;
-	
+
+	private byte[] faceOutImage;
+
 	private String plateNo;
-	
+
 	private Date inDate;
-	
+
 	private Date outDate;
-	
+
 	private Integer price;
-	
+
 	private UserEntity userModel;
-	
+
 	private String note;
 
 	public HistoryModel() {
@@ -89,11 +89,11 @@ public class HistoryModel implements Serializable{
 	}
 
 	public byte[] getFaceOutImage() {
-		return FaceOutImage;
+		return faceOutImage;
 	}
 
 	public void setFaceOutImage(byte[] faceOutImage) {
-		FaceOutImage = faceOutImage;
+		this.faceOutImage = faceOutImage;
 	}
 
 	public String getPlateNo() {
@@ -143,4 +143,20 @@ public class HistoryModel implements Serializable{
 	public void setNote(String note) {
 		this.note = note;
 	}
+
+	public String bytesToString(byte[] bytes) {
+		String res = "";
+		for (byte b : bytes) {
+			res += "\t" + b + "";
+		}
+		return res;
+	}
+
+	@Override
+	public String toString() {
+		return this.id + "\n" + this.bytesToString(plateInImage) + "\n" + this.bytesToString(faceInImage) + "\n"
+				+ this.bytesToString(plateOutImage) + "\n" + this.bytesToString(faceOutImage) + "\n" + this.plateNo
+				+ "\n" + this.inDate + "\n" + this.outDate + "\n" + this.price + "\n" + this.note;
+	}
+
 }

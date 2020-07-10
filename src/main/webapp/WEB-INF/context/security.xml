@@ -10,7 +10,7 @@
     <http auto-config="false" use-expressions="true" disable-url-rewriting="true">
     	
     	<intercept-url pattern="/quan-ly/**" access="hasAnyRole('MANAGER')" />
-    	<intercept-url pattern="/nhan-vien/**" access="hasAnyRole('MANAGER,EMPLOYEE')" />
+    	<intercept-url pattern="/nhan-vien/**" access="hasAnyRole('EMPLOYEE')" />
     	
     	<access-denied-handler error-page="/access-denied" />
         

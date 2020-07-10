@@ -42,7 +42,6 @@ public class UserEntity extends PersonEntity {
 		this.password = password;
 	}
 
-
 	public List<UserEntity> getListEmployee() {
 		return listEmployee;
 	}
