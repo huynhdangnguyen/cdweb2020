@@ -1,7 +1,15 @@
 package com.cdweb.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.jaxb.SpringDataJaxb.PageRequestDto;
 import org.springframework.stereotype.Service;
 
 import com.cdweb.entity.HistoryEntity;
@@ -47,6 +55,19 @@ public class HistoryServiceImpl implements HistoryService{
 		HistoryModel historyModel = new HistoryModel();
 		BeanUtils.copyProperties(historyEntity, historyModel);
 		return historyModel;
+	}
+
+	@Override
+	public List<HistoryModel> findAllHistorySortedByInDate(int offset, int numItem) {
+		Pageable pageable = new PageRequest(offset, numItem, new Sort("inDate"));
+		List<HistoryModel> historyModels = new ArrayList<HistoryModel>();
+		Page<HistoryEntity> historyEntities = historyRepository.findAll(pageable);
+		historyEntities.forEach(historyEntity -> {
+			HistoryModel historyModel = new HistoryModel();
+			BeanUtils.copyProperties(historyEntity, historyModel);
+			historyModels.add(historyModel);
+		});
+		return historyModels;
 	}
 	
 	

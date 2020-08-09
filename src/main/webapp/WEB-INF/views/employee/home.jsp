@@ -10,5 +10,7 @@
 <body>
 	<h1>Đây là trang nhân viên</h1>
 	<a href="<c:url value='/thoat'/>">Đăng xuất</a>
+	
+	
 </body>
 </html>

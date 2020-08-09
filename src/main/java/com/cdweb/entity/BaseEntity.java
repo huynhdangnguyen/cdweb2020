@@ -3,9 +3,12 @@ package com.cdweb.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import static javax.persistence.TemporalType.TIMESTAMP;
+
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -14,10 +17,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
-//@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity implements Serializable{
 
-	private static final long serialVersionUID = 110184593472651504L;
+	private static final long serialVersionUID = 1L;
 
 	@Column(name = "status")
 	private int status;
@@ -27,11 +30,12 @@ public class BaseEntity implements Serializable{
 //	private UserEntity createdBy;
 
 	@Column(name = "createdby")
-//	@CreatedBy
+	@CreatedBy
 	private String createdBy;
 	
 	@Column(name = "createddate")
-//	@CreatedDate
+	@CreatedDate
+	@Temporal(TIMESTAMP)
 	private Date createdDate;
 
 //	@OneToOne(fetch = FetchType.LAZY)
@@ -39,11 +43,12 @@ public class BaseEntity implements Serializable{
 //	private UserEntity userEntity;
 
 	@Column(name = "modifiedby")
-//	@LastModifiedBy
+	@LastModifiedBy
 	private String modifiedby;
 	
 	@Column(name = "modifieddate")
-//	@LastModifiedDate
+	@Temporal(TIMESTAMP)
+	@LastModifiedDate
 	private Date modifiedDate;
 
 	public String getCreatedBy() {
@@ -80,6 +85,14 @@ public class BaseEntity implements Serializable{
 
 	public Date getCreatedDate() {
 		return createdDate;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public void setModifiedby(String modifiedby) {
+		this.modifiedby = modifiedby;
 	}
 
 	public void setCreatedDate(Date createdDate) {

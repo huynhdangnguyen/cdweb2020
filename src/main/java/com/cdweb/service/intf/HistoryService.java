@@ -1,9 +1,12 @@
 package com.cdweb.service.intf;
 
+import java.util.List;
+
 import com.cdweb.model.HistoryModel;
 
 public interface HistoryService {
-	public HistoryModel saveHistory(HistoryModel historyModel);
-	public byte[] getImage(long id, String imageName);
-	public HistoryModel getOne(Long id);
+	HistoryModel saveHistory(HistoryModel historyModel);
+	byte[] getImage(long id, String imageName);
+	HistoryModel getOne(Long id);
+	List<HistoryModel> findAllHistorySortedByInDate(int offset, int numItem);
 }

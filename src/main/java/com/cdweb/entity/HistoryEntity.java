@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,9 +15,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 
 @Entity
 @Table(name = "history")
+@EntityListeners(AuditingEntityListener.class)
 public class HistoryEntity {
 
 	@Id
@@ -52,17 +60,19 @@ public class HistoryEntity {
 	private String plateNo;
 	
 	@Column(name = "indate")
+	@CreatedDate
 	private Date inDate;
 	
 	@Column(name = "outdate")
+	@LastModifiedDate
 	private Date outDate;
 	
 	@Column(name = "price")
 	private Integer price;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "createdby")
-	private UserEntity userEntity;
+	@Column(name = "createdby")
+	@CreatedBy
+	private String createdBy;
 	
 	@Column(name = "note")
 	private String note;
@@ -147,12 +157,12 @@ public class HistoryEntity {
 		this.price = price;
 	}
 
-	public UserEntity getUserEntity() {
-		return userEntity;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setUserEntity(UserEntity userEntity) {
-		this.userEntity = userEntity;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public String getNote() {
@@ -166,5 +176,11 @@ public class HistoryEntity {
 	public Long getId() {
 		return id;
 	}
+	
+//	@Override
+//	public String toString() {
+//		
+//		return this.id + "\t" + this.plateNo + "\t" + this.getOutDate() + "\t" + this.getPrice();
+//	}
 	
 }

@@ -7,5 +7,4 @@ import com.cdweb.entity.HistoryEntity;
 
 @Repository
 public interface HistoryRepository extends JpaRepository<HistoryEntity, Long>{
-
 }

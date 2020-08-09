@@ -21,12 +21,13 @@ import com.cdweb.util.SecurityUtils;
 import com.sun.imageio.plugins.common.ImageUtil;
 
 @Controller
+@RequestMapping("/quan-ly")
 public class ManagerController {
 	
 //	@Autowired
 //	HistoryServiceImpl historyServiceImpl;
 	
-	@RequestMapping("/quan-ly/trang-chu")
+	@GetMapping("/trang-chu")
 	public ModelAndView Home() {
 //		File file = new File("D:\\study\\19-20 hk2\\cdhttt\\workspace\\PlateDetection\\GreenParking\\0000_00532_b.jpg");
 //		HistoryModel historyModel = new HistoryModel();
@@ -39,4 +40,9 @@ public class ManagerController {
 		return new ModelAndView("/manager/home");
 	}
 	
+	@GetMapping("/Vehicle")
+	public ModelAndView VehicleView(ModelAndView modelAndView) {
+		modelAndView.setViewName("/manager/vehicle");
+		return modelAndView;
+	}
 }
