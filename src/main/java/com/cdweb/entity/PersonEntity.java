@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 public class PersonEntity extends BaseEntity{
 	@Id
 	@Column(name = "id")
-	private String id;
+	protected String id;
 	
 	@Column(name = "name")
 	private String name;

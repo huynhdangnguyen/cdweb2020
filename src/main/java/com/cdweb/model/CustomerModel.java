@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.cdweb.entity.RentDetailEntity;
-import com.cdweb.util.VietnameseUtils;
 
 public class CustomerModel extends PersonModel{
 	List<RentDetailModel> listRentDetail;

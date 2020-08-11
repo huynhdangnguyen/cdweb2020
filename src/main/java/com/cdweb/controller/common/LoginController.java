@@ -1,4 +1,4 @@
-package com.cdweb.controller;
+package com.cdweb.controller.common;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cdweb.constant.SystemConstant;
 import com.cdweb.model.CustomerModel;
 import com.cdweb.model.MyUserModel;
 import com.cdweb.model.VehicleModel;
@@ -35,22 +36,13 @@ public class LoginController {
 	
 	@RequestMapping(value = "/dang-nhap")
 	public ModelAndView Login(HttpServletRequest request, HttpServletResponse response) {
-//		List<CustomerModel> listCustomerModel = customerService.findAll(0, 4);
-//		request.setAttribute("listCustomerModel", listCustomerModel);
-//		for(CustomerModel customerModel : listCustomerModel) {
-//			System.out.println(customerModel.toString());
-//		}
-//		Map<Date, Integer> listStatisticIncomeInADay = statisticService.getIncome("2020-07-01 00:00:00", "2020-07-04 00:00:00");
-		
-		
-//		listStatisticIncomeInADay.forEach((k,v) -> System.out.println("Key : " + k + " Value : " + v));
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!auth.getName().equals("anonymousUser")) {
 			List<String> roles = SecurityUtils.getAuthorities();
 			if(roles.contains("MANAGER"))
-				return new ModelAndView("redirect:/quan-ly/trang-chu");
-			return new ModelAndView("redirect:/nhan-vien/trang-chu");
+				return new ModelAndView("redirect:/quan-ly/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM);
+			return new ModelAndView("redirect:/nhan-vien/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM);
 		}
 		return new ModelAndView("login");
 	}

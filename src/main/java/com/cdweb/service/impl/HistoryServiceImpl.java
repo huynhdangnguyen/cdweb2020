@@ -57,7 +57,7 @@ public class HistoryServiceImpl implements HistoryService{
 	public HistoryModel getOne(Long id) {
 		HistoryEntity historyEntity = historyRepository.getOne(id);
 		HistoryModel historyModel = new HistoryModel();
-		BeanUtils.copyProperties(historyEntity, historyModel);
+		BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage", "faceOutImage");
 		
 		CustomerModel customerModel = new CustomerModel();
 		BeanUtils.copyProperties(historyEntity.getCustomerEntity(), customerModel);
@@ -79,7 +79,7 @@ public class HistoryServiceImpl implements HistoryService{
 //		List<HistoryEntity> historyEntities = historyRepository.findAll();
 		historyEntities.forEach(historyEntity -> {
 			HistoryModel historyModel = new HistoryModel();
-			BeanUtils.copyProperties(historyEntity, historyModel);
+			BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage", "faceOutImage");
 			historyModels.add(historyModel);
 		});
 		return historyModels;
@@ -88,11 +88,11 @@ public class HistoryServiceImpl implements HistoryService{
 	@Override
 	public List<HistoryModel> findAllHistoryByIdRentDetailOrIdCustomer(int offset, int numItem, String searchedString) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC,"inDate"));
-		List<HistoryEntity> historyEntities = historyRepository.findAll("%" + searchedString + "%", pageable);
+		List<HistoryEntity> historyEntities = historyRepository.findAll(searchedString, pageable);
 		List<HistoryModel> historyModels = new ArrayList<HistoryModel>();
 		historyEntities.forEach(historyEntity ->{
 			HistoryModel historyModel = new HistoryModel();
-			BeanUtils.copyProperties(historyEntity, historyModel);
+			BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage", "faceOutImage");
 			historyModels.add(historyModel);
 		});
 		return historyModels;

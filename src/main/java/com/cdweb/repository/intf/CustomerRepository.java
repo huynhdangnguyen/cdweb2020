@@ -12,7 +12,10 @@ import org.springframework.stereotype.Repository;
 import com.cdweb.entity.CustomerEntity;
 
 @Repository
-public interface CustomerRepository extends PagingAndSortingRepository<CustomerEntity, Long>{
+public interface CustomerRepository extends JpaRepository<CustomerEntity, String>{
 	
 	List<CustomerEntity> findAllByStatus(Pageable pageable, Integer status);
+	
+	@Query("SELECT c FROM CustomerEntity c WHERE c.id LIKE %?1% AND c.status = ?2")
+	List<CustomerEntity> findAllByIdAndStatus( String searchedString, Integer status, Pageable pageable);
 }

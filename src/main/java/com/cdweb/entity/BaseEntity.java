@@ -23,11 +23,7 @@ public class BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "status")
-	private int status;
-
-//	@OneToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "createdby")
-//	private UserEntity createdBy;
+	protected int status;
 
 	@Column(name = "createdby")
 	@CreatedBy
@@ -36,11 +32,7 @@ public class BaseEntity implements Serializable{
 	@Column(name = "createddate")
 	@CreatedDate
 	@Temporal(TIMESTAMP)
-	private Date createdDate;
-
-//	@OneToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "modifiedby")
-//	private UserEntity userEntity;
+	protected Date createdDate;
 
 	@Column(name = "modifiedby")
 	@LastModifiedBy

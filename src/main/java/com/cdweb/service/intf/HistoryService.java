@@ -2,8 +2,11 @@ package com.cdweb.service.intf;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.cdweb.model.HistoryModel;
 
+@Service
 public interface HistoryService {
 	HistoryModel saveHistory(HistoryModel historyModel);
 	byte[] getImage(long id, String imageName);

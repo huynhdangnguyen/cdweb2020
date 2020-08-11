@@ -11,11 +11,11 @@
 <title>Quan tri</title>
 </head>
 <body>
-	<h1>Đây là trang quản lý</h1>
+	<h1>Đây là trang quản lý khách hàng</h1>
 	<security:authorize access="isAuthenticated()">
 		<h1>xin chào ${SecurityUtils.getPrincipal().getName()}</h1>
 	</security:authorize>
 	<a href="<c:url value='/thoat'/>">Đăng xuất</a>
-	<img src="<c:url value='/api/lich-su/hinh-anh/1/plateinimage'/>">
+	
 </body>
 </html>
