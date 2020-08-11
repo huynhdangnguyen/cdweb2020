@@ -15,16 +15,20 @@ import com.cdweb.service.intf.HistoryService;
 @Controller
 @RequestMapping("/quan-ly")
 public class HistoryController {
-	
+
 	@Autowired
 	HistoryService historyService;
-	
+
 	@GetMapping("/lich-su/{offset}/{numItem}")
 	@ResponseBody
 	public String History(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem){
 		List<HistoryModel> historyModels = historyService.findAllHistorySortedByInDate(offset, numItem);
-		historyModels.forEach(history -> System.out.println(history.toString()));
-		return offset + numItem + "";
+		String s = "";
+		for (HistoryModel historyModel : historyModels) {
+			s += historyModel.toString() + "\n";
+		}
+		
+		return s;
 	}
 
 }

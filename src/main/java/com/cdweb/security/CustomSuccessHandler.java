@@ -31,9 +31,9 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 	private String determineTargetUrl(Authentication authentication) {
 		List<String> roles = SecurityUtils.getAuthorities();
 		if (isManager(roles)) {
-			return "/quan-ly/trang-chu";
+			return "/quan-ly/khach-hang";
 		}
-			return "/nhan-vien/trang-chu";
+			return "/nhan-vien/khach-hang";
 	}
 
 	private boolean isManager(List<String> roles) {
@@ -42,12 +42,5 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		}
 		return false;
 	}
-
-//	private boolean isEmployee(List<String> roles) {
-//		if (roles.contains("EMPLOYEE")) {
-//			return true;
-//		}
-//		return false;
-//	}
 
 }

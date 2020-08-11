@@ -9,4 +9,5 @@ public interface HistoryService {
 	byte[] getImage(long id, String imageName);
 	HistoryModel getOne(Long id);
 	List<HistoryModel> findAllHistorySortedByInDate(int offset, int numItem);
+	List<HistoryModel> findAllHistoryByIdRentDetailOrIdCustomer(int offset, int numItem, String searchedString);
 }

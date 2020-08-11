@@ -16,5 +16,6 @@
 		<h1>xin chào ${SecurityUtils.getPrincipal().getName()}</h1>
 	</security:authorize>
 	<a href="<c:url value='/thoat'/>">Đăng xuất</a>
+	<img src="<c:url value='/api/image/1/plateinimage'/>">
 </body>
 </html>

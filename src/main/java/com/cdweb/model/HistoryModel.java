@@ -15,6 +15,8 @@ public class HistoryModel implements Serializable {
 	private RentDetailModel rentDetailModel;
 
 	private CustomerModel customerModel;
+	
+	private String customerId;
 
 	private byte[] plateInImage;
 
@@ -36,8 +38,12 @@ public class HistoryModel implements Serializable {
 
 	private String note;
 
-	public HistoryModel() {
-		super();
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 
 	public Long getId() {
@@ -146,17 +152,17 @@ public class HistoryModel implements Serializable {
 
 	public String bytesToString(byte[] bytes) {
 		String res = "";
-		for (byte b : bytes) {
-			res += "\t" + b + "";
-		}
+		if (bytes != null)
+			for (byte b : bytes) {
+				res += "\t" + b + "";
+			}
 		return res;
 	}
 
 	@Override
 	public String toString() {
-		return this.id + "\n" + this.bytesToString(plateInImage) + "\n" + this.bytesToString(faceInImage) + "\n"
-				+ this.bytesToString(plateOutImage) + "\n" + this.bytesToString(faceOutImage) + "\n" + this.plateNo
-				+ "\n" + this.inDate + "\n" + this.outDate + "\n" + this.price + "\n" + this.note;
+		return this.id + "\t" + this.plateNo + "\t" + this.inDate + "\t" + this.outDate + "\t" + this.price + "\t"
+				+ this.note;
 	}
 
 }

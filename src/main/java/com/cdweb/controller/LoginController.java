@@ -40,10 +40,10 @@ public class LoginController {
 //		for(CustomerModel customerModel : listCustomerModel) {
 //			System.out.println(customerModel.toString());
 //		}
-		Map<Date, Integer> listStatisticIncomeInADay = statisticService.getIncome("2020-07-01 00:00:00", "2020-07-04 00:00:00");
+//		Map<Date, Integer> listStatisticIncomeInADay = statisticService.getIncome("2020-07-01 00:00:00", "2020-07-04 00:00:00");
 		
 		
-		listStatisticIncomeInADay.forEach((k,v) -> System.out.println("Key : " + k + " Value : " + v));
+//		listStatisticIncomeInADay.forEach((k,v) -> System.out.println("Key : " + k + " Value : " + v));
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!auth.getName().equals("anonymousUser")) {

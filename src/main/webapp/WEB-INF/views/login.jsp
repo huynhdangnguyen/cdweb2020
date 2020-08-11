@@ -17,8 +17,5 @@
 			name="password" />
 		<button type="submit">đăng nhập</button>
 	</form>
-	<c:forEach var="customerModel" items="${listCustomerModel}" >
-		<h1>${customerModel.toString()}</h1>
-	</c:forEach>
 </body>
 </html>
