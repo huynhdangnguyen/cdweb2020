@@ -19,5 +19,7 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, String
 	@Query("SELECT c FROM CustomerEntity c WHERE c.id LIKE %?1% AND c.status = ?2")
 	List<CustomerEntity> findAllByIdAndStatus( String searchedString, Integer status, Pageable pageable);
 
+	CustomerEntity getOneByIdAndStatus(String id, Integer status);
+
 	
 }

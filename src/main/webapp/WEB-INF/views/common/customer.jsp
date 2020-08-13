@@ -19,17 +19,19 @@
 	</security:authorize>
 
 	<form name="customerForm" id="customerForm">
-			<label>id:</label>
-			<input type="text" placeholder="Chứng minh nhân dân" name="id" />
-		<button type="button" onclick="createCustomer()">Thêm khách hàng</button>
+		<label>id:</label> <input type="text"
+			placeholder="Chứng minh nhân dân" name="id" />
+		<button type="button" onclick="createCustomer()">Thêm khách
+			hàng</button>
 	</form>
 	<a href="<c:url value='/thoat'/>">Đăng xuất</a>
 
 
 	<script type="text/javascript">
 		function createCustomer() {
-		//	var id = document.customerForm.id.value;
-			var url = window.location.origin + "/parkinglotmanagement/api/khach-hang/them";
+			//	var id = document.customerForm.id.value;
+			var url = window.location.origin
+					+ "/parkinglotmanagement/api/khach-hang/them";
 			var xhttp;
 			if (window.XMLHttpRequest) {
 				xhttp = new XMLHttpRequest();
@@ -39,12 +41,17 @@
 			xhttp.onreadystatechange = function() {
 				if (xhttp.readyState == 4) {
 					var data = xhttp.responseText;
-					document.getElementById("customerForm").innerHTML = data;
+					if (data.indexOf("form") == -1)
+						alert(data);
+					else
+						document.getElementById("customerForm").innerHTML = data;
 				}
 			}
 			xhttp.open("POST", url, true);
 			xhttp.setRequestHeader("Content-Type", "application/json");
-			xhttp.send(JSON.stringify({ id : document.customerForm.id.value}));
+			xhttp.send(JSON.stringify({
+				id : document.customerForm.id.value
+			}));
 		}
 	</script>
 </body>

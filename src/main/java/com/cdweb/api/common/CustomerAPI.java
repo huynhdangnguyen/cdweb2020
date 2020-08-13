@@ -12,20 +12,23 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cdweb.model.CustomerModel;
+import com.cdweb.model.HistoryModel;
 import com.cdweb.service.impl.CustomerServiceImpl;
+import com.cdweb.service.intf.CustomerService;
 
 @Controller
 @RequestMapping("/api/khach-hang")
 public class CustomerAPI {
 
 	@Autowired
-	CustomerServiceImpl customerService;
+	CustomerService customerService;
 
 	@GetMapping("tim-kiem/{offset}/{numItem}/{searchedString}")
 	@ResponseBody
@@ -60,13 +63,34 @@ public class CustomerAPI {
 	public ModelAndView createCustomer(@Valid @RequestBody CustomerModel customerModel, BindingResult result,
 			ModelAndView mav) {
 		if (result.hasErrors()) {
-			mav.setViewName("common/ajax/customerform");
+			mav.setViewName("common/ajax/customercreatingform");
 			mav.addObject("customerModel", customerModel);
 			return mav;
 		}
-		
+		Boolean res = customerService.saveCustomer(customerModel);
 		mav.setViewName("common/ajax/message");
-		mav.addObject("message", "Tạo tài khoản thành công");
+		mav.addObject("message", res ? "Tạo tài khoản thành công" : "Tạo tài khoản thất bại");
+		return mav;
+	}
+
+	@GetMapping(value = "/chi-tiet/{id}")
+	@ResponseBody
+	public CustomerModel viewDetailHistory(@PathVariable("id") String id) {
+		CustomerModel customerModel = customerService.getOne(id);
+		return customerModel;
+	}
+
+	@PutMapping(value = "/chinh-sua")
+	public ModelAndView modifyCustomer(@Valid @RequestBody CustomerModel customerModel, BindingResult result,
+			ModelAndView mav) {
+		if (result.hasErrors()) {
+			mav.setViewName("common/ajax/customermodifyingform");
+			mav.addObject("customerModel", customerModel);
+			return mav;
+		}
+		Boolean res = customerService.modifyCustomer(customerModel);
+		mav.setViewName("common/ajax/message");
+		mav.addObject("message", res ? "Chỉnh sửa tài khoản thành công" : "Chỉnh sửa tài khoản thất bại");
 		return mav;
 	}
 

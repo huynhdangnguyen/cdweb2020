@@ -37,5 +37,7 @@ public class HistoryAPI {
 		HistoryModel historyModel = historyService.getOne(id);
 		return historyModel;
 	}
+	
+	
 
 }

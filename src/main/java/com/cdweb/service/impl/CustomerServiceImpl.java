@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +17,10 @@ import org.springframework.stereotype.Service;
 
 import com.cdweb.constant.SystemConstant;
 import com.cdweb.entity.CustomerEntity;
+import com.cdweb.entity.RentDetailEntity;
 import com.cdweb.model.CustomerModel;
+import com.cdweb.model.HistoryModel;
+import com.cdweb.model.RentDetailModel;
 import com.cdweb.repository.intf.CustomerRepository;
 import com.cdweb.service.intf.CustomerService;
 
@@ -56,16 +61,65 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerModels;
 	}
 
+	@Override
 	public Boolean detele(String id) {
 		try {
 			CustomerEntity customerEntity = customerRepository.getOne(id);
 			customerEntity.setStatus(0);
 			customerRepository.save(customerEntity);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Boolean saveCustomer(@Valid CustomerModel customerModel) {
+		customerModel.setStatus(1);
+		CustomerEntity customerEntity = customerRepository.getOne(customerModel.getId());
+		if (customerEntity == null) {
+			try {
+				customerEntity = new CustomerEntity();
+				BeanUtils.copyProperties(customerModel, customerEntity);
+				customerRepository.save(customerEntity);
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Boolean modifyCustomer(@Valid CustomerModel customerModel) {
+		customerModel.setStatus(1);
+		try {
+			CustomerEntity customerEntity = new CustomerEntity();
+			BeanUtils.copyProperties(customerModel, customerEntity);
+			customerRepository.save(customerEntity);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public CustomerModel getOne(String id) {
+		CustomerEntity customerEntity = customerRepository.getOneByIdAndStatus(id, SystemConstant.ACTIVATE_STATUS);
+		CustomerModel customerModel = new CustomerModel();
+		BeanUtils.copyProperties(customerEntity, customerModel);
+
+		List<RentDetailEntity> rentDetailEntities = customerEntity.getRentDetailEntities();
+		List<RentDetailModel> rentDetailModels = new ArrayList<>();
+		for (RentDetailEntity rentDetailEntity : rentDetailEntities) {
+			RentDetailModel rentDetailModel = new RentDetailModel();
+			BeanUtils.copyProperties(rentDetailEntity, rentDetailModel);
+			rentDetailModels.add(rentDetailModel);
+		}
+		customerModel.setListRentDetail(rentDetailModels);
+
+		return customerModel;
 	}
 
 }
