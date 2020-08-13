@@ -9,7 +9,7 @@ public class AccessDenied {
 
 	@RequestMapping(value = "/access-denied")
 	public ModelAndView accessDenied(ModelAndView modelAndView) {
-		modelAndView.setViewName("accessdenied");
+		modelAndView.setViewName("common/accessdenied");
 		return modelAndView;
 	}
 }

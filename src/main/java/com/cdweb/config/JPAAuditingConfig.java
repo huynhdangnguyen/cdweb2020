@@ -23,7 +23,7 @@ public class JPAAuditingConfig {
 		@Override
 		public String getCurrentAuditor() {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			if (authentication == null)
+			if (authentication.getName().equals("anonymousUser"))
 				return null;
 			return authentication.getName();
 		}

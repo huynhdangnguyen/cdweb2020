@@ -47,8 +47,6 @@ public class CustomerServiceImpl implements CustomerService {
 		List<CustomerModel> customerModels = new ArrayList<>();
 		List<CustomerEntity> customerEntities = customerRepository.findAllByIdAndStatus(searchedString,
 				SystemConstant.ACTIVATE_STATUS, pageable);
-		// List<CustomerEntity> customerEntities =
-		// customerRepository.findAllById(searchedString);
 		for (CustomerEntity customerEntity : customerEntities) {
 			CustomerModel customerModel = new CustomerModel();
 			BeanUtils.copyProperties(customerEntity, customerModel);
@@ -56,6 +54,18 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		return customerModels;
+	}
+
+	public Boolean detele(String id) {
+		try {
+			CustomerEntity customerEntity = customerRepository.getOne(id);
+			customerEntity.setStatus(0);
+			customerRepository.save(customerEntity);
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }

@@ -1,6 +1,11 @@
 package com.cdweb.model;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Currency;
+
 public class PersonModel extends BaseModel{
+	@NotEmpty
 	private String id;
 	
 	private String name;

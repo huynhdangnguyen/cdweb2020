@@ -13,9 +13,9 @@
 		<h1>Tài khoản hoặc mật khẩu không đúng</h1>
 	</c:if>
 	<form action="j_spring_security_check" id="formLogin" method="post">
-		<input type="text" name="id" /> <input type="password"
-			name="password" />
-		<button type="submit">đăng nhập</button>
+		<input type="text" name="id" value=""/> <input type="password"
+			name="password" value=""/>
+		<button type="submit" name="login" >đăng nhập</button>
 	</form>
 </body>
 </html>

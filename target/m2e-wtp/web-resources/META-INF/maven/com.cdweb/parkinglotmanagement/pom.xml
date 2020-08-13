@@ -142,7 +142,7 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring.data}</version>
 		</dependency>
-		
+
 		<!-- json -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -171,6 +171,14 @@
 			<version>1.9.13</version>
 		</dependency>
 		<!--end json -->
+
+		<!-- validation -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.10.Final</version>
+		</dependency>
+		<!-- end validation -->
 
 	</dependencies>
 

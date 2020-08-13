@@ -44,7 +44,7 @@ public class LoginController {
 				return new ModelAndView("redirect:/quan-ly/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM);
 			return new ModelAndView("redirect:/nhan-vien/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM);
 		}
-		return new ModelAndView("login");
+		return new ModelAndView("common/login");
 	}
 	
 	@RequestMapping(value = "/thoat")

@@ -5,8 +5,10 @@ import java.util.Date;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 
@@ -27,6 +29,7 @@ public class BaseEntity implements Serializable{
 
 	@Column(name = "createdby")
 	@CreatedBy
+	@Basic(fetch = FetchType.LAZY)
 	private String createdBy;
 	
 	@Column(name = "createddate")
@@ -36,6 +39,7 @@ public class BaseEntity implements Serializable{
 
 	@Column(name = "modifiedby")
 	@LastModifiedBy
+	@Basic(fetch = FetchType.LAZY)
 	private String modifiedby;
 	
 	@Column(name = "modifieddate")
