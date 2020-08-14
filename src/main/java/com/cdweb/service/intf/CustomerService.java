@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.cdweb.model.CustomerModel;
 import com.cdweb.model.HistoryModel;
 
-@Service
 public interface CustomerService {
 	List<CustomerModel> findAll(int offset, int numItem);
 

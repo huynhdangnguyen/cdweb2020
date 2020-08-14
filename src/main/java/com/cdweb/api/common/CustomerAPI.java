@@ -75,7 +75,7 @@ public class CustomerAPI {
 
 	@GetMapping(value = "/chi-tiet/{id}")
 	@ResponseBody
-	public CustomerModel viewDetailHistory(@PathVariable("id") String id) {
+	public CustomerModel viewDetailCustomer(@PathVariable("id") String id) {
 		CustomerModel customerModel = customerService.getOne(id);
 		return customerModel;
 	}

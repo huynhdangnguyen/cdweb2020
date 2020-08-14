@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.jaxb.SpringDataJaxb.PageRequestDto;
 import org.springframework.stereotype.Service;
 
+import com.cdweb.constant.SystemConstant;
 import com.cdweb.entity.CustomerEntity;
 import com.cdweb.entity.HistoryEntity;
 import com.cdweb.model.CustomerModel;
@@ -22,20 +23,20 @@ import com.cdweb.repository.intf.HistoryRepository;
 import com.cdweb.service.intf.HistoryService;
 
 @Service
-public class HistoryServiceImpl implements HistoryService{
+public class HistoryServiceImpl implements HistoryService {
 
 	@Autowired
 	HistoryRepository historyRepository;
-	
+
 	@Override
 	public HistoryModel saveHistory(HistoryModel historyModel) {
 		HistoryEntity historyEntity = new HistoryEntity();
 		BeanUtils.copyProperties(historyModel, historyEntity);
 		historyEntity = historyRepository.save(historyEntity);
-		BeanUtils.copyProperties( historyEntity,historyModel);
+		BeanUtils.copyProperties(historyEntity, historyModel);
 		return historyModel;
 	}
-	
+
 	@Override
 	public byte[] getImage(long id, String imageName) {
 		HistoryEntity historyEntity = historyRepository.getOne(id);
@@ -52,13 +53,14 @@ public class HistoryServiceImpl implements HistoryService{
 			return null;
 		}
 	}
-	
+
 	@Override
 	public HistoryModel getOne(Long id) {
 		HistoryEntity historyEntity = historyRepository.getOne(id);
 		HistoryModel historyModel = new HistoryModel();
-		BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage", "faceOutImage");
-		
+		BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage",
+				"faceOutImage");
+
 		CustomerModel customerModel = new CustomerModel();
 		BeanUtils.copyProperties(historyEntity.getCustomerEntity(), customerModel);
 		historyModel.setCustomerModel(customerModel);
@@ -66,37 +68,39 @@ public class HistoryServiceImpl implements HistoryService{
 		RentDetailModel rentDetailModel = new RentDetailModel();
 		BeanUtils.copyProperties(historyEntity.getRentDetailEntity(), rentDetailModel);
 		historyModel.setRentDetailModel(rentDetailModel);
-		
+
 		return historyModel;
 	}
 
 	@Override
 	public List<HistoryModel> findAllHistorySortedByInDate(int offset, int numItem) {
-		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC,"inDate"));
-//		Pageable pageable = new PageRequest(offset, numItem);
+		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "inDate"));
+		// Pageable pageable = new PageRequest(offset, numItem);
 		List<HistoryModel> historyModels = new ArrayList<HistoryModel>();
 		Page<HistoryEntity> historyEntities = historyRepository.findAll(pageable);
-//		List<HistoryEntity> historyEntities = historyRepository.findAll();
+		// List<HistoryEntity> historyEntities = historyRepository.findAll();
 		historyEntities.forEach(historyEntity -> {
 			HistoryModel historyModel = new HistoryModel();
-			BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage", "faceOutImage");
+			BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage",
+					"faceOutImage");
 			historyModels.add(historyModel);
 		});
 		return historyModels;
 	}
 
 	@Override
-	public List<HistoryModel> findAllHistoryByIdRentDetailOrIdCustomer(int offset, int numItem, String searchedString) {
-		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC,"inDate"));
-		List<HistoryEntity> historyEntities = historyRepository.findAll(searchedString, pageable);
+	public List<HistoryModel> findAllHistoryByPlateNoOrIdCustomer(int offset, int numItem, String searchedString) {
+		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "inDate"));
+		List<HistoryEntity> historyEntities = historyRepository.findAll(searchedString, SystemConstant.ACTIVATE_STATUS,
+				pageable);
 		List<HistoryModel> historyModels = new ArrayList<HistoryModel>();
-		historyEntities.forEach(historyEntity ->{
+		historyEntities.forEach(historyEntity -> {
 			HistoryModel historyModel = new HistoryModel();
-			BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage", "faceOutImage");
+			BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage",
+					"faceOutImage");
 			historyModels.add(historyModel);
 		});
 		return historyModels;
 	}
 
-	
 }

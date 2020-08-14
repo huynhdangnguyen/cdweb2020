@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/cdweb/api/common/CustomerAPI.java=UTF-8
+encoding//src/main/java/com/cdweb/api/common/RentDetailAPI.java=UTF-8
 encoding//src/main/java/com/cdweb/controller/common/LoginController.java=UTF-8
 encoding//src/main/java/com/cdweb/entity/CustomerEntity.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/ajax/customercreatingform.jsp=UTF-8
