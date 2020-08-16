@@ -13,9 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class CustomerEntity extends PersonEntity{
-	
-	@OneToMany(fetch = FetchType.LAZY ,mappedBy = "customerEntity")
+public class CustomerEntity extends PersonEntity {
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customerEntity")
 	List<RentDetailEntity> RentDetailEntities = new ArrayList<>();
 
 	public List<RentDetailEntity> getRentDetailEntities() {
@@ -25,5 +25,9 @@ public class CustomerEntity extends PersonEntity{
 	public void setRentDetailEntities(List<RentDetailEntity> rentDetailEntities) {
 		RentDetailEntities = rentDetailEntities;
 	}
-}	
-	
+
+	public String toString() {
+		return this.getId() + "   " + this.getName() + "   " + this.getAddr() + "   " + this.getGender() + "   "
+				+ this.getPhoneNo();
+	}
+}

@@ -45,6 +45,6 @@
 
 	</bean>
 
-	<mvc:resources mapping="/template/**"
-		location="/template/" />
+	<mvc:resources mapping="/ui-assets/**"
+		location="/ui-assets/" />
 </beans>

@@ -78,14 +78,15 @@ public class CustomerServiceImpl implements CustomerService {
 	public Boolean saveCustomer(@Valid CustomerModel customerModel) {
 		customerModel.setStatus(1);
 		CustomerEntity customerEntity = customerRepository.getOne(customerModel.getId());
-		if (customerEntity == null) {
-			try {
-				customerEntity = new CustomerEntity();
-				BeanUtils.copyProperties(customerModel, customerEntity);
-				customerRepository.save(customerEntity);
-			} catch (Exception e) {
-				return false;
-			}
+		try {
+			customerEntity.getId();
+		} catch (Exception e) {
+			customerEntity = new CustomerEntity();
+			BeanUtils.copyProperties(customerModel, customerEntity);
+
+			System.out.println(customerEntity.toString());
+
+			customerRepository.save(customerEntity);
 			return true;
 		}
 		return false;

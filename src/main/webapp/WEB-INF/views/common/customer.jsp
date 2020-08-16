@@ -10,49 +10,48 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Quan ly khach hang</title>
+<title>Quản lý khách hàng</title>
 </head>
 <body>
-	<h1>Đây là trang quản lý khách hàng</h1>
-	<security:authorize access="isAuthenticated()">
-		<h1>xin chào ${SecurityUtils.getPrincipal().getName()}</h1>
-	</security:authorize>
 
-	<form name="customerForm" id="customerForm">
-		<label>id:</label> <input type="text"
-			placeholder="Chứng minh nhân dân" name="id" />
-		<button type="button" onclick="createCustomer()">Thêm khách
-			hàng</button>
-	</form>
-	<a href="<c:url value='/thoat'/>">Đăng xuất</a>
+	<button type="button" class="btn mr-2 mb-2 btn-primary"
+		data-toggle="modal" data-target=".bd-example-modal-lg">Thêm
+		khách hàng</button>
 
-
-	<script type="text/javascript">
-		function createCustomer() {
-			//	var id = document.customerForm.id.value;
-			var url = window.location.origin
-					+ "/parkinglotmanagement/api/khach-hang/them";
-			var xhttp;
-			if (window.XMLHttpRequest) {
-				xhttp = new XMLHttpRequest();
-			} else {
-				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState == 4) {
-					var data = xhttp.responseText;
-					if (data.indexOf("form") == -1)
-						alert(data);
-					else
-						document.getElementById("customerForm").innerHTML = data;
-				}
-			}
-			xhttp.open("POST", url, true);
-			xhttp.setRequestHeader("Content-Type", "application/json");
-			xhttp.send(JSON.stringify({
-				id : document.customerForm.id.value
-			}));
-		}
-	</script>
+	<div class="main-card mb-3 card">
+		<div class="card-body">
+			<h5 class="card-title">Danh sách khách hàng</h5>
+			<div class="table-responsive">
+				<table class="mb-0 table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Mã KH</th>
+							<th>Họ tên</th>
+							<th>Số điện thoại</th>
+							<th>Địa chỉ</th>
+							<th>Trạng thái</th>
+							<th>Ngày tạo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:set var="i" scope="page" value="0" />
+						<c:forEach items="${customerModels}" var="cus">
+							<c:set var="i" value="${i + 1}" scope="page" />
+							<tr>
+								<td>${i}</td>
+								<td>${cus.id}</td>
+								<td>${cus.name}</td>
+								<td>${cus.phoneNo}</td>
+								<td>${cus.addr}</td>
+								<td>${cus.status}</td>
+								<td>${cus.createdDate}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

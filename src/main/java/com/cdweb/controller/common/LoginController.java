@@ -56,4 +56,5 @@ public class LoginController {
 		}
 		return new ModelAndView("redirect:/dang-nhap");
 	}
+	
 }
