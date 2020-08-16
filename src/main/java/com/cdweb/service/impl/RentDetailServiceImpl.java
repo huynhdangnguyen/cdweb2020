@@ -25,6 +25,8 @@ import com.cdweb.model.HistoryModel;
 import com.cdweb.model.PriceModel;
 import com.cdweb.model.RentDetailModel;
 import com.cdweb.model.VehicleModel;
+import com.cdweb.repository.intf.CustomerRepository;
+import com.cdweb.repository.intf.PriceRepository;
 import com.cdweb.repository.intf.RentDetailRepository;
 import com.cdweb.service.intf.RentDetailService;
 
@@ -34,11 +36,17 @@ public class RentDetailServiceImpl implements RentDetailService {
 	@Autowired
 	RentDetailRepository rentDetailRepository;
 	
+	@Autowired
+	CustomerRepository customerRepository;
+	
+	@Autowired
+	PriceRepository priceRepository;
+
 	@Override
 	public List<RentDetailModel> findAllSortedByPlateNo(int offset, int numItem) {
-		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC,"plateNo"));
+		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "plateNo"));
 		List<RentDetailModel> rentDetailModels = new ArrayList<RentDetailModel>();
-		Page<RentDetailEntity> rentDetailEntitys = rentDetailRepository.findAll(pageable);
+		List<RentDetailEntity> rentDetailEntitys = rentDetailRepository.findAllByStatus(pageable, SystemConstant.ACTIVATE_STATUS);
 		rentDetailEntitys.forEach(rentDetailEntity -> {
 			RentDetailModel rentDetailModel = new RentDetailModel();
 			BeanUtils.copyProperties(rentDetailEntity, rentDetailModel);
@@ -49,10 +57,11 @@ public class RentDetailServiceImpl implements RentDetailService {
 
 	@Override
 	public List<RentDetailModel> findAllByPlateNoOrCustomerId(int offset, int numItem, String searchedString) {
-		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC,"plateNo"));
-		List<RentDetailEntity> rentDetailEntities = rentDetailRepository.findAll(searchedString, pageable);
+		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "plateNo"));
+		List<RentDetailEntity> rentDetailEntities = rentDetailRepository.findAllByStatusAndPlateNoOrCustomerEntity(searchedString,
+				SystemConstant.ACTIVATE_STATUS, pageable);
 		List<RentDetailModel> rentDetailModels = new ArrayList<RentDetailModel>();
-		rentDetailEntities.forEach(rentDetailEntity ->{
+		rentDetailEntities.forEach(rentDetailEntity -> {
 			RentDetailModel rentDetailModel = new RentDetailModel();
 			BeanUtils.copyProperties(rentDetailEntity, rentDetailModel);
 			rentDetailModels.add(rentDetailModel);
@@ -75,7 +84,8 @@ public class RentDetailServiceImpl implements RentDetailService {
 
 	@Override
 	public RentDetailModel getOne(String id) {
-		RentDetailEntity rentDetailEntity = rentDetailRepository.getOneByIdAndStatus(id, SystemConstant.ACTIVATE_STATUS);
+		RentDetailEntity rentDetailEntity = rentDetailRepository.getOneByIdAndStatus(id,
+				SystemConstant.ACTIVATE_STATUS);
 		RentDetailModel rentDetailModel = new RentDetailModel();
 		BeanUtils.copyProperties(rentDetailEntity, rentDetailModel);
 
@@ -83,27 +93,41 @@ public class RentDetailServiceImpl implements RentDetailService {
 		PriceModel priceModel = new PriceModel();
 		BeanUtils.copyProperties(priceEntity, priceModel);
 		rentDetailModel.setPriceModel(priceModel);
-		
+
 		VehicleEntity vehicleEntity = rentDetailEntity.getVehicleEntity();
 		VehicleModel vehicleModel = new VehicleModel();
 		BeanUtils.copyProperties(vehicleEntity, vehicleModel);
 		rentDetailModel.setVehicleModel(vehicleModel);
-		
+
 		return rentDetailModel;
 	}
 
 	@Override
 	public Boolean modifyRentDetail(@Valid RentDetailModel rentDetailModel) {
-		rentDetailModel.setStatus(1);
+		RentDetailEntity rentDetailEntity = rentDetailRepository.getOne(rentDetailModel.getId());
 		try {
-			RentDetailEntity rentDetailEntity = new RentDetailEntity();
-			BeanUtils.copyProperties(rentDetailModel, rentDetailEntity);
-			rentDetailRepository.save(rentDetailEntity);
+		
+			rentDetailEntity.getId();
+		if(!rentDetailModel.getCustomerModel().getId().equals(rentDetailEntity.getCustomerEntity().getId()));
+		rentDetailEntity.setCustomerEntity(customerRepository.getOne(rentDetailModel.getCustomerModel().getId()));
+		
+		if(!rentDetailModel.getPriceModel().getId().equals(rentDetailEntity.getPriceEntity().getId())) {
+			PriceEntity priceEntity = priceRepository.getOne(rentDetailModel.getPriceModel().getId());
+			rentDetailEntity.setPriceEntity(priceEntity);
+			rentDetailEntity.setVehicleEntity(priceEntity.getVehicleEntity());
+		}
 		} catch (Exception e) {
 			return false;
 		}
+		rentDetailEntity.setPlateNo(rentDetailModel.getPlateNo());
+		rentDetailEntity.setFramenumber(rentDetailModel.getFramenumber());
+		rentDetailEntity.setMachinenumber(rentDetailModel.getMachinenumber());
+		rentDetailEntity.setEndDate(rentDetailModel.getEndDate());
+		rentDetailEntity.setEndDate(rentDetailModel.getEndDate());
+		
+		rentDetailRepository.save(rentDetailEntity);
+		
 		return true;
 	}
-	
-	
+
 }

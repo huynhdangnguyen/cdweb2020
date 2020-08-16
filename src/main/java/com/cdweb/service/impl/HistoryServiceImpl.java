@@ -91,8 +91,7 @@ public class HistoryServiceImpl implements HistoryService {
 	@Override
 	public List<HistoryModel> findAllHistoryByPlateNoOrIdCustomer(int offset, int numItem, String searchedString) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "inDate"));
-		List<HistoryEntity> historyEntities = historyRepository.findAll(searchedString, SystemConstant.ACTIVATE_STATUS,
-				pageable);
+		List<HistoryEntity> historyEntities = historyRepository.findAllByPlateNoOrCustomerEntity(searchedString, pageable);
 		List<HistoryModel> historyModels = new ArrayList<HistoryModel>();
 		historyEntities.forEach(historyEntity -> {
 			HistoryModel historyModel = new HistoryModel();

@@ -78,29 +78,31 @@ public class CustomerServiceImpl implements CustomerService {
 	public Boolean saveCustomer(@Valid CustomerModel customerModel) {
 		customerModel.setStatus(1);
 		CustomerEntity customerEntity = customerRepository.getOne(customerModel.getId());
-		if (customerEntity == null) {
-			try {
-				customerEntity = new CustomerEntity();
-				BeanUtils.copyProperties(customerModel, customerEntity);
-				customerRepository.save(customerEntity);
-			} catch (Exception e) {
-				return false;
-			}
+		try {
+			customerEntity.getId();
+		} catch (Exception e) {
+			customerEntity = new CustomerEntity();
+			BeanUtils.copyProperties(customerModel, customerEntity);
+			customerRepository.save(customerEntity);
 			return true;
 		}
 		return false;
+
 	}
 
 	@Override
 	public Boolean modifyCustomer(@Valid CustomerModel customerModel) {
-		customerModel.setStatus(1);
+		CustomerEntity customerEntity = new CustomerEntity();
 		try {
-			CustomerEntity customerEntity = new CustomerEntity();
-			BeanUtils.copyProperties(customerModel, customerEntity);
-			customerRepository.save(customerEntity);
+			customerEntity.getId();
 		} catch (Exception e) {
 			return false;
 		}
+		customerEntity.setId(customerModel.getId());
+		customerEntity.setName(customerModel.getName());
+		customerEntity.setAddr(customerModel.getAddr());
+		customerEntity.setPhoneNo(customerModel.getPhoneNo());
+		customerRepository.save(customerEntity);
 		return true;
 	}
 

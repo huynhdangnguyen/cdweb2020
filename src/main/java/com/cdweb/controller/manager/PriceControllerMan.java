@@ -18,7 +18,7 @@ public class PriceControllerMan {
 	PriceService priceService;
 	
 	@GetMapping("/{offset}/{numItem}")
-	public ModelAndView rentDetail(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav){
+	public ModelAndView rentPrice(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav){
 		mav.addObject("RentDetailModels", priceService.findAllSortedByStartDate(offset, numItem));
 		mav.setViewName("manager/price");
 		return mav;
