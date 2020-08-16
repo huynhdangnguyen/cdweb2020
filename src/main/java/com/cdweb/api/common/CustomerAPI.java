@@ -46,19 +46,6 @@ public class CustomerAPI {
 		return res;
 	}
 
-	// @DeleteMapping("/xoa")
-	// public HashMap<String, Boolean> deleteCustomer(@RequestBody String ids) {
-	// HashMap<String, Boolean> res = new HashMap<>();
-	// try {
-	// res.put("message", customerService.detele(((HashMap<String, String>) new
-	// ObjectMapper().readValue(ids,
-	// new TypeReference<Map<String, String>>() {})).get("id")));
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// return res;
-	// }
-
 	@PostMapping("/them")
 	public ModelAndView createCustomer(@Valid @RequestBody CustomerModel customerModel, BindingResult result,
 			ModelAndView mav) {
@@ -75,7 +62,7 @@ public class CustomerAPI {
 
 	@GetMapping(value = "/chi-tiet/{id}")
 	@ResponseBody
-	public CustomerModel viewDetailHistory(@PathVariable("id") String id) {
+	public CustomerModel viewDetailCustomer(@PathVariable("id") String id) {
 		CustomerModel customerModel = customerService.getOne(id);
 		return customerModel;
 	}

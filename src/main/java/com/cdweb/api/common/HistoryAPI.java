@@ -27,7 +27,7 @@ public class HistoryAPI {
 	@GetMapping(value = "/tim-kiem/{offset}/{numItem}/{searchedString}")
 	public List<HistoryModel> searchHistory(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
 			@PathVariable("searchedString") String searchedString) {
-		List<HistoryModel> historyModels = historyService.findAllHistoryByIdRentDetailOrIdCustomer(offset, numItem,
+		List<HistoryModel> historyModels = historyService.findAllHistoryByPlateNoOrIdCustomer(offset, numItem,
 				searchedString);
 		return historyModels;
 	}

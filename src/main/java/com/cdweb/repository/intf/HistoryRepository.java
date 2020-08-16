@@ -12,5 +12,5 @@ import com.cdweb.entity.HistoryEntity;
 public interface HistoryRepository extends JpaRepository<HistoryEntity, Long>{
 	
 	@Query("SELECT h FROM HistoryEntity h WHERE h.plateNo LIKE %?1% OR h.customerEntity.id LIKE %?1%")
-	public List<HistoryEntity> findAll(String searchedString, Pageable pageable);
+	public List<HistoryEntity> findAllByPlateNoOrCustomerEntity(String searchedString, Pageable pageable);
 }

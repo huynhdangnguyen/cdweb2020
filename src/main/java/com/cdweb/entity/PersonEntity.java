@@ -7,25 +7,25 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class PersonEntity extends BaseEntity{
+public class PersonEntity extends BaseEntity {
 	@Id
 	@Column(name = "id")
 	protected String id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "addr")
 	private String addr;
-	
+
 	@Column(name = "gender")
 	private Integer gender;
-	
+
 	@Column(name = "phoneno")
 	private String phoneNo;
-	
-	public String getId() {
-		return id;
+
+	public String getId(){
+			return id;
 	}
 
 	public void setId(String id) {

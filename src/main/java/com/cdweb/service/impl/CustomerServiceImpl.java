@@ -83,25 +83,26 @@ public class CustomerServiceImpl implements CustomerService {
 		} catch (Exception e) {
 			customerEntity = new CustomerEntity();
 			BeanUtils.copyProperties(customerModel, customerEntity);
-
-			System.out.println(customerEntity.toString());
-
 			customerRepository.save(customerEntity);
 			return true;
 		}
 		return false;
+
 	}
 
 	@Override
 	public Boolean modifyCustomer(@Valid CustomerModel customerModel) {
-		customerModel.setStatus(1);
+		CustomerEntity customerEntity = new CustomerEntity();
 		try {
-			CustomerEntity customerEntity = new CustomerEntity();
-			BeanUtils.copyProperties(customerModel, customerEntity);
-			customerRepository.save(customerEntity);
+			customerEntity.getId();
 		} catch (Exception e) {
 			return false;
 		}
+		customerEntity.setId(customerModel.getId());
+		customerEntity.setName(customerModel.getName());
+		customerEntity.setAddr(customerModel.getAddr());
+		customerEntity.setPhoneNo(customerModel.getPhoneNo());
+		customerRepository.save(customerEntity);
 		return true;
 	}
 
