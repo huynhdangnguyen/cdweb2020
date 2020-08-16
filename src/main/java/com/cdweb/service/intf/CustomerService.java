@@ -10,6 +10,8 @@ import com.cdweb.model.CustomerModel;
 import com.cdweb.model.HistoryModel;
 
 public interface CustomerService {
+	
+	
 	List<CustomerModel> findAll(int offset, int numItem);
 
 	List<CustomerModel> findAllById(int offset, int numItem, String searchedString);

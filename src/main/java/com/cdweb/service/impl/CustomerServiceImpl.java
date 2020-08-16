@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -29,13 +30,16 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	CustomerRepository customerRepository;
-
+	
+	public static int pageNumber = 0;
+	
 	@Override
 	public List<CustomerModel> findAll(int offset, int numItem) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "createdDate"));
 		List<CustomerModel> customerModels = new ArrayList<>();
-		List<CustomerEntity> customerEntities = customerRepository.findAllByStatus(pageable,
+		Page<CustomerEntity> customerEntities = customerRepository.findAllByStatus(pageable,
 				SystemConstant.ACTIVATE_STATUS);
+		this.pageNumber = customerEntities.getTotalPages();
 		for (CustomerEntity customerEntity : customerEntities) {
 			CustomerModel customerModel = new CustomerModel();
 			BeanUtils.copyProperties(customerEntity, customerModel);
@@ -50,8 +54,9 @@ public class CustomerServiceImpl implements CustomerService {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "createdDate"));
 		// Pageable pageable = new PageRequest(offset, numItem);
 		List<CustomerModel> customerModels = new ArrayList<>();
-		List<CustomerEntity> customerEntities = customerRepository.findAllByIdAndStatus(searchedString,
+		Page<CustomerEntity> customerEntities = customerRepository.findAllByIdAndStatus(searchedString,
 				SystemConstant.ACTIVATE_STATUS, pageable);
+		this.pageNumber = customerEntities.getTotalPages();
 		for (CustomerEntity customerEntity : customerEntities) {
 			CustomerModel customerModel = new CustomerModel();
 			BeanUtils.copyProperties(customerEntity, customerModel);

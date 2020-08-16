@@ -16,6 +16,7 @@ import com.cdweb.model.MyUserModel;
 import com.cdweb.model.UserModel;
 import com.cdweb.model.VehicleModel;
 import com.cdweb.repository.intf.HistoryRepository;
+import com.cdweb.service.impl.CustomerServiceImpl;
 import com.cdweb.service.impl.HistoryServiceImpl;
 import com.cdweb.service.intf.CustomerService;
 import com.cdweb.util.ImageUtils;
@@ -32,6 +33,7 @@ public class CustomerControllerMan {
 	@GetMapping("/{offset}/{numItem}")
 	public ModelAndView customer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav) {
 		mav.addObject("customerModels", customerService.findAll(offset, numItem));
+		mav.addObject("pageNumber", CustomerServiceImpl.pageNumber);
 		mav.setViewName("common/customer");
 		return mav;
 	}
