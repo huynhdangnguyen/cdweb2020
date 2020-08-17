@@ -1,1 +1,10 @@
-small{color:red;}
+small {
+	color: red;
+}
+
+.disabled-link {
+	cursor: default;
+	pointer-events: none;
+	text-decoration: none;
+	color: red;
+}

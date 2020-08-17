@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cdweb.model.HistoryModel;
 import com.cdweb.model.VehicleModel;
+import com.cdweb.service.impl.CustomerServiceImpl;
 import com.cdweb.service.impl.HistoryServiceImpl;
 import com.cdweb.service.impl.VehicleServiceImpl;
 import com.cdweb.service.intf.CustomerService;
@@ -21,13 +22,16 @@ import com.cdweb.service.intf.HistoryService;
 @Controller
 @RequestMapping("/nhan-vien/khach-hang")
 public class CustomerControllerEmp {
-	
+
 	@Autowired
 	CustomerService customerService;
-	
+
 	@GetMapping("/{offset}/{numItem}")
-	public ModelAndView customer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav) {
+	public ModelAndView customer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
+			ModelAndView mav) {
 		mav.addObject("customerModels", customerService.findAll(offset, numItem));
+		mav.addObject("pageNumber", CustomerServiceImpl.pageNumber);
+		mav.addObject("offset", offset);
 		mav.setViewName("common/customer");
 		return mav;
 	}

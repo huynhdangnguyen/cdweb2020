@@ -26,16 +26,18 @@ import com.sun.imageio.plugins.common.ImageUtil;
 @Controller
 @RequestMapping("/quan-ly/khach-hang")
 public class CustomerControllerMan {
-	
+
 	@Autowired
 	CustomerService customerService;
-	
+
 	@GetMapping("/{offset}/{numItem}")
-	public ModelAndView customer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav) {
+	public ModelAndView customer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
+			ModelAndView mav) {
 		mav.addObject("customerModels", customerService.findAll(offset, numItem));
 		mav.addObject("pageNumber", CustomerServiceImpl.pageNumber);
+		mav.addObject("offset", offset);
 		mav.setViewName("common/customer");
 		return mav;
 	}
-	
+
 }
