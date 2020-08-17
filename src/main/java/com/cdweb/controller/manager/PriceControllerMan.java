@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cdweb.constant.SystemConstant;
 import com.cdweb.service.intf.PriceService;
 
 @Controller
@@ -20,6 +21,7 @@ public class PriceControllerMan {
 	@GetMapping("/{offset}/{numItem}")
 	public ModelAndView rentPrice(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav){
 		mav.addObject("RentDetailModels", priceService.findAllSortedByStartDate(offset, numItem));
+		mav.addObject("pageNumber", SystemConstant.pageNumber);
 		mav.setViewName("manager/price");
 		return mav;
 	}

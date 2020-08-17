@@ -46,7 +46,8 @@ public class RentDetailServiceImpl implements RentDetailService {
 	public List<RentDetailModel> findAllSortedByPlateNo(int offset, int numItem) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "plateNo"));
 		List<RentDetailModel> rentDetailModels = new ArrayList<RentDetailModel>();
-		List<RentDetailEntity> rentDetailEntitys = rentDetailRepository.findAllByStatus(pageable, SystemConstant.ACTIVATE_STATUS);
+		Page<RentDetailEntity> rentDetailEntitys = rentDetailRepository.findAllByStatus(pageable, SystemConstant.ACTIVATE_STATUS);
+		SystemConstant.pageNumber = rentDetailEntitys.getTotalPages();
 		rentDetailEntitys.forEach(rentDetailEntity -> {
 			RentDetailModel rentDetailModel = new RentDetailModel();
 			BeanUtils.copyProperties(rentDetailEntity, rentDetailModel);
@@ -58,8 +59,9 @@ public class RentDetailServiceImpl implements RentDetailService {
 	@Override
 	public List<RentDetailModel> findAllByPlateNoOrCustomerId(int offset, int numItem, String searchedString) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "plateNo"));
-		List<RentDetailEntity> rentDetailEntities = rentDetailRepository.findAllByStatusAndPlateNoOrCustomerEntity(searchedString,
+		Page<RentDetailEntity> rentDetailEntities = rentDetailRepository.findAllByStatusAndPlateNoOrCustomerEntity(searchedString,
 				SystemConstant.ACTIVATE_STATUS, pageable);
+		SystemConstant.pageNumber = rentDetailEntities.getTotalPages();
 		List<RentDetailModel> rentDetailModels = new ArrayList<RentDetailModel>();
 		rentDetailEntities.forEach(rentDetailEntity -> {
 			RentDetailModel rentDetailModel = new RentDetailModel();

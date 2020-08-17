@@ -105,10 +105,13 @@
 									<div tabindex="-1" role="menu" aria-hidden="true"
 										class="dropdown-menu dropdown-menu-left">
 										<button type="button" tabindex="0" class="dropdown-item">
-										<a class="btn" href="">Thông tin tài khoản</a>
+										<a style="width: 100%; height: 100%; text-align: left;" class="btn" href="">Thông tin tài khoản</a>
 											</button>
 										<button type="button" tabindex="0" class="dropdown-item">
-											<a class="btn" href="<c:url value='/thoat'/>">Đăng xuất</a></button>
+										<a style="width: 100%; height: 100%; text-align: left;"  class="btn" href="<c:url value='/thoat'/>">
+											Đăng xuất
+											</a>
+											</button>
 										
 									</div>
 								</div>

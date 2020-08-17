@@ -22,7 +22,14 @@
 	src="<c:url value='/ui-assets/scripts/subscript.js'/>"></script>
 </head>
 <body>
-	<%@ include file="/decorators/modalAddCustomer.jsp"%>
+	
+	<c:choose>
+		<c:when test="${customerModels != null}">
+			<%@ include file="/decorators/modalAddCustomer.jsp"%>
+		</c:when>
+		<c:otherwise>
+		</c:otherwise>
+	</c:choose>
 	<div
 		class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 		<%@ include file="/decorators/header.jsp"%>

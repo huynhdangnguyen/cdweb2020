@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.PageRequestDto;
 import org.springframework.stereotype.Service;
 
 import com.cdweb.constant.SystemConstant;
@@ -75,14 +74,21 @@ public class HistoryServiceImpl implements HistoryService {
 	@Override
 	public List<HistoryModel> findAllHistorySortedByInDate(int offset, int numItem) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "inDate"));
-		// Pageable pageable = new PageRequest(offset, numItem);
 		List<HistoryModel> historyModels = new ArrayList<HistoryModel>();
 		Page<HistoryEntity> historyEntities = historyRepository.findAll(pageable);
-		// List<HistoryEntity> historyEntities = historyRepository.findAll();
+		SystemConstant.pageNumber = historyEntities.getTotalPages();
 		historyEntities.forEach(historyEntity -> {
 			HistoryModel historyModel = new HistoryModel();
 			BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage",
 					"faceOutImage");
+
+			CustomerEntity customerEntity = historyEntity.getCustomerEntity();
+			CustomerModel customerModel = new CustomerModel();
+			if (customerEntity != null)
+				BeanUtils.copyProperties(customerEntity, customerModel);
+
+			historyModel.setCustomerModel(customerModel);
+
 			historyModels.add(historyModel);
 		});
 		return historyModels;
@@ -91,7 +97,9 @@ public class HistoryServiceImpl implements HistoryService {
 	@Override
 	public List<HistoryModel> findAllHistoryByPlateNoOrIdCustomer(int offset, int numItem, String searchedString) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "inDate"));
-		List<HistoryEntity> historyEntities = historyRepository.findAllByPlateNoOrCustomerEntity(searchedString, pageable);
+		Page<HistoryEntity> historyEntities = historyRepository.findAllByPlateNoOrCustomerEntity(searchedString,
+				pageable);
+		SystemConstant.pageNumber = historyEntities.getTotalPages();
 		List<HistoryModel> historyModels = new ArrayList<HistoryModel>();
 		historyEntities.forEach(historyEntity -> {
 			HistoryModel historyModel = new HistoryModel();

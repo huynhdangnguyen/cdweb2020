@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,7 +16,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.cdweb.constant.SystemConstant;
-import com.cdweb.entity.CustomerEntity;
 import com.cdweb.entity.PriceEntity;
 import com.cdweb.entity.VehicleEntity;
 import com.cdweb.model.PriceModel;
@@ -37,7 +37,8 @@ public class PriceServiceImpl implements PriceService {
 	public List<PriceModel> findAllSortedByStartDate(int offset, int numItem) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "startDate"));
 		List<PriceModel> priceModels = new ArrayList<PriceModel>();
-		List<PriceEntity> priceEntitys = priceRepository.findAllByStatus(pageable, SystemConstant.ACTIVATE_STATUS);
+		Page<PriceEntity> priceEntitys = priceRepository.findAllByStatus(pageable, SystemConstant.ACTIVATE_STATUS);
+		SystemConstant.pageNumber = priceEntitys.getTotalPages();
 		priceEntitys.forEach(priceEntity -> {
 			PriceModel priceModel = new PriceModel();
 			BeanUtils.copyProperties(priceEntity, priceModel);
@@ -49,8 +50,9 @@ public class PriceServiceImpl implements PriceService {
 	@Override
 	public List<PriceModel> findAllById(int offset, int numItem, Long searchedString) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "id"));
-		List<PriceEntity> priceEntities = priceRepository.findAllByIdAndStatus(searchedString,
+		Page<PriceEntity> priceEntities = priceRepository.findAllByIdAndStatus(searchedString,
 				SystemConstant.ACTIVATE_STATUS, pageable);
+		SystemConstant.pageNumber = priceEntities.getTotalPages();
 		List<PriceModel> priceModels = new ArrayList<PriceModel>();
 		priceEntities.forEach(priceEntity -> {
 			PriceModel priceModel = new PriceModel();

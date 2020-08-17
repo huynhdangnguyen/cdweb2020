@@ -31,15 +31,14 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	CustomerRepository customerRepository;
 	
-	public static int pageNumber = 0;
 	
 	@Override
-	public List<CustomerModel> findAll(int offset, int numItem) {
+	public List<CustomerModel> findAllByStatus(int offset, int numItem) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "createdDate"));
 		List<CustomerModel> customerModels = new ArrayList<>();
 		Page<CustomerEntity> customerEntities = customerRepository.findAllByStatus(pageable,
 				SystemConstant.ACTIVATE_STATUS);
-		this.pageNumber = customerEntities.getTotalPages();
+		SystemConstant.pageNumber = customerEntities.getTotalPages();
 		for (CustomerEntity customerEntity : customerEntities) {
 			CustomerModel customerModel = new CustomerModel();
 			BeanUtils.copyProperties(customerEntity, customerModel);
@@ -50,13 +49,12 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<CustomerModel> findAllById(int offset, int numItem, String searchedString) {
+	public List<CustomerModel> findAllByIdAndStatus(int offset, int numItem, String searchedString) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "createdDate"));
-		// Pageable pageable = new PageRequest(offset, numItem);
 		List<CustomerModel> customerModels = new ArrayList<>();
 		Page<CustomerEntity> customerEntities = customerRepository.findAllByIdAndStatus(searchedString,
 				SystemConstant.ACTIVATE_STATUS, pageable);
-		this.pageNumber = customerEntities.getTotalPages();
+		SystemConstant.pageNumber = customerEntities.getTotalPages();
 		for (CustomerEntity customerEntity : customerEntities) {
 			CustomerModel customerModel = new CustomerModel();
 			BeanUtils.copyProperties(customerEntity, customerModel);

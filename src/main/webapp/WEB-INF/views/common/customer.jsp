@@ -14,7 +14,6 @@
 <title>Quản lý khách hàng</title>
 </head>
 <body>
-
 	<button type="button" class="btn mr-2 mb-2 btn-primary"
 		data-toggle="modal" data-target=".bd-example-modal-lg">Thêm
 		khách hàng</button>

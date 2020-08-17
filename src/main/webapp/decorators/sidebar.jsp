@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ page import="com.cdweb.constant.SystemConstant"%>
+<%@ page import="com.cdweb.constant.SystemConstant"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -51,7 +51,7 @@
 					href="<c:url value="/quan-ly/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
 					</c:when>
 					<c:otherwise>
-					href="<c:url value="/nhan-vien/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+					href="<c:url value="/nhan-vien/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"/>"
 					</c:otherwise>
 					</c:choose>
 						<c:if test = "${customerModels!=null}">class="mm-active"</c:if>>
@@ -63,8 +63,17 @@
 						<c:if test = "${page == 'login'}">class="mm-active"</c:if>> <i
 							class="metismenu-icon fa fa-database"></i> Quản lý gửi xe tháng
 					</a></li>
-					<li><a href="#"> <i class="metismenu-icon fa fa-history"></i>
-							Xem lịch sử xe ra vào
+					<li><a
+						<c:choose> 
+					<c:when test="${SecurityUtils.getAuthorities().contains('MANAGER')}">
+					href="<c:url value="/quan-ly/lich-su/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+					</c:when>
+					<c:otherwise>
+					href="<c:url value="/nhan-vien/lich-su/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+					</c:otherwise>
+					</c:choose>
+						<c:if test = "${historyModels!=null}">class="mm-active"</c:if>>
+							<i class="metismenu-icon fa fa-history"></i> Quản lý lịch sử
 					</a></li>
 
 				</ul>
