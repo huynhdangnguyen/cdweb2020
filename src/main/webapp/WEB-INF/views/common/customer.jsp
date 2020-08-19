@@ -39,7 +39,7 @@
 						<c:set var="i" scope="page" value="0" />
 						<c:forEach items="${customerModels}" var="cus">
 							<c:set var="i" value="${i + 1}" scope="page" />
-							<tr ondblclick="customerDetail(this)">
+							<tr ondblclick="historyDetail(this)">
 								<td>${i}</td>
 								<td id="tdID">${cus.id}</td>
 								<td>${cus.name}</td>
@@ -76,10 +76,7 @@
 	</ul>
 	</nav>
 	<script type="text/javascript">
-		
-	</script>
-	<script type="text/javascript">
-		function customerDetail(x) {
+		function historyDetail(x) {
 			var id = x.cells.namedItem("tdID").innerHTML;
 			var url = window.location.origin
 					+ "/parkinglotmanagement/api/khach-hang/chi-tiet/" + id;

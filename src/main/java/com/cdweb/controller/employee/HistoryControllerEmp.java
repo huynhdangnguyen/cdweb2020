@@ -25,6 +25,7 @@ public class HistoryControllerEmp {
 	public ModelAndView history(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav){
 		mav.addObject("historyModels", historyService.findAllHistorySortedByInDate(offset, numItem));
 		mav.addObject("pageNumber", SystemConstant.pageNumber);
+		mav.addObject("offset", offset);
 		mav.setViewName("common/history");
 		return mav;
 	}

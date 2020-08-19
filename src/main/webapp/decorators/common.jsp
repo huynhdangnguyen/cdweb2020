@@ -20,12 +20,15 @@
 	src="<c:url value='/ui-assets/scripts/main.js'/>"></script>
 <script type="text/javascript"
 	src="<c:url value='/ui-assets/scripts/subscript.js'/>"></script>
-</head>
+
 <body>
-	
+
 	<c:choose>
 		<c:when test="${customerModels != null}">
 			<%@ include file="/decorators/modalAddCustomer.jsp"%>
+		</c:when>
+		<c:when test="${historyModels != null}">
+			<%@ include file="/decorators/modalHistoryDetail.jsp"%>
 		</c:when>
 		<c:otherwise>
 		</c:otherwise>

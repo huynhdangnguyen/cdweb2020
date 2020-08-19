@@ -61,11 +61,13 @@ public class HistoryServiceImpl implements HistoryService {
 				"faceOutImage");
 
 		CustomerModel customerModel = new CustomerModel();
-		BeanUtils.copyProperties(historyEntity.getCustomerEntity(), customerModel);
+		if (historyEntity.getCustomerEntity() != null)
+			BeanUtils.copyProperties(historyEntity.getCustomerEntity(), customerModel);
 		historyModel.setCustomerModel(customerModel);
 
 		RentDetailModel rentDetailModel = new RentDetailModel();
-		BeanUtils.copyProperties(historyEntity.getRentDetailEntity(), rentDetailModel);
+		if (historyEntity.getRentDetailEntity() != null)
+			BeanUtils.copyProperties(historyEntity.getRentDetailEntity(), rentDetailModel);
 		historyModel.setRentDetailModel(rentDetailModel);
 
 		return historyModel;
@@ -105,6 +107,13 @@ public class HistoryServiceImpl implements HistoryService {
 			HistoryModel historyModel = new HistoryModel();
 			BeanUtils.copyProperties(historyEntity, historyModel, "plateInImage", "faceInImage", "plateOutImage",
 					"faceOutImage");
+			
+			CustomerEntity customerEntity = historyEntity.getCustomerEntity();
+			CustomerModel customerModel = new CustomerModel();
+			if (customerEntity != null)
+				BeanUtils.copyProperties(customerEntity, customerModel);
+
+			historyModel.setCustomerModel(customerModel);
 			historyModels.add(historyModel);
 		});
 		return historyModels;
