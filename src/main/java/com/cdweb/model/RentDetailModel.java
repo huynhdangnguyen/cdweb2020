@@ -13,15 +13,19 @@ import com.cdweb.entity.CustomerEntity;
 import com.cdweb.entity.PriceEntity;
 import com.cdweb.entity.VehicleEntity;
 
+/**
+ * @author huynh
+ *
+ */
 public class RentDetailModel extends BaseModel{
 
 	private Long id;
 	
 	private String plateNo;
 	
-	private String framenumber;
+	private String frameNumber;
 	
-	private String machinenumber;
+	private String machineNumber;
 	
 	private Date endDate;
 	
@@ -51,20 +55,20 @@ public class RentDetailModel extends BaseModel{
 		this.plateNo = plateNo;
 	}
 
-	public String getFramenumber() {
-		return framenumber;
+	public String getFrameNumber() {
+		return frameNumber;
 	}
 
-	public void setFramenumber(String framenumber) {
-		this.framenumber = framenumber;
+	public void setFrameNumber(String frameNumber) {
+		this.frameNumber = frameNumber;
 	}
 
-	public String getMachinenumber() {
-		return machinenumber;
+	public String getMachineNumber() {
+		return machineNumber;
 	}
 
-	public void setMachinenumber(String machinenumber) {
-		this.machinenumber = machinenumber;
+	public void setMachineNumber(String machineNumber) {
+		this.machineNumber = machineNumber;
 	}
 
 	public Date getEndDate() {

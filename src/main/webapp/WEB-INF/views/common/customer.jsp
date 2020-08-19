@@ -14,6 +14,7 @@
 <title>Quản lý khách hàng</title>
 </head>
 <body>
+	
 	<button type="button" class="btn mr-2 mb-2 btn-primary"
 		data-toggle="modal" data-target=".bd-example-modal-lg">Thêm
 		khách hàng</button>
@@ -58,19 +59,19 @@
 	<nav class="" aria-label="Page navigation example">
 	<ul class="pagination justify-content-center">
 		<li class="page-item <c:if test="${offset==0}">disabled</c:if>"><a
-			href="<c:url value='/quan-ly/khach-hang/${offset -1}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
+			href="<c:url value='/${SecurityUtils.roleToUrl()}/khach-hang/${offset -1}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
 			class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span
 				class="sr-only">Previous</span></a></li>
 
 		<c:forEach begin="0" end="${pageNumber-1}" varStatus="loop">
 			<li class="page-item <c:if test="${offset==loop.index}">active</c:if>"><a
-				href="<c:url value='/quan-ly/khach-hang/${loop.index}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
+				href="<c:url value='/${SecurityUtils.roleToUrl()}/khach-hang/${loop.index}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
 				class="page-link">${loop.index+1}</a></li>
 		</c:forEach>
 
 		<li
 			class="page-item <c:if test="${offset==pageNumber-1}">disabled</c:if>"><a
-			href="<c:url value='/quan-ly/khach-hang/${offset +1}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
+			href="<c:url value='/${SecurityUtils.roleToUrl()}/khach-hang/${offset +1}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
 			class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span
 				class="sr-only">Next</span></a></li>
 	</ul>

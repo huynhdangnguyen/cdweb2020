@@ -86,11 +86,16 @@ public class RentDetailServiceImpl implements RentDetailService {
 
 	@Override
 	public RentDetailModel getOne(String id) {
-		RentDetailEntity rentDetailEntity = rentDetailRepository.getOneByIdAndStatus(id,
+		RentDetailEntity rentDetailEntity = rentDetailRepository.getOneByIdAndStatus(Long.parseLong(id),
 				SystemConstant.ACTIVATE_STATUS);
 		RentDetailModel rentDetailModel = new RentDetailModel();
 		BeanUtils.copyProperties(rentDetailEntity, rentDetailModel);
 
+		CustomerEntity customerEntity = rentDetailEntity.getCustomerEntity();
+		CustomerModel customerModel = new CustomerModel();
+		BeanUtils.copyProperties(customerEntity, customerModel);
+		rentDetailModel.setCustomerModel(customerModel);
+		
 		PriceEntity priceEntity = rentDetailEntity.getPriceEntity();
 		PriceModel priceModel = new PriceModel();
 		BeanUtils.copyProperties(priceEntity, priceModel);
@@ -110,6 +115,11 @@ public class RentDetailServiceImpl implements RentDetailService {
 		try {
 		
 			rentDetailEntity.getId();
+		} catch (Exception e) {
+			return false;
+		}
+		try {
+			
 		if(!rentDetailModel.getCustomerModel().getId().equals(rentDetailEntity.getCustomerEntity().getId()));
 		rentDetailEntity.setCustomerEntity(customerRepository.getOne(rentDetailModel.getCustomerModel().getId()));
 		
@@ -118,13 +128,11 @@ public class RentDetailServiceImpl implements RentDetailService {
 			rentDetailEntity.setPriceEntity(priceEntity);
 			rentDetailEntity.setVehicleEntity(priceEntity.getVehicleEntity());
 		}
-		} catch (Exception e) {
-			return false;
+		}catch (Exception e) {
 		}
 		rentDetailEntity.setPlateNo(rentDetailModel.getPlateNo());
-		rentDetailEntity.setFramenumber(rentDetailModel.getFramenumber());
-		rentDetailEntity.setMachinenumber(rentDetailModel.getMachinenumber());
-		rentDetailEntity.setEndDate(rentDetailModel.getEndDate());
+		rentDetailEntity.setFrameNumber(rentDetailModel.getFrameNumber());
+		rentDetailEntity.setMachineNumber(rentDetailModel.getMachineNumber());
 		rentDetailEntity.setEndDate(rentDetailModel.getEndDate());
 		
 		rentDetailRepository.save(rentDetailEntity);

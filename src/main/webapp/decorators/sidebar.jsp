@@ -45,36 +45,48 @@
 				<ul class="vertical-nav-menu">
 					<li class="app-sidebar__heading">Dashboards</li>
 
-					<li><a
-						<c:choose> 
-					<c:when test="${SecurityUtils.getAuthorities().contains('MANAGER')}">
-					href="<c:url value="/quan-ly/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
-					</c:when>
-					<c:otherwise>
-					href="<c:url value="/nhan-vien/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"/>"
-					</c:otherwise>
-					</c:choose>
-						<c:if test = "${customerModels!=null}">class="mm-active"</c:if>>
-							<i class="metismenu-icon fa fa-user-circle-o"></i> Quản lý khách
-							hàng
-					</a></li>
+					<c:choose>
+						<c:when
+							test="${SecurityUtils.getAuthorities().contains('MANAGER')}">
+							<li><a
+								href="<c:url value="/quan-ly/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${customerModels!=null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-user-circle-o"></i> Quản lý
+									khách hàng
+							</a></li>
+							<li><a
+								href="<c:url value="/quan-ly/chi-tiet-thue/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${rentDetailModels!=null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-database"></i> Quản lý gửi xe
+									tháng
+							</a></li>
+							<li><a
+								href="<c:url value="/quan-ly/lich-su/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${historyModels!=null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-history"></i> Quản lý lịch sử
+							</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="<c:url value="/nhan-vien/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"/>"
+								<c:if test = "${customerModels!=null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-user-circle-o"></i> Quản lý
+									khách hàng
+							</a></li>
+							<li><a
+								href="<c:url value="/nhan-vien/chi-tiet-thue/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${rentDetailModels!=null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-database"></i> Quản lý gửi xe
+									tháng
+							</a></li>
+							<li><a
+								href="<c:url value="/nhan-vien/lich-su/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${historyModels!=null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-history"></i> Quản lý lịch sử
+							</a></li>
 
-					<li><a href="<c:url value="/login"></c:url>"
-						<c:if test = "${page == 'login'}">class="mm-active"</c:if>> <i
-							class="metismenu-icon fa fa-database"></i> Quản lý gửi xe tháng
-					</a></li>
-					<li><a
-						<c:choose> 
-					<c:when test="${SecurityUtils.getAuthorities().contains('MANAGER')}">
-					href="<c:url value="/quan-ly/lich-su/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
-					</c:when>
-					<c:otherwise>
-					href="<c:url value="/nhan-vien/lich-su/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
-					</c:otherwise>
+						</c:otherwise>
 					</c:choose>
-						<c:if test = "${historyModels!=null}">class="mm-active"</c:if>>
-							<i class="metismenu-icon fa fa-history"></i> Quản lý lịch sử
-					</a></li>
 
 				</ul>
 			</div>

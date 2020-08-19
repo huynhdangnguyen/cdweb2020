@@ -30,6 +30,9 @@
 		<c:when test="${historyModels != null}">
 			<%@ include file="/decorators/modalHistoryDetail.jsp"%>
 		</c:when>
+		<c:when test="${rentDetailModels != null}">
+			<%@ include file="/decorators/modalRentDetail.jsp"%>
+		</c:when>
 		<c:otherwise>
 		</c:otherwise>
 	</c:choose>

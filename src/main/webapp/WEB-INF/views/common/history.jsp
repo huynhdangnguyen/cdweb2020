@@ -15,15 +15,16 @@
 </head>
 <body>
 	<div id="main-body">
+		<form name="searchHistoryForm">
+			<input type="text" id="searchedString" />
+			<button type="button"
+				onclick="searchHistory(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
+				kiếm</button>
+		</form>
 		<div class="main-card mb-3 card">
 			<div class="card-body">
 				<h5 class="card-title">Danh sách lịch sử</h5>
-				<form name="searchHistoryForm">
-					<input type="text" id="searchedString" />
-					<button type="button"
-						onclick="searchHistory(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
-						kiếm</button>
-				</form>
+
 				<div class="table-responsive">
 					<table class="mb-0 table table-hover">
 						<thead>
@@ -67,20 +68,20 @@
 		<nav class="" aria-label="Page navigation example">
 		<ul class="pagination justify-content-center">
 			<li class="page-item <c:if test="${offset==0}">disabled</c:if>"><a
-				href="<c:url value='/quan-ly/lich-su/${offset -1}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
+				href="<c:url value='/${SecurityUtils.roleToUrl()}/lich-su/${offset -1}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
 				class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span
 					class="sr-only">Previous</span></a></li>
 
 			<c:forEach begin="0" end="${pageNumber-1}" varStatus="loop">
 				<li
 					class="page-item <c:if test="${offset==loop.index}">active</c:if>"><a
-					href="<c:url value='/quan-ly/lich-su/${loop.index}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
+					href="<c:url value='/${SecurityUtils.roleToUrl()}/lich-su/${loop.index}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
 					class="page-link">${loop.index+1}</a></li>
 			</c:forEach>
 
 			<li
 				class="page-item <c:if test="${offset==pageNumber-1}">disabled</c:if>"><a
-				href="<c:url value='/quan-ly/lich-su/${offset + 1}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
+				href="<c:url value='/${SecurityUtils.roleToUrl()}/lich-su/${offset + 1}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
 				class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span
 					class="sr-only">Next</span></a></li>
 		</ul>

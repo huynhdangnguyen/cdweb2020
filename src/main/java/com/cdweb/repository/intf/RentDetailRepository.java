@@ -15,7 +15,7 @@ public interface RentDetailRepository extends JpaRepository<RentDetailEntity, Lo
 	@Query("SELECT rd FROM RentDetailEntity rd WHERE rd.plateNo LIKE %?1% OR rd.customerEntity.id LIKE %?1% AND rd.status = ?2")
 	public Page<RentDetailEntity> findAllByStatusAndPlateNoOrCustomerEntity(String searchedString, int status, Pageable pageable);
 
-	RentDetailEntity getOneByIdAndStatus(String id, int status);
+	RentDetailEntity getOneByIdAndStatus(Long id, int status);
 	
 	Page<RentDetailEntity> findAllByStatus(Pageable pageable, int status);
 }
