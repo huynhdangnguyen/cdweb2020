@@ -7,6 +7,7 @@ encoding//src/main/java/com/cdweb/controller/common/LoginController.java=UTF-8
 encoding//src/main/java/com/cdweb/entity/CustomerEntity.java=UTF-8
 encoding//src/main/java/com/cdweb/model/PersonModel.java=UTF-8
 encoding//src/main/java/com/cdweb/util/SecurityUtils.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/ajax/cusDetailForm.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/ajax/customercreatingform.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/customer.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/login.jsp=UTF-8

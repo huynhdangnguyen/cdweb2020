@@ -26,6 +26,7 @@
 	<c:choose>
 		<c:when test="${customerModels != null}">
 			<%@ include file="/decorators/modalAddCustomer.jsp"%>
+			<%@ include file="/decorators/modalCustomerDetail.jsp"%>
 		</c:when>
 		<c:when test="${historyModels != null}">
 			<%@ include file="/decorators/modalHistoryDetail.jsp"%>

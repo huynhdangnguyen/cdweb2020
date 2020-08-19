@@ -9,5 +9,4 @@ public class SystemConstant {
 	public static final int DEFAULT_OFFSET = 0;
 	public static final int DEFAULT_NUM_ITEM = 2;
 	public static int pageNumber = 0;
-	public static DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 }

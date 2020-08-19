@@ -53,7 +53,7 @@
 		<small><form:errors path="addr" /></small>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+		<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="resetData()">Đóng</button>
 		<button type="button" class="btn btn-primary"
 			onclick="createCustomer()">Lưu</button>
 	</div>

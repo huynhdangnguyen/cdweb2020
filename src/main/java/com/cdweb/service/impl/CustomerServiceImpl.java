@@ -105,6 +105,8 @@ public class CustomerServiceImpl implements CustomerService {
 		customerEntity.setName(customerModel.getName());
 		customerEntity.setAddr(customerModel.getAddr());
 		customerEntity.setPhoneNo(customerModel.getPhoneNo());
+		customerEntity.setGender(customerModel.getGender());
+		customerEntity.setStatus(1);
 		customerRepository.save(customerEntity);
 		return true;
 	}
