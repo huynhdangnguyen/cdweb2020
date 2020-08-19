@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cdweb.constant.SystemConstant;
 import com.cdweb.model.CustomerModel;
 import com.cdweb.service.impl.CustomerServiceImpl;
 import com.cdweb.service.intf.CustomerService;
@@ -35,10 +37,10 @@ public class CustomerAPI {
 	@ResponseBody
 	public List<CustomerModel> searchCustomer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
 			@PathVariable("searchedString") String searchedString) {
-		List<CustomerModel> historyModels = customerService.findAllById(offset, numItem, searchedString);
+		List<CustomerModel> historyModels = customerService.findAllByIdAndStatus(offset, numItem, searchedString);
 		Map<String, Object> response = new HashMap<String, Object>();
 		response.put("historyModels", historyModels);
-		response.put("PageNumber", CustomerServiceImpl.pageNumber);
+		response.put("PageNumber", SystemConstant.pageNumber);
 		return historyModels;
 	}
 

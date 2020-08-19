@@ -13,7 +13,7 @@
     	<intercept-url pattern="/nhan-vien/**" access="hasAnyRole('EMPLOYEE')" />
     	<intercept-url pattern="/api/**" access="hasAnyRole('MANAGER','EMPLOYEE')" />
     	
-    	<access-denied-handler error-page="/access-denied" />
+    	<access-denied-handler error-page="/trang-loi" />
         
         <form-login  login-page="/dang-nhap"
                      username-parameter="id"

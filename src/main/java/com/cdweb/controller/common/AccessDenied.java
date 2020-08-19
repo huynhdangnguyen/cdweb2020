@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AccessDenied {
 
-	@RequestMapping(value = "/access-denied")
+	@RequestMapping(value = "/trang-loi")
 	public ModelAndView accessDenied(ModelAndView modelAndView) {
 		modelAndView.setViewName("common/accessdenied");
 		return modelAndView;

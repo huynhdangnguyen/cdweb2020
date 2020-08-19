@@ -2,9 +2,8 @@
 <decorators defaultdir="/decorators">
     <excludes>
         <pattern>*/dang-nhap*</pattern>
-    </excludes>
-    <excludes>
-        <pattern>*/api/*</pattern>
+        <pattern>*/api*</pattern>
+		<pattern>*/trang-loi*</pattern>
     </excludes>
     
     <decorator name="common" page="common.jsp">

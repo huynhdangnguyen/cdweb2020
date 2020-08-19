@@ -2,11 +2,14 @@ package com.cdweb.api.common;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cdweb.constant.SystemConstant;
 import com.cdweb.model.RentDetailModel;
 import com.cdweb.service.intf.RentDetailService;
 
@@ -28,11 +32,20 @@ public class RentDetailAPI {
 	RentDetailService rentDetailService;
 	
 	@GetMapping("tim-kiem/{offset}/{numItem}/{searchedString}")
-	@ResponseBody
-	public List<RentDetailModel> searchRentDetail(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
-			@PathVariable("searchedString") String searchedString) {
+	public ModelAndView searchRentDetail(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
+			@PathVariable("searchedString") String searchedString, ModelAndView mav) {
 		List<RentDetailModel> rentDetailModels = rentDetailService.findAllByPlateNoOrCustomerId(offset, numItem, searchedString);
-		return rentDetailModels;
+		if(rentDetailModels == null || rentDetailModels.size() == 0) {
+			mav.addObject("message", "Không tìm thấy kết quả phù hợp");
+			mav.setViewName("common/ajax/message");
+			return mav;
+		}
+		mav.addObject("rentDetailModels", rentDetailModels);
+		mav.addObject("pageNumber", SystemConstant.pageNumber);
+		mav.addObject("offset", offset);
+		mav.addObject("searchedString", searchedString);
+		mav.setViewName("common/ajax/rentdetailsearchedtable");
+		return mav;
 	}
 	
 
@@ -53,17 +66,13 @@ public class RentDetailAPI {
 	}
 
 	@PutMapping(value = "/chinh-sua")
-	public ModelAndView modifyRentDetail(@Valid @RequestBody RentDetailModel rentDetailModel, BindingResult result,
+	@ResponseBody
+	public Map<String, String> modifyRentDetail(@RequestBody RentDetailModel rentDetailModel, BindingResult result,
 			ModelAndView mav) {
-		if (result.hasErrors()) {
-			mav.setViewName("common/ajax/rentdetailmodifyingform");
-			mav.addObject("rentDetailModel", rentDetailModel);
-			return mav;
-		}
 		Boolean res = rentDetailService.modifyRentDetail(rentDetailModel);
-		mav.setViewName("common/ajax/message");
-		mav.addObject("message", res ? "Chỉnh sửa thẻ thành công" : "Chỉnh sửa thẻ thất bại");
-		return mav;
+		Map<String, String> response = new HashMap<String, String>();
+		response.put("result", res + "");
+		return response;
 	}
 	
 }

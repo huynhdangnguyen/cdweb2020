@@ -24,10 +24,10 @@ public class RentDetailEntity extends BaseEntity{
 	private String plateNo;
 	
 	@Column(name = "framenumber")
-	private String framenumber;
+	private String frameNumber;
 	
 	@Column(name = "machinenumber")
-	private String machinenumber;
+	private String machineNumber;
 	
 	@Column(name = "enddate")
 	private Date endDate;
@@ -51,21 +51,25 @@ public class RentDetailEntity extends BaseEntity{
 	public void setPlateNo(String plateNo) {
 		this.plateNo = plateNo;
 	}
-
-	public String getFramenumber() {
-		return framenumber;
+	
+	public String getFrameNumber() {
+		return frameNumber;
 	}
 
-	public void setFramenumber(String framenumber) {
-		this.framenumber = framenumber;
+	public void setFrameNumber(String frameNumber) {
+		this.frameNumber = frameNumber;
 	}
 
-	public String getMachinenumber() {
-		return machinenumber;
+	public String getMachineNumber() {
+		return machineNumber;
 	}
 
-	public void setMachinenumber(String machinenumber) {
-		this.machinenumber = machinenumber;
+	public void setMachineNumber(String machineNumber) {
+		this.machineNumber = machineNumber;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Date getEndDate() {

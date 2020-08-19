@@ -39,10 +39,7 @@ public class HistoryEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_customer")
 	private CustomerEntity customerEntity;
-	
-//	@Column(name = "id_customer")
-//	private String customerId;
-	
+
 	@Column(name = "plateinimage")
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] plateInImage;
@@ -80,14 +77,8 @@ public class HistoryEntity {
 	@Column(name = "note")
 	private String note;
 
-//	public String getCustomerId() {
-//		return customerId;
-//	}
-//
-//	public void setCustomerId(String customerId) {
-//		this.customerId = customerId;
-//	}
-
+	
+	
 	public RentDetailEntity getRentDetailEntity() {
 		return rentDetailEntity;
 	}

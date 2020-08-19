@@ -33,4 +33,12 @@ public class SecurityUtils {
 			return "Nhân viên";
 		}
 	}
+	
+	public static String roleToUrl() {
+		if (getAuthorities().contains("MANAGER")) {
+			return "quan-ly";
+		} else {
+			return "nhan-vien";
+		}
+	}
 }

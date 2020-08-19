@@ -20,11 +20,23 @@
 	src="<c:url value='/ui-assets/scripts/main.js'/>"></script>
 <script type="text/javascript"
 	src="<c:url value='/ui-assets/scripts/subscript.js'/>"></script>
-</head>
-<body>
-	<%@ include file="/decorators/modalAddCustomer.jsp"%>
-	<%@ include file="/decorators/modalCustomerDetail.jsp"%>
 
+<body>
+
+	<c:choose>
+		<c:when test="${customerModels != null}">
+			<%@ include file="/decorators/modalAddCustomer.jsp"%>
+			<%@ include file="/decorators/modalCustomerDetail.jsp"%>
+		</c:when>
+		<c:when test="${historyModels != null}">
+			<%@ include file="/decorators/modalHistoryDetail.jsp"%>
+		</c:when>
+		<c:when test="${rentDetailModels != null}">
+			<%@ include file="/decorators/modalRentDetail.jsp"%>
+		</c:when>
+		<c:otherwise>
+		</c:otherwise>
+	</c:choose>
 	<div
 		class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 		<%@ include file="/decorators/header.jsp"%>

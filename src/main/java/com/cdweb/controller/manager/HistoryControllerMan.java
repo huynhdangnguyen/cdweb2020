@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cdweb.constant.SystemConstant;
 import com.cdweb.model.HistoryModel;
 import com.cdweb.service.intf.HistoryService;
 
@@ -23,6 +24,8 @@ public class HistoryControllerMan {
 	@GetMapping("/{offset}/{numItem}")
 	public ModelAndView history(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav){
 		mav.addObject("historyModels", historyService.findAllHistorySortedByInDate(offset, numItem));
+		mav.addObject("pageNumber", SystemConstant.pageNumber);
+		mav.addObject("offset", offset);
 		mav.setViewName("common/history");
 		return mav;
 	}
