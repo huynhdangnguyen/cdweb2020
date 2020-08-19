@@ -65,6 +65,11 @@
 								<c:if test = "${historyModels!=null}">class="mm-active"</c:if>>
 									<i class="metismenu-icon fa fa-history"></i> Quản lý lịch sử
 							</a></li>
+							<li><a
+								href="<c:url value="/quan-ly/gia/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${priceModels != null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-history"></i> Quản lý giá
+							</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a
