@@ -30,9 +30,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	CustomerRepository customerRepository;
-	
+
 	public static int pageNumber = 0;
-	
+
 	@Override
 	public List<CustomerModel> findAll(int offset, int numItem) {
 		Pageable pageable = new PageRequest(offset, numItem, new Sort(Direction.DESC, "createdDate"));
@@ -107,6 +107,8 @@ public class CustomerServiceImpl implements CustomerService {
 		customerEntity.setName(customerModel.getName());
 		customerEntity.setAddr(customerModel.getAddr());
 		customerEntity.setPhoneNo(customerModel.getPhoneNo());
+		customerEntity.setGender(customerModel.getGender());
+		customerEntity.setStatus(1);
 		customerRepository.save(customerEntity);
 		return true;
 	}

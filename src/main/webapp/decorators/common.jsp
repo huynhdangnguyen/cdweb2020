@@ -23,6 +23,8 @@
 </head>
 <body>
 	<%@ include file="/decorators/modalAddCustomer.jsp"%>
+	<%@ include file="/decorators/modalCustomerDetail.jsp"%>
+
 	<div
 		class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 		<%@ include file="/decorators/header.jsp"%>

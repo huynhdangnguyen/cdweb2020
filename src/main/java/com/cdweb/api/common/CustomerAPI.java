@@ -60,21 +60,26 @@ public class CustomerAPI {
 		}
 		Boolean res = customerService.saveCustomer(customerModel);
 		mav.setViewName("common/ajax/message");
-		mav.addObject("message", res ? "Tạo tài khoản thành công" : "Tạo tài khoản thất bại");
+		mav.addObject("message", res ? "Tạo khách hàng thành công" : "Tạo khách hàng thất bại");
 		return mav;
 	}
 
 	@GetMapping(value = "/chi-tiet/{id}")
 	@ResponseBody
-	public CustomerModel viewDetailCustomer(@PathVariable("id") String id) {
+	public ModelAndView viewDetailCustomer(@PathVariable("id") String id, ModelAndView mav) {
+
 		CustomerModel customerModel = customerService.getOne(id);
-		return customerModel;
+		mav.addObject("customerModel", customerModel);
+		mav.addObject("listRentDetail", customerModel.getListRentDetail());
+		mav.setViewName("common/ajax/cusDetailForm");
+		return mav;
 	}
 
-	@PutMapping(value = "/chinh-sua")
+	@PostMapping(value = "/chinh-sua")
 	public ModelAndView modifyCustomer(@Valid @RequestBody CustomerModel customerModel, BindingResult result,
 			ModelAndView mav) {
 		if (result.hasErrors()) {
+			System.out.println("error in API");
 			mav.setViewName("common/ajax/customermodifyingform");
 			mav.addObject("customerModel", customerModel);
 			return mav;
@@ -82,6 +87,8 @@ public class CustomerAPI {
 		Boolean res = customerService.modifyCustomer(customerModel);
 		mav.setViewName("common/ajax/message");
 		mav.addObject("message", res ? "Chỉnh sửa tài khoản thành công" : "Chỉnh sửa tài khoản thất bại");
+		System.out.println("success in API");
+		System.out.println(res);
 		return mav;
 	}
 

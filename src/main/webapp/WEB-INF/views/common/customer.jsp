@@ -40,7 +40,8 @@
 						<c:set var="i" scope="page" value="0" />
 						<c:forEach items="${customerModels}" var="cus">
 							<c:set var="i" value="${i + 1}" scope="page" />
-							<tr ondblclick="customerDetail(this)">
+							<tr onclick="customerDetail(this)" data-toggle="modal"
+								data-target="#customerDetailModal">
 								<td>${i}</td>
 								<td id="tdID">${cus.id}</td>
 								<td>${cus.name}</td>
@@ -64,7 +65,8 @@
 				class="sr-only">Previous</span></a></li>
 
 		<c:forEach begin="0" end="${pageNumber-1}" varStatus="loop">
-			<li class="page-item <c:if test="${offset==loop.index}">active</c:if>"><a
+			<li
+				class="page-item <c:if test="${offset==loop.index}">active</c:if>"><a
 				href="<c:url value='/quan-ly/khach-hang/${loop.index}/${SystemConstant.DEFAULT_NUM_ITEM}'/>"
 				class="page-link">${loop.index+1}</a></li>
 		</c:forEach>
@@ -76,9 +78,6 @@
 				class="sr-only">Next</span></a></li>
 	</ul>
 	</nav>
-	<script type="text/javascript">
-		
-	</script>
 	<script type="text/javascript">
 		function customerDetail(x) {
 			var id = x.cells.namedItem("tdID").innerHTML;
@@ -92,13 +91,91 @@
 			}
 			xhttp.onreadystatechange = function() {
 				if (xhttp.readyState == 4) {
-
-					var cusObj = JSON.parse(this.responseText);
-					alert(cusObj.listRentDetail);
+					var data = this.responseText;
+					document.getElementById("customerDetailCard").innerHTML = data;
 				}
 			}
 			xhttp.open("GET", url, true);
 			xhttp.send();
+		}
+	</script>
+	<script type="text/javascript">
+		function deleteCustomer(x) {
+			var url = window.location.origin
+					+ "/parkinglotmanagement/api/khach-hang/xoa";
+			var xhttp;
+			if (window.XMLHttpRequest) {
+				xhttp = new XMLHttpRequest();
+			} else {
+				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4) {
+					var data = JSON.parse(this.responseText);
+					window.location.reload();
+					if (data.message == true) {
+						alert("Xóa khách hàng thành công");
+					} else {
+						alert("Xóa khách hàng thất bại");
+					}
+				}
+			}
+			xhttp.open("DELETE", url, true);
+			xhttp.setRequestHeader("Content-Type", "application/json");
+			xhttp.send(JSON.stringify({
+				id : x
+			}));
+		}
+	</script>
+
+	<script type="text/javascript">
+		function loadNewValueModalModifyConfirm() {
+			document.getElementById("newName").innerHTML = "Tên: "
+					+ document.customerDetailForm.name.value;
+			document.getElementById("newPhoneNo").innerHTML = "Số điện thoại: "
+					+ document.customerDetailForm.phoneNo.value;
+			if (document.customerDetailForm.gender.value == 1) {
+				document.getElementById("newGender").innerHTML = "Giới tính: Nam"
+			} else {
+				document.getElementById("newGender").innerHTML = "Giới tính: Nữ"
+			}
+
+			document.getElementById("newAddr").innerHTML = "Địa chỉ: "
+					+ document.customerDetailForm.addr.value;
+		}
+	</script>
+	<script type="text/javascript">
+		function modifyCustomer() {
+			//	var id = document.customerForm.id.value;
+			var url = window.location.origin
+					+ "/parkinglotmanagement/api/khach-hang/chinh-sua";
+			var xhttp;
+			if (window.XMLHttpRequest) {
+				xhttp = new XMLHttpRequest();
+			} else {
+				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4) {
+					var data = xhttp.responseText;
+
+					if (data.indexOf("form") == -1) {
+						window.location.reload();
+						alert(data);
+					} else {
+						document.getElementById("customerDetailForm").innerHTML = data;
+					}
+				}
+			}
+			xhttp.open("POST", url, true);
+			xhttp.setRequestHeader("Content-Type", "application/json");
+			xhttp.send(JSON.stringify({
+				id : document.customerDetailForm.id.value,
+				name : document.customerDetailForm.name.value,
+				addr : document.customerDetailForm.addr.value,
+				gender : document.customerDetailForm.gender.value,
+				phoneNo : document.customerDetailForm.phoneNo.value
+			}));
 		}
 	</script>
 </body>
