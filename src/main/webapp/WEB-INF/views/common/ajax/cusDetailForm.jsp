@@ -175,8 +175,8 @@
 							<tr>
 								<td>${j}</td>
 								<td>${rentDt.plateNo}</td>
-								<td>${rentDt.framenumber}</td>
-								<td>${rentDt.machinenumber}</td>
+								<td>${rentDt.frameNumber}</td>
+								<td>${rentDt.machineNumber}</td>
 								<td>${rentDt.endDate}</td>
 								<td>${rentDt.createdBy}</td>
 								<td>${rentDt.createdDate}</td>

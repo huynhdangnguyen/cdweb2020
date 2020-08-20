@@ -11,19 +11,22 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cdweb.constant.SystemConstant;
+import com.cdweb.model.CustomerModel;
 import com.cdweb.model.UserModel;
 import com.cdweb.service.intf.UserService;
 
 @Controller
+@RequestMapping("/api/tai-khoan")
 public class UserAPI {
 
-	
 	@Autowired
 	UserService userService;
 	
@@ -40,7 +43,21 @@ public class UserAPI {
 		mav.addObject("pageNumber", SystemConstant.pageNumber);
 		mav.addObject("offset", offset);
 		mav.addObject("searchedString", searchedString);
-		mav.setViewName("common/ajax/pricesearchedtable");
+		mav.setViewName("common/ajax/usersearchedtable");
+		return mav;
+	}
+	
+	@PostMapping("/them")
+	public ModelAndView createUser(@Valid @RequestBody UserModel userModel, BindingResult result,
+			ModelAndView mav) {
+		if (result.hasErrors()) {
+			mav.setViewName("common/ajax/usercreatingform");
+			mav.addObject("userModel", userModel);
+			return mav;
+		}
+		Boolean res = userService.saveUser(userModel, SystemConstant.EMPLOYEE_ID);
+		mav.setViewName("common/ajax/message");
+		mav.addObject("message", res ? "Tạo tài khoản thành công" : "Tạo tài khoản thất bại");
 		return mav;
 	}
 	
@@ -59,7 +76,7 @@ public class UserAPI {
 		return userModel;
 	}
 
-	@PutMapping(value = "/chinh-sua")
+	@PostMapping(value = "/chinh-sua")
 	public ModelAndView modifyUser(@Valid @RequestBody UserModel userModel, BindingResult result,
 			ModelAndView mav) {
 		if (result.hasErrors()) {

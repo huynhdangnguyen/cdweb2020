@@ -15,7 +15,7 @@
 <body>
 	<div id="main-body">
 		<button type="button" class="btn mr-2 mb-2 btn-primary">Thêm giá</button>
-		<form name="searchRentDetailForm">
+		<form name="searchPriceForm">
 			<input type="text" name="searchedString" />
 			<button type="button"
 				onclick="searchPrice(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
@@ -108,7 +108,7 @@
 		}
 		
 		function searchPrice(offset, numItem) {
-			var searchedString = document.searchRentDetailForm.searchedString.value;
+			var searchedString = document.searchPriceForm.searchedString.value;
 			if(searchedString == ""){				
 				window.location.reload();
 				return;

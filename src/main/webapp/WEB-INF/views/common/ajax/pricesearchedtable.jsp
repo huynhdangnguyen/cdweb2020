@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.cdweb.constant.SystemConstant"%>
 
-<form name="searchRentDetailForm">
+<form name="searchPriceForm">
 	<input type="text" id="searchedString" value="${searchedString}" />
 	<button type="button"
 		onclick="searchPrice(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
