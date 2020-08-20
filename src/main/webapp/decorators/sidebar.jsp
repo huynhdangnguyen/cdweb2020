@@ -68,8 +68,14 @@
 							<li><a
 								href="<c:url value="/quan-ly/gia/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
 								<c:if test = "${priceModels != null}">class="mm-active"</c:if>>
-									<i class="metismenu-icon fa fa-history"></i> Quản lý giá
+									<i class="metismenu-icon fa fa-money" aria-hidden="true"></i> Quản lý giá
 							</a></li>
+							<li><a
+								href="<c:url value="/quan-ly/tai-khoan/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${userModels != null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-user"></i> Quản lý tài khoản
+							</a></li>
+							
 						</c:when>
 						<c:otherwise>
 							<li><a

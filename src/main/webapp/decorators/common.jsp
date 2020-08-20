@@ -34,8 +34,6 @@
 		<c:when test="${rentDetailModels != null}">
 			<%@ include file="/decorators/modalRentDetail.jsp"%>
 		</c:when>
-		<c:otherwise>
-		</c:otherwise>
 	</c:choose>
 	<div
 		class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">

@@ -2,15 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.cdweb.constant.SystemConstant"%>
+	<form name="searchHistoryForm">
+		<input type="text" id="searchedString" value="${searchedString}" />
+		<button type="button"
+			onclick="searchHistory(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
+			kiếm</button>
+	</form>
 <div class="main-card mb-3 card">
 	<div class="card-body">
 		<h5 class="card-title">Danh sách lịch sử</h5>
-		<form name="searchHistoryForm">
-			<input type="text" id="searchedString" value="${searchedString}" />
-			<button type="button"
-				onclick="searchHistory(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
-				kiếm</button>
-		</form>
 		<div class="table-responsive">
 			<table class="mb-0 table table-hover">
 				<thead>

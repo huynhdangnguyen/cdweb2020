@@ -13,32 +13,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cdweb.constant.SystemConstant;
-import com.cdweb.model.PriceModel;
-import com.cdweb.model.RentDetailModel;
-import com.cdweb.service.intf.PriceService;
+import com.cdweb.model.UserModel;
+import com.cdweb.service.intf.UserService;
 
 @Controller
-@RequestMapping("/api/gia")
-public class PriceAPI {
+public class UserAPI {
+
 	
 	@Autowired
-	PriceService priceService;
+	UserService userService;
 	
 	@GetMapping("tim-kiem/{offset}/{numItem}/{searchedString}")
-	public ModelAndView searchPrice(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
-			@PathVariable("searchedString") Long searchedString, ModelAndView mav) {
-		List<PriceModel> priceModels = priceService.findAllById(offset, numItem, searchedString);
-		if(priceModels == null || priceModels.size() == 0) {
+	public ModelAndView searchUser(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
+			@PathVariable("searchedString") String searchedString, ModelAndView mav) {
+		List<UserModel> userModels = userService.findAllById(offset, numItem, searchedString);
+		if(userModels == null || userModels.size() == 0) {
 			mav.addObject("message", "Không tìm thấy kết quả phù hợp");
 			mav.setViewName("common/ajax/message");
 			return mav;
 		}
-		mav.addObject("priceModels", priceModels);
+		mav.addObject("userModels", userModels);
 		mav.addObject("pageNumber", SystemConstant.pageNumber);
 		mav.addObject("offset", offset);
 		mav.addObject("searchedString", searchedString);
@@ -48,30 +46,31 @@ public class PriceAPI {
 	
 	@DeleteMapping("/xoa")
 	@ResponseBody
-	public HashMap<String, Boolean> deletePrice(@RequestBody PriceModel priceModel) {
+	public HashMap<String, Boolean> deleteUser(@RequestBody UserModel userModel) {
 		HashMap<String, Boolean> res = new HashMap<>();
-		res.put("message", priceService.detele(priceModel.getId()));
+		res.put("message", userService.detele(userModel.getId()));
 		return res;
 	}
 	
 	@GetMapping(value = "/chi-tiet/{id}")
 	@ResponseBody
-	public PriceModel viewDetail(@PathVariable("id") Long id) {
-		PriceModel priceModel = priceService.getOne(id);
-		return priceModel;
+	public UserModel viewDetail(@PathVariable("id") String id) {
+		UserModel userModel = userService.getOne(id);
+		return userModel;
 	}
 
 	@PutMapping(value = "/chinh-sua")
-	public ModelAndView modifyPrice(@Valid @RequestBody PriceModel priceModel, BindingResult result,
+	public ModelAndView modifyUser(@Valid @RequestBody UserModel userModel, BindingResult result,
 			ModelAndView mav) {
 		if (result.hasErrors()) {
-			mav.setViewName("common/ajax/pricemodifyingform");
-			mav.addObject("priceModel", priceModel);
+			mav.setViewName("common/ajax/usermodifyingform");
+			mav.addObject("userModel", userModel);
 			return mav;
 		}
-		Boolean res = priceService.modifyPrice(priceModel);
+		Boolean res = userService.modifyUser(userModel);
 		mav.setViewName("common/ajax/message");
-		mav.addObject("message", res ? "Chỉnh sửa giá thành công" : "Chỉnh sửa giá thất bại");
+		mav.addObject("message", res ? "Chỉnh sửa tài khoản thành công" : "Chỉnh sửa tài khoản thất bại");
 		return mav;
 	}
+	
 }

@@ -5,25 +5,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cdweb.constant.SystemConstant;
-import com.cdweb.service.intf.PriceService;
+import com.cdweb.service.intf.UserService;
 
 @Controller
-@RequestMapping("/quan-ly/gia")
-public class PriceControllerMan {
+@RequestMapping("/quan-ly/tai-khoan")
+public class UserControllerMan {
 	
 	@Autowired
-	PriceService priceService;
+	UserService userService;
 	
 	@GetMapping("/{offset}/{numItem}")
 	public ModelAndView rentPrice(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav){
-		mav.addObject("priceModels", priceService.findAllSortedByStartDate(offset, numItem));
+		mav.addObject("userModels", userService.findAllSortedByModifiedDate(offset, numItem));
 		mav.addObject("pageNumber", SystemConstant.pageNumber);
 		mav.addObject("offset", offset);
-		mav.setViewName("manager/price");
+		mav.setViewName("manager/user");
 		return mav;
 	}
 }
