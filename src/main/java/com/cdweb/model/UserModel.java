@@ -10,19 +10,37 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
-import com.cdweb.entity.RoleEntity;
 
 public class UserModel extends PersonModel{
 
+	@Size(min = 6, max = 15, message = "Mật khẩu tối thiểu 6 ký  tự, tối đa 15 ký tự")
+	private String password;
+	
+	@Size(min = 6, max = 15, message = "Mật khẩu tối thiểu 6 ký  tự, tối đa 15 ký tự")
+	private String retypePassword;
+	
 	private List<UserModel> listEmployee;
 
 	private UserModel manager;
 
 	private List<RoleModel>	listRole;
 	
-	public UserModel() {
-		super();
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRetypePassword() {
+		return retypePassword;
+	}
+
+	public void setRetypePassword(String retypePassword) {
+		this.retypePassword = retypePassword;
 	}
 
 	public List<UserModel> getListEmployee() {

@@ -50,9 +50,19 @@
 							test="${SecurityUtils.getAuthorities().contains('MANAGER')}">
 							<li><a
 								href="<c:url value="/quan-ly/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${Models!=null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra vào
+							</a></li>
+							<li><a
+								href="<c:url value="/quan-ly/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
 								<c:if test = "${customerModels!=null}">class="mm-active"</c:if>>
 									<i class="metismenu-icon fa fa-user-circle-o"></i> Quản lý
 									khách hàng
+							</a></li>
+							<li><a
+								href="<c:url value="/quan-ly/tai-khoan/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
+								<c:if test = "${userModels != null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-user"></i> Quản lý tài khoản
 							</a></li>
 							<li><a
 								href="<c:url value="/quan-ly/chi-tiet-thue/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
@@ -69,11 +79,6 @@
 								href="<c:url value="/quan-ly/gia/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
 								<c:if test = "${priceModels != null}">class="mm-active"</c:if>>
 									<i class="metismenu-icon fa fa-money" aria-hidden="true"></i> Quản lý giá
-							</a></li>
-							<li><a
-								href="<c:url value="/quan-ly/tai-khoan/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
-								<c:if test = "${userModels != null}">class="mm-active"</c:if>>
-									<i class="metismenu-icon fa fa-user"></i> Quản lý tài khoản
 							</a></li>
 							
 						</c:when>

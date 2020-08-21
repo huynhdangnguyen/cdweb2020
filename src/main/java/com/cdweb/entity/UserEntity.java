@@ -33,7 +33,7 @@ public class UserEntity extends PersonEntity {
 	@JoinColumn(name = "managerid")
 	private UserEntity manager;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_role") })
 	private List<RoleEntity> roleEntities = new ArrayList<RoleEntity>();

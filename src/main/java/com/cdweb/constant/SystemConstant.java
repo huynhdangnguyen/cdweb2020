@@ -9,4 +9,6 @@ public class SystemConstant {
 	public static final int DEFAULT_OFFSET = 0;
 	public static final int DEFAULT_NUM_ITEM = 10;
 	public static int pageNumber = 0;
+	public static final Long MANAGER_ID = 1L;
+	public static final Long EMPLOYEE_ID = 2L;
 }

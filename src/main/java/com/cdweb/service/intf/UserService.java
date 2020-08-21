@@ -18,4 +18,6 @@ public interface UserService {
 
 	List<UserModel> findAllSortedByModifiedDate(int offset, int numItem);
 
+	Boolean saveUser(@Valid UserModel userModel, Long roleId);
+
 }
