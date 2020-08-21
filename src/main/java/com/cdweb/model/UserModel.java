@@ -15,10 +15,10 @@ import javax.validation.constraints.Size;
 
 public class UserModel extends PersonModel{
 
-	@Size(min = 8, max = 15, message = "Mật khẩu tối thiểu 6 ký  tự, tối đa 15 ký tự")
+	@Size(min = 6, max = 15, message = "Mật khẩu tối thiểu 6 ký  tự, tối đa 15 ký tự")
 	private String password;
 	
-	@Size(min = 8, max = 15, message = "Mật khẩu tối thiểu 6 ký  tự, tối đa 15 ký tự")
+	@Size(min = 6, max = 15, message = "Mật khẩu tối thiểu 6 ký  tự, tối đa 15 ký tự")
 	private String retypePassword;
 	
 	private List<UserModel> listEmployee;

@@ -11,7 +11,13 @@
     	
     	<intercept-url pattern="/quan-ly/**" access="hasAnyRole('MANAGER')" />
     	<intercept-url pattern="/nhan-vien/**" access="hasAnyRole('EMPLOYEE')" />
-    	<intercept-url pattern="/api/**" access="hasAnyRole('MANAGER','EMPLOYEE')" />
+    	<intercept-url pattern="/api/kiem-soat/**" access="hasAnyRole('MANAGER','EMPLOYEE')" />
+    	<intercept-url pattern="/api/khach-hang/**" access="hasAnyRole('MANAGER','EMPLOYEE')" />
+    	<intercept-url pattern="/api/lich-su/**" access="hasAnyRole('MANAGER','EMPLOYEE')" />
+    	<intercept-url pattern="/api/chi-tiet-thue/**" access="hasAnyRole('MANAGER','EMPLOYEE')" />
+    	<intercept-url pattern="/api/gia/**" access="hasAnyRole('MANAGER')" />
+    	<intercept-url pattern="/api/tai-khoan/**" access="hasAnyRole('MANAGER')" />
+    	<intercept-url pattern="/api/thong-ke/**" access="hasAnyRole('MANAGER')" />
     	
     	<access-denied-handler error-page="/trang-loi" />
         

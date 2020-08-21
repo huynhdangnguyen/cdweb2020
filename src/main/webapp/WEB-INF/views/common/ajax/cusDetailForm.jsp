@@ -130,7 +130,7 @@
 			<div class="col-md-4">
 				<div class="position-relative form-group">
 					<label class="">Sửa bởi</label><input type="text"
-						class="form-control" value="${customerModel.modifiedBy }" disabled />
+						class="form-control" value="${customerModel.modifiedBy}" disabled />
 				</div>
 			</div>
 			<div class="col-md-8">
