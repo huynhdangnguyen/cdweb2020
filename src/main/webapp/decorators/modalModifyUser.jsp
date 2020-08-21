@@ -99,7 +99,6 @@
 		}
 		var url = window.location.origin
 				+ "/parkinglotmanagement/api/tai-khoan/chinh-sua";
-		alert(url);
 		var xhttp;
 		if (window.XMLHttpRequest) {
 			xhttp = new XMLHttpRequest();

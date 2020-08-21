@@ -35,6 +35,7 @@
 		</c:when>
 		<c:when test="${priceModels != null}">
 			<%@ include file="/decorators/modalPriceDetail.jsp"%>
+		</c:when>
 		<c:when test="${userModels != null}">
 			<%@ include file="/decorators/modalAddUser.jsp"%>
 			<%@ include file="/decorators/modalModifyUser.jsp"%>
