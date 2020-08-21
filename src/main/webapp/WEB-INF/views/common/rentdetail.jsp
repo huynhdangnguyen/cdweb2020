@@ -14,12 +14,24 @@
 </head>
 <body>
 	<div id="main-body">
-		<form name="searchRentDetailForm">
-			<input type="text" name="searchedString" />
-			<button type="button"
-				onclick="searchRentDetail(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
-				kiếm</button>
-		</form>
+		<div class="form-row">
+			<div class="col-md-8"></div>
+			<div class="col-md-4">
+				<div class="position-relative form-group">
+					<form class="form-inline" name="searchRentDetailForm">
+						<div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+							<label class="mr-sm-2">Tìm kiếm</label><input
+								class="form-control" type="text" name="searchedString"
+								id="searchedString" placeholder="Biển số, CMND">
+						</div>
+						<button class="btn btn-primary" type="button"
+							id="searchRentDetailBtn"
+							onclick="searchRentDetail(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">Tìm
+							kiếm</button>
+					</form>
+				</div>
+			</div>
+		</div>
 		<div class="main-card mb-3 card">
 			<div class="card-body">
 				<h5 class="card-title">Danh sách gửi xe tháng</h5>
@@ -97,7 +109,8 @@
 					document.rentDetailForm.machineNumber.value = rentDetailModel.machineNumber;
 					document.rentDetailForm.customerId.value = rentDetailModel.customerModel.id;
 					document.rentDetailForm.customerName.value = rentDetailModel.customerModel.name;
-					
+					document.getElementById("modalDeletePlate").innerHTML = "Xe có biển số: "+ rentDetailModel.plateNo;
+					document.getElementById("modalDeleteCustomer").innerHTML ="Của khách hàng: "+rentDetailModel.customerModel.name;
 				}
 			}
 			xhttp.open("GET", url, true);

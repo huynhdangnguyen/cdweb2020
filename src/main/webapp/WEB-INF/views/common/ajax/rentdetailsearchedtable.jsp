@@ -2,13 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.cdweb.constant.SystemConstant"%>
-
-<form name="searchRentDetailForm">
-	<input type="text" id="searchedString" value="${searchedString}" />
-	<button type="button"
-		onclick="searchRentDetail(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
-		kiếm</button>
-</form>
+<div class="form-row">
+	<div class="col-md-8"></div>
+	<div class="col-md-4">
+		<div class="position-relative form-group">
+			<form class="form-inline" name="searchRentDetailForm">
+				<div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+					<label class="mr-sm-2">Tìm kiếm</label><input id="searchedString"
+						class="form-control" type="text" name="searchedString"
+						placeholder="Biển số, CMND" value="${searchedString}">
+				</div>
+				<button id="searchRentDetailBtn" class="btn btn-primary"
+					type="button"
+					onclick="searchRentDetail(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">Tìm
+					kiếm</button>
+			</form>
+		</div>
+	</div>
+</div>
 <div class="main-card mb-3 card">
 	<div class="card-body">
 		<h5 class="card-title">Danh sách gửi xe tháng</h5>

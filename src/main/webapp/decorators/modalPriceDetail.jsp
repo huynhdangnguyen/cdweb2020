@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div id="rent-detail-modal" class="modal fade bd-example-modal-lg"
+<div id="price-detail-modal" class="modal fade bd-example-modal-lg"
 	tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog modal-lg">
@@ -15,18 +15,18 @@
 			</div>
 			<div class="modal-body">
 				<div class="card-body">
-					<form name="rentDetailForm" id="rentDetailForm" class="">
+					<form name="priceDetailForm" id="priceDetailForm" class="">
 						<div class="form-row">
 							<div class="col-md-4">
 								<div class="position-relative form-group">
-									<label>Mã thẻ</label><input type="text" class="form-control"
-										placeholder="Mã thẻ" name="id" disabled />
+									<label>Mã giá</label><input type="text" class="form-control"
+										placeholder="" name="id" disabled />
 								</div>
 							</div>
 							<div class="col-md-8">
 								<div class="position-relative form-group">
-									<label>Biển số</label><input type="text" class="form-control"
-										placeholder="Biển số" name="plateNo" />
+									<label>Loại xe</label><input type="text" class="form-control"
+										placeholder="" name="vehicleModel" />
 								</div>
 							</div>
 						</div>
@@ -40,8 +40,8 @@
 							</div>
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									<label>Loại xe</label><input name="vehicleName"
-										placeholder="Mã khách hàng" type="text" class="form-control"
+									<label>Ngày bắt đầu</label><input name="startDate"
+										placeholder="Ngày bắt đầu" type="text" class="form-control"
 										disabled>
 								</div>
 							</div>
@@ -49,31 +49,43 @@
 						<div class="form-row">
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									<label>Số khung</label><input name="frameNumber"
-										placeholder="Số khung" type="text" class="form-control">
+									<label>Giá ngày</label><input name="dayPrice"
+										placeholder="Giá ngày" type="text" class="form-control">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="position-relative form-group">
-									<label>Số máy</label><input name="machineNumber"
-										placeholder="số máy" type="text" class="form-control">
+									<label>Giá tháng</label><input name="monthPrice"
+										placeholder="Giá tháng" type="text" class="form-control">
 								</div>
 							</div>
 						</div>
 
 						<div class="form-row">
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="position-relative form-group">
-									<label>Mã khách hàng</label><input name="customerId"
-										placeholder="Mã khách hàng" type="text" class="form-control"
-										disabled>
+									<label class="">Tạo bởi</label><input name="createdBy"
+										type="text" class="form-control" disabled />
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<div class="position-relative form-group">
-									<label>Tên khách hàng</label><input name="customerName"
-										placeholder="Tên khách hàng" type="text" class="form-control"
-										disabled>
+									<label class="">Ngày tạo</label><input name="createdDate"
+										type="text" class="form-control" disabled />
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-4">
+								<div class="position-relative form-group">
+									<label class="">Sửa bởi</label><input name="modifiedBy"
+										type="text" class="form-control" disabled />
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div class="position-relative form-group">
+									<label class="">Ngày sửa</label><input name="modifiedDate"
+										type="text" class="form-control" disabled />
 								</div>
 							</div>
 						</div>
@@ -106,7 +118,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<h5>Chắc chắn xóa chi tiết thuê:</h5>
+				<h5>Chắc chắn xóa giá:</h5>
 				<p class="mb-0" id="modalDeletePlate"></p>
 				<p class="mb-0" id="modalDeleteCustomer"></p>
 			</div>

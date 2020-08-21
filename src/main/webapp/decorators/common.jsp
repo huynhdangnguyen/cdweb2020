@@ -20,7 +20,6 @@
 	src="<c:url value='/ui-assets/scripts/main.js'/>"></script>
 <script type="text/javascript"
 	src="<c:url value='/ui-assets/scripts/subscript.js'/>"></script>
-
 <body>
 
 	<c:choose>
@@ -33,6 +32,9 @@
 		</c:when>
 		<c:when test="${rentDetailModels != null}">
 			<%@ include file="/decorators/modalRentDetail.jsp"%>
+		</c:when>
+		<c:when test="${priceModels != null}">
+			<%@ include file="/decorators/modalPriceDetail.jsp"%>
 		</c:when>
 	</c:choose>
 	<div

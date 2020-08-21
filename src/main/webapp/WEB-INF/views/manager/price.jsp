@@ -14,13 +14,30 @@
 </head>
 <body>
 	<div id="main-body">
-		<button type="button" class="btn mr-2 mb-2 btn-primary">Thêm giá</button>
-		<form name="searchRentDetailForm">
-			<input type="text" name="searchedString" />
-			<button type="button"
-				onclick="searchPrice(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">tìm
-				kiếm</button>
-		</form>
+		<div class="form-row">
+			<div class="col-md-2">
+				<button type="button" class="btn mr-2 mb-2 btn-success"
+					data-toggle="modal" data-target=".bd-example-modal-lg">Thêm
+					giá</button>
+
+			</div>
+			<div class="col-md-6"></div>
+			<div class="col-md-4">
+				<div class="position-relative form-group">
+					<form class="form-inline" name="searchPriceDetailForm">
+						<div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">
+							<label class="mr-sm-2">Tìm kiếm</label><input
+								class="form-control" type="text" name="searchedString"
+								id="searchedString" placeholder="ID">
+						</div>
+						<button class="btn btn-primary" type="button"
+							id="searchRentDetailBtn"
+							onclick="searchPrice(${SystemConstant.DEFAULT_OFFSET},${SystemConstant.DEFAULT_NUM_ITEM})">Tìm
+							kiếm</button>
+					</form>
+				</div>
+			</div>
+		</div>
 		<div class="main-card mb-3 card">
 			<div class="card-body">
 				<h5 class="card-title">Danh sách Giá</h5>
@@ -40,7 +57,7 @@
 							<c:set var="i" scope="page" value="0" />
 							<c:forEach items="${priceModels}" var="price">
 								<c:set var="i" value="${i + 1}" scope="page" />
-								<tr onclick="rentDetail(this)" title="${price.id}"
+								<tr onclick="priceDetail(this)" title="${price.id}"
 									data-toggle="modal" data-target="#price-detail-modal">
 									<td>${i}</td>
 									<td>${price.id}</td>
@@ -79,10 +96,10 @@
 	</div>
 
 	<script type="text/javascript">
-		function rentDetail(x) {
+		function priceDetail(x) {
 			var id = x.title;
 			var url = window.location.origin
-					+ "/parkinglotmanagement/api/chi-tiet-thue/chi-tiet/" + id;
+					+ "/parkinglotmanagement/api/gia/chi-tiet/" + id;
 			var xhttp;
 			if (window.XMLHttpRequest) {
 				xhttp = new XMLHttpRequest();
@@ -91,16 +108,17 @@
 			}
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4) {
-					var rentDetailModel = JSON.parse(this.responseText);
-					document.rentDetailForm.id.value = rentDetailModel.id;
-					document.rentDetailForm.plateNo.value = rentDetailModel.plateNo;
-					document.rentDetailForm.endDate.value = new Date(rentDetailModel.endDate).toLocaleString('en-GB', { timeZone: 'UTC' });
-					document.rentDetailForm.vehicleName.value = rentDetailModel.vehicleModel.name;
-					document.rentDetailForm.frameNumber.value = rentDetailModel.frameNumber;
-					document.rentDetailForm.machineNumber.value = rentDetailModel.machineNumber;
-					document.rentDetailForm.customerId.value = rentDetailModel.customerModel.id;
-					document.rentDetailForm.customerName.value = rentDetailModel.customerModel.name;
-					
+					var priceModel = JSON.parse(this.responseText);
+					document.priceDetailForm.id.value = priceModel.id;
+					document.priceDetailForm.vehicleModel.value = priceModel.vehicleModel.name;
+					document.priceDetailForm.dayPrice.value = priceModel.dayPrice;
+					document.priceDetailForm.monthPrice.value = priceModel.monthPrice;
+					document.priceDetailForm.startDate.value = new Date(priceModel.startDate).toLocaleString('en-GB', { timeZone: 'UTC' });
+					document.priceDetailForm.endDate.value =new Date(priceModel.endDate).toLocaleString('en-GB', { timeZone: 'UTC' }) ;
+					document.priceDetailForm.createdBy.value=priceModel.createdBy;
+					document.priceDetailForm.createdDate.value=new Date(priceModel.createdDate).toLocaleString('en-GB', { timeZone: 'UTC' });
+					document.priceDetailForm.modifiedBy.value=priceModel.modifiedBy;
+					document.priceDetailForm.modifiedDate.value=new Date(priceModel.modifiedDate).toLocaleString('en-GB', { timeZone: 'UTC' });
 				}
 			}
 			xhttp.open("GET", url, true);
@@ -108,7 +126,7 @@
 		}
 		
 		function searchPrice(offset, numItem) {
-			var searchedString = document.searchRentDetailForm.searchedString.value;
+			var searchedString = document.searchPriceDetailForm.searchedString.value;
 			if(searchedString == ""){				
 				window.location.reload();
 				return;

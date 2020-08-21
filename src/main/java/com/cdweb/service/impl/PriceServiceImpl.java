@@ -86,7 +86,7 @@ public class PriceServiceImpl implements PriceService {
 		VehicleEntity vehicleEntity = priceEntity.getVehicleEntity();
 		VehicleModel vehicleModel = new VehicleModel();
 		BeanUtils.copyProperties(vehicleEntity, vehicleModel);
-		priceEntity.setVehicleEntity(vehicleEntity);
+		priceModel.setVehicleModel(vehicleModel);
 
 		return priceModel;
 	}

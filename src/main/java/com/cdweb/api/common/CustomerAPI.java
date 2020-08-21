@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cdweb.constant.SystemConstant;
 import com.cdweb.model.CustomerModel;
+import com.cdweb.model.RentDetailModel;
 import com.cdweb.service.impl.CustomerServiceImpl;
 import com.cdweb.service.intf.CustomerService;
 
@@ -35,13 +36,20 @@ public class CustomerAPI {
 
 	@GetMapping("tim-kiem/{offset}/{numItem}/{searchedString}")
 	@ResponseBody
-	public List<CustomerModel> searchCustomer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
-			@PathVariable("searchedString") String searchedString) {
-		List<CustomerModel> historyModels = customerService.findAllByIdAndStatus(offset, numItem, searchedString);
-		Map<String, Object> response = new HashMap<String, Object>();
-		response.put("historyModels", historyModels);
-		response.put("PageNumber", SystemConstant.pageNumber);
-		return historyModels;
+	public ModelAndView searchCustomer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem,
+			@PathVariable("searchedString") String searchedString, ModelAndView mav) {
+		List<CustomerModel> customerModels = customerService.findAllByIdAndStatus(offset, numItem, searchedString);
+		if (customerModels == null || customerModels.size() == 0) {
+			mav.addObject("message", "Không tìm thấy kết quả phù hợp");
+			mav.setViewName("common/ajax/message");
+			return mav;
+		}
+		mav.addObject("customerModels", customerModels);
+		mav.addObject("pageNumber", SystemConstant.pageNumber);
+		mav.addObject("offset", offset);
+		mav.addObject("searchedString", searchedString);
+		mav.setViewName("common/ajax/customersearchedtable");
+		return mav;
 	}
 
 	@DeleteMapping("/xoa")
