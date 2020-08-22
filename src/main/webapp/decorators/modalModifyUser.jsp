@@ -76,8 +76,8 @@
 						</div>
 
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal" onclick="resetData()">Đóng</button>
+							<button type="button" class="btn btn-danger" data-toggle="modal"
+								data-target="deleteUser(${customerModel.id})">Xóa</button>
 							<button type="button" class="btn btn-primary"
 								onclick="modifyUser()">Lưu</button>
 						</div>
@@ -92,6 +92,34 @@
 </div>
 
 <script type="text/javascript">
+	function deleteUser(id) {
+		var url = window.location.origin
+				+ "/parkinglotmanagement/api/tai-khoan/xoa";
+		alert(id);
+		var xhttp;
+		if (window.XMLHttpRequest) {
+			xhttp = new XMLHttpRequest();
+		} else {
+			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4) {
+				var data = JSON.parse(this.responseText);
+				window.location.reload();
+				if (data.message == true) {
+					alert("Xóa khách hàng thành công");
+				} else {
+					alert("Xóa khách hàng thất bại");
+				}
+			}
+		}
+		xhttp.open("DELETE", url, true);
+		xhttp.setRequestHeader("Content-Type", "application/json");
+		xhttp.send(JSON.stringify({
+			id : id
+		}));
+	}
+
 	function modifyUser() {
 		if (document.userForm.password.value != document.userForm.retypePassword.value) {
 			alert("Mật khẩu phải trùng khớp");

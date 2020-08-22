@@ -49,8 +49,8 @@
 						<c:when
 							test="${SecurityUtils.getAuthorities().contains('MANAGER')}">
 							<li><a
-								href="<c:url value="/quan-ly/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
-								<c:if test = "${Models!=null}">class="mm-active"</c:if>> <i
+								href="<c:url value="/quan-ly/kiem-soat"></c:url>"
+								class="mm-active"> <i
 									class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra
 									vào
 							</a></li>
@@ -84,7 +84,7 @@
 							</a></li>
 							<li><a
 								href="<c:url value="/quan-ly/thong-ke/${SystemConstant.CURRENT_YEAR_MONTH_1ST}/${SystemConstant.CURRENT_YEAR_MONTH_DAY }"></c:url>"
-								<c:if test = "${listIncome != null}">class="mm-active"</c:if>>
+								<c:if test = "${listIncomes != null}">class="mm-active"</c:if>>
 									<i class="metismenu-icon fa fa-bar-chart" aria-hidden="true"></i>
 									Thống kê
 							</a></li>

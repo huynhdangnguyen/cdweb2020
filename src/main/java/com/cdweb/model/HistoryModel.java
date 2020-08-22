@@ -42,6 +42,8 @@ public class HistoryModel implements Serializable {
 		return customerId;
 	}
 
+	
+	
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}

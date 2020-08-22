@@ -133,50 +133,6 @@
 		}
 	</script>
 	<script type="text/javascript">
-		function deleteuser(x) {
-			var url = window.location.origin
-					+ "/parkinglotmanagement/api/khach-hang/xoa";
-			var xhttp;
-			if (window.XMLHttpRequest) {
-				xhttp = new XMLHttpRequest();
-			} else {
-				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xhttp.onreadystatechange = function() {
-				if (xhttp.readyState == 4) {
-					var data = JSON.parse(this.responseText);
-					window.location.reload();
-					if (data.message == true) {
-						alert("Xóa khách hàng thành công");
-					} else {
-						alert("Xóa khách hàng thất bại");
-					}
-				}
-			}
-			xhttp.open("DELETE", url, true);
-			xhttp.setRequestHeader("Content-Type", "application/json");
-			xhttp.send(JSON.stringify({
-				id : x
-			}));
-		}
-
-		function loadNewValueModalModifyConfirm() {
-			document.getElementById("newName").innerHTML = "Tên: "
-					+ document.userDetailForm.name.value;
-			document.getElementById("newPhoneNo").innerHTML = "Số điện thoại: "
-					+ document.userDetailForm.phoneNo.value;
-			if (document.userDetailForm.gender.value == 1) {
-				document.getElementById("newGender").innerHTML = "Giới tính: Nam"
-			} else {
-				document.getElementById("newGender").innerHTML = "Giới tính: Nữ"
-			}
-
-			document.getElementById("newAddr").innerHTML = "Địa chỉ: "
-					+ document.userDetailForm.addr.value;
-		}
-
-		
-			
 		
 		function searchUser(offset, numItem) {
 			var searchedString = document.searchUserForm.searchedString.value;
