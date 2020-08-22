@@ -18,7 +18,7 @@
 	<div id="main-body">
 		<div class="form-row">
 			<div class="col-md-2">
-				<button type="button" class="btn mr-2 mb-2 btn-primary"
+				<button type="button" class="btn mr-2 mb-2 btn-success"
 					data-toggle="modal" data-target="#user-creating-form">Thêm
 					Tài khoản</button>
 			</div>
