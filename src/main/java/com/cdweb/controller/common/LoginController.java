@@ -33,7 +33,7 @@ public class LoginController {
 	
 	@Autowired
 	StatisticService statisticService;
-	@RequestMapping({"*","*/*", "*/*/*", "*/*/*/*", "*/*/*/*/*"})
+	@RequestMapping("*")
 	public ModelAndView errorPage() {	
 		return new ModelAndView("404");
 	}
