@@ -10,6 +10,7 @@ import com.cdweb.constant.SystemConstant;
 import com.cdweb.entity.HistoryEntity;
 import com.cdweb.entity.RentDetailEntity;
 import com.cdweb.model.CustomerModel;
+import com.cdweb.model.HistoryModel;
 import com.cdweb.model.RentDetailModel;
 import com.cdweb.repository.intf.HistoryRepository;
 import com.cdweb.repository.intf.RentDetailRepository;
@@ -54,6 +55,18 @@ public class ControllingServiceImpl implements ControllingService {
 		historyEntity.setInDate(new Date(System.currentTimeMillis()));
 		historyRepository.save(historyEntity);
 		return rentDetailModel;
+	}
+
+	@Override
+	public HistoryModel getLastHistoryByRentDetailEntity(Long rentDetailId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RentDetailModel saveHistoryOut(String idCardOut, byte[] image) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

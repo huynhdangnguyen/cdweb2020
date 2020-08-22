@@ -22,7 +22,7 @@ public class HistoryAPI {
 	@Autowired
 	HistoryService historyService;
 
-	@GetMapping(value = "/hinh-anh/{id}/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
+	@GetMapping(value = "/hinh-anh/{id}/{imageName}")
 	@ResponseBody
 	public byte[] getImageInOut(@PathVariable("id") long id, @PathVariable("imageName") String imageName) {
 		return historyService.getImage(id, imageName);

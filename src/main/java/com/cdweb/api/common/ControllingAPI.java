@@ -3,6 +3,7 @@ package com.cdweb.api.common;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,16 +36,20 @@ public class ControllingAPI {
 	
 	@PostMapping("/kiem-soat-xe-vao/{idCardIn}")
 	@ResponseBody
-	public String checkInforIn(@RequestBody byte[] map, @PathVariable("idCardIn") String idCardIn) {
-		System.out.println("hello");
-		System.out.println(map);
-		System.out.println(idCardIn);
-		RentDetailModel rentDetailModel = controllingService.saveHistoryIn(idCardIn, map);
-		return "123456";
+	public RentDetailModel checkInforIn(@RequestBody byte[] image, @PathVariable("idCardIn") String idCardIn) {
+		RentDetailModel rentDetailModel = controllingService.saveHistoryIn(idCardIn, image);
+		return rentDetailModel;
 	}
 	
-	@GetMapping("/hinh-anh")
+	@PostMapping("/kiem-soat-xe-ra/{idCardOut}")
 	@ResponseBody
+	public RentDetailModel checkInforOut(@RequestBody byte[] image, @PathVariable("idCardOut") String idCardOut) {
+		RentDetailModel rentDetailModel = controllingService.saveHistoryOut(idCardOut, image);
+		return rentDetailModel;
+	}
+	
+	@GetMapping(value = "/hinh-anh/{idCardIn}")
+	@ResponseBody()
 	public byte[] image() {
 		return SystemConstant.bytes;
 	}
