@@ -61,7 +61,7 @@
 		<div class="app-main">
 			<%@ include file="/decorators/sidebar.jsp"%>
 			<div class="app-main__outer">
-				<div class="app-main__inner">
+				<div class="app-main__inner" style="padding-top: 10px">
 					<decorator:body />
 				</div>
 			</div>

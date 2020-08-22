@@ -30,20 +30,31 @@
 			<div class="app-main__outer">
 				<div class="app-main__inner">
 					<div class="row">
-						<div class="col-6">
-							<div>
-								<div class="animated fadeInLeftBig" style="float: left;">
-									<div
-										style="background-image: url(<c:url value ='/ui-assets/images/logo.png' />
-			); height: 100px; width: 180px; background-size: contain;
-			background-repeat: no-repeat;">
+						<div class="col-7">
+							<div class="animated fadeInLeftBig">
+								<div class="row">
+									<div class="col-4">
+										<div>
+											<img src="<c:url value ='/ui-assets/images/logo.png' />"
+												alt="Paris" style="width: 100%">
+
+										</div>
 									</div>
-									<br><br><br>
-									<h1 style="color: white;">QUẢN LÝ BÃI GIỮ XE</h1>
 								</div>
+								<div class="col-4"></div>
+								<div class="col-4"></div>
+								<br> <br> <br>
+								<h4 style="color: white;">BÁO CÁO CUỐI KỲ - CHUYÊN ĐỀ WEB
+									2020</h4>
+								<h2 style="color: white;">WEBSITE QUẢN LÝ CHI NHÁNH BÃI GỬI
+									XE</h2>
+								<br> <br>
+								<h4 style="color: white;">Thực hiện:</h4>
+								<h4 style="color: white;">- 16130418 – Đỗ Duy Khang</h4>
+								<h4 style="color: white;">- 16130494 – Huỳnh Đăng Nguyện</h4>
 							</div>
 						</div>
-						<div class="col-6">
+						<div class="col-5">
 							<div class="animated fadeInRightBig">
 								<div class="main-card mb-3 card">
 									<div class="card-body" style="padding: 80px 50px 80px 50px;">

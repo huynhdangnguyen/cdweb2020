@@ -90,6 +90,12 @@
 							</a></li>
 						</c:when>
 						<c:otherwise>
+						<li><a
+								href="<c:url value="/nhan-vien/kiem-soat"></c:url>"
+								class="mm-active"> <i
+									class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra
+									vào
+							</a></li>
 							<li><a
 								href="<c:url value="/nhan-vien/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"/>"
 								<c:if test = "${customerModels!=null}">class="mm-active"</c:if>>

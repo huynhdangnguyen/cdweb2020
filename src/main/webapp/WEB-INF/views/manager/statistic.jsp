@@ -38,7 +38,7 @@
 				<h5 class="card-title">Thống kê doanh thu</h5>
 
 
-				<div class="container">
+				<div class="container" style="height: 470px">
 					<canvas id="myChart"></canvas>
 				</div>
 			</div>
@@ -71,6 +71,8 @@
 				} ]
 			},
 			options : {
+				 responsive: true,
+				    maintainAspectRatio: false,
 				scales: {
 		            yAxes: [{
 		                ticks: {
