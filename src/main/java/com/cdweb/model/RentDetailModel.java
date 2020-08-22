@@ -12,6 +12,7 @@ import javax.persistence.OneToOne;
 import com.cdweb.entity.CustomerEntity;
 import com.cdweb.entity.PriceEntity;
 import com.cdweb.entity.VehicleEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author huynh
@@ -19,7 +20,7 @@ import com.cdweb.entity.VehicleEntity;
  */
 public class RentDetailModel extends BaseModel{
 
-	private Long id;
+	public Long id;
 	
 	private String plateNo;
 	
