@@ -126,11 +126,7 @@
 		}
 		
 		function searchPrice(offset, numItem) {
-<<<<<<< HEAD
 			var searchedString = document.searchPriceDetailForm.searchedString.value;
-=======
-			var searchedString = document.searchPriceForm.searchedString.value;
->>>>>>> nguyen
 			if(searchedString == ""){				
 				window.location.reload();
 				return;
