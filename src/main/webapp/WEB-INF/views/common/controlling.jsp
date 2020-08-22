@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -200,7 +200,8 @@
 							var video = document.getElementById('video');
 							var video2 = document.getElementById('video2');
 							var image = document.getElementById('image');
-							var link = document.getElementById('link');
+							var plateInImage = document.getElementById('plateInImage');
+							var idCardIn = document.getElementById('idCardIn');
 							var mediaConfig = {
 								video : true
 							};
@@ -268,38 +269,37 @@
 														{
 															type : 'image/png'
 														});
+							$("#idCardIn").on(
+											'keyup',
+											function(e) {
+												if (e.key === 'Enter'
+														|| e.keyCode === 13) {
 
-												var url = window.location.origin
-														+ "/parkinglotmanagement/api/kiem-soat/kiem-soat-xe-vao";
-												var xhttp;
-												if (window.XMLHttpRequest) {
-													xhttp = new XMLHttpRequest();
-												} else {
-													xhttp = new ActiveXObject(
-															"Microsoft.XMLHTTP");
-												}
-												xhttp.onreadystatechange = function() {
-													if (xhttp.readyState == 4) {
-														image.src = window.location.origin
-																+ "/parkinglotmanagement/api/kiem-soat/hinh-anh";
+													context.drawImage(video, 0,
+															0, 640, 480);
+													var dataURL = canvas
+															.toDataURL();
+													var blobBin = atob(dataURL
+															.split(',')[1]);
+													var arr = [];
+													for (var i = 0; i < blobBin.length; i++) {
+														arr.push(blobBin
+																.charCodeAt(i));
 													}
+													
+
+													var xhr = new XMLHttpRequest();
+
+													xhr.addEventListener("readystatechange", function() {
+													  if(this.readyState === 4) {
+													    console.log(this.responseText);
+													  }
+													});
+
+													xhr.open("Post", "http://localhost:8080/parkinglotmanagement/api/kiem-soat/kiem-soat-xe-vao/" + idCardIn.value);
+													xhr.setRequestHeader("Content-Type", "application/json");
+													xhr.send(arr);
 												}
-												xhttp.open("GET", url, true);
-												xhttp.setRequestHeader(
-														"Content-Type",
-														"application/json");
-												const obj = {
-													plateInImage : array,
-													rentDetailModel : {
-														id : 123
-													}
-												}
-												xhttp.send(JSON.stringify({
-													plateInImage : array,
-													rentDetailModel : {
-														id : 123
-													}
-												}));
 											});
 							document.getElementById('snap2').addEventListener(
 									'click',

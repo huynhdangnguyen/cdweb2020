@@ -99,6 +99,8 @@
 		</nav>
 	</div>
 
+	<button onclick="a()">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</button>
+
 	<script type="text/javascript">
 		function historyDetail(x) {
 			var id = x.title;
@@ -158,6 +160,9 @@
 			xhttp.open("GET", url, true);
 			xhttp.send();
 		}
+		
+		
+		
 	</script>
 </body>
 </html>

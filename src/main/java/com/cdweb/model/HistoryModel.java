@@ -6,19 +6,20 @@ import java.util.Date;
 import com.cdweb.entity.CustomerEntity;
 import com.cdweb.entity.RentDetailEntity;
 import com.cdweb.entity.UserEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HistoryModel implements Serializable {
 	private static final long serialVersionUID = -7992601649460503747L;
 
 	private Long id;
 
-	private RentDetailModel rentDetailModel;
+	public RentDetailModel rentDetailModel;
 
 	private CustomerModel customerModel;
 	
 	private String customerId;
 
-	private byte[] plateInImage;
+	public byte[] plateInImage;
 
 	private byte[] faceInImage;
 
@@ -38,6 +39,9 @@ public class HistoryModel implements Serializable {
 
 	private String note;
 
+	public HistoryModel() {
+		
+	}
 	public String getCustomerId() {
 		return customerId;
 	}
