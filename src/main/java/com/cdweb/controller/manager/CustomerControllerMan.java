@@ -32,7 +32,6 @@ public class CustomerControllerMan {
 	CustomerService customerService;
 
 	@GetMapping("/{offset}/{numItem}")
-
 	public ModelAndView customer(@PathVariable("offset") int offset, @PathVariable("numItem") int numItem, ModelAndView mav) {
 		mav.addObject("customerModels", customerService.findAllByStatus(offset, numItem));
 		mav.addObject("pageNumber", SystemConstant.pageNumber);

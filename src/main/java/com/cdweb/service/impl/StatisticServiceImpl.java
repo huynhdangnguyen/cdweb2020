@@ -47,7 +47,10 @@ public class StatisticServiceImpl implements StatisticService {
 				for (HistoryEntity historyEntity : listHistoryEntity) {
 					System.out.println(historyEntity.getOutDate());
 					if (date.getDate() == historyEntity.getOutDate().getDate()) {
+						try {
 						totalInComeInADay += historyEntity.getPrice();
+						}catch (Exception e) {
+						}
 					}
 				}
 				result.put(date, totalInComeInADay);

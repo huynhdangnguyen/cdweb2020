@@ -20,6 +20,10 @@
 	src="<c:url value='/ui-assets/scripts/main.js'/>"></script>
 <script type="text/javascript"
 	src="<c:url value='/ui-assets/scripts/subscript.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/ui-assets/scripts/canvas-to-blob.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/ui-assets/scripts/canvas-to-blob.min.js'/>"></script>
 <body>
 
 	<c:choose>

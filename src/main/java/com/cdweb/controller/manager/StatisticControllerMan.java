@@ -18,6 +18,8 @@ public class StatisticControllerMan {
 	
 	@GetMapping("/thong-ke/{startDay}/{endDay}")
 	public ModelAndView viewStatistic(@PathVariable("startDay") String startDay, @PathVariable("endDay") String endDay, ModelAndView mav) {
+		System.out.println(startDay);
+		System.out.println(endDay);
 		mav.setViewName("manager/statistic");
 		mav.addObject("listIncome", statisticService.getIncome(startDay, endDay));
 		return mav;
