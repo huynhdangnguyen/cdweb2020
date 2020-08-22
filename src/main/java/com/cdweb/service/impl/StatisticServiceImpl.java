@@ -2,11 +2,13 @@ package com.cdweb.service.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,15 +22,26 @@ public class StatisticServiceImpl implements StatisticService {
 
 	@Autowired
 	StatisticRepository statisticRepository;
+	
+	public static List<String> days;
+	public static List<Integer> incomes;
+	public static String startDate;
+	public static String endDate;
+	public static String startDate2;
+	public static String endDate2;
 
 	@Override
-	public Map<Date, Integer> getIncome(String startDate, String endDate) {
-		Map<Date, Integer> result = new HashMap<Date, Integer>();
+	public void getIncome(String startDate, String endDate) {
+		days = new ArrayList<String>();
+		incomes = new ArrayList<Integer>();
+		SimpleDateFormat formater;
 		try {
-			SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 			Date startDay = formater.parse(startDate);
+			System.out.println(startDate);
 			Date endDay = formater.parse(endDate);
+			System.out.println(endDate);
 
 			Calendar start = Calendar.getInstance();
 			start.setTime(startDay);
@@ -47,17 +60,32 @@ public class StatisticServiceImpl implements StatisticService {
 				for (HistoryEntity historyEntity : listHistoryEntity) {
 					System.out.println(historyEntity.getOutDate());
 					if (date.getDate() == historyEntity.getOutDate().getDate()) {
-						totalInComeInADay += historyEntity.getPrice();
+						try {
+							totalInComeInADay += historyEntity.getPrice();
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
 					}
 				}
-				result.put(date, totalInComeInADay);
+				formater = new SimpleDateFormat("dd-MM");
+				days.add("'"+formater.format(date)+"'");
+				System.out.println("print days:");
+				for (String days : days) {
+					System.out.println(days);
+				}
+				incomes.add(totalInComeInADay);
 			}
+			formater = new SimpleDateFormat("dd-MM-yyyy");
+			StatisticServiceImpl.startDate = formater.format(startDay);
+			StatisticServiceImpl.endDate = formater.format(endDay);
+			formater = new SimpleDateFormat("yyyy-MM-dd");
+			StatisticServiceImpl.startDate2 = formater.format(startDay);
+			StatisticServiceImpl.endDate2 = formater.format(endDay);
 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
-		return result;
 	}
+
 
 }

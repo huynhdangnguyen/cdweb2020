@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cdweb.service.impl.StatisticServiceImpl;
 import com.cdweb.service.intf.StatisticService;
 
 @RequestMapping("/quan-ly")
@@ -14,12 +15,20 @@ import com.cdweb.service.intf.StatisticService;
 public class StatisticControllerMan {
 
 	@Autowired
-	StatisticService statisticService;
-	
+	StatisticServiceImpl statisticService;
+
 	@GetMapping("/thong-ke/{startDay}/{endDay}")
-	public ModelAndView viewStatistic(@PathVariable("startDay") String startDay, @PathVariable("endDay") String endDay, ModelAndView mav) {
+	public ModelAndView viewStatistic(@PathVariable("startDay") String startDay, @PathVariable("endDay") String endDay,
+			ModelAndView mav) {
+		System.out.println(startDay + endDay);
 		mav.setViewName("manager/statistic");
-		mav.addObject("listIncome", statisticService.getIncome(startDay, endDay));
+		statisticService.getIncome(startDay, endDay);
+		mav.addObject("listDays", StatisticServiceImpl.days);
+		mav.addObject("listIncomes", StatisticServiceImpl.incomes);
+		mav.addObject("startDate", StatisticServiceImpl.startDate);
+		mav.addObject("endDate", StatisticServiceImpl.endDate);
+		mav.addObject("startDate2", StatisticServiceImpl.startDate2);
+		mav.addObject("endDate2", StatisticServiceImpl.endDate2);
 		return mav;
 	}
 }

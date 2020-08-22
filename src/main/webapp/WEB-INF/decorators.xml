@@ -4,6 +4,7 @@
         <pattern>*/dang-nhap*</pattern>
         <pattern>*/api*</pattern>
 		<pattern>*/trang-loi*</pattern>
+		<pattern>*/404*</pattern>
     </excludes>
     
     <decorator name="common" page="common.jsp">

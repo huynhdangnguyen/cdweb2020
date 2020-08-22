@@ -33,6 +33,10 @@ public class LoginController {
 	
 	@Autowired
 	StatisticService statisticService;
+	@RequestMapping({"*","*/*", "*/*/*", "*/*/*/*", "*/*/*/*/*"})
+	public ModelAndView errorPage() {	
+		return new ModelAndView("404");
+	}
 	
 	@RequestMapping(value = "/dang-nhap")
 	public ModelAndView Login(HttpServletRequest request, HttpServletResponse response) {

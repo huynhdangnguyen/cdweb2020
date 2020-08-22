@@ -8,14 +8,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title><decorator:extractProperty property="title"></decorator:extractProperty></title>
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Language" content="en" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
 <meta name="msapplication-tap-highlight" content="no" />
+
+
 <link href="<c:url value='/ui-assets/main.css'/>" rel="stylesheet" />
 <link href="<c:url value='/ui-assets/substyle.css'/>" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="<c:url value='/ui-assets/scripts/main.js'/>"></script>
 <script type="text/javascript"

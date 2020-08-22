@@ -5,7 +5,7 @@
 <html style="height: 100%;">
 <head>
 <meta charset="UTF-8">
-<title>Access Denied</title>
+<title>404</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Language" content="en" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -33,7 +33,8 @@
 									alt="Paris" style="width: 100%"> <br>
 								<br>
 								<br>
-								<h1 style="color: white">Không đủ quyền truy cập</h1>
+								<h1 style="color: white">404</h1>
+								<h1 style="color: white">Không tìm thấy trang</h1>
 							</div>
 
 						</div>

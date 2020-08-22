@@ -50,8 +50,9 @@
 							test="${SecurityUtils.getAuthorities().contains('MANAGER')}">
 							<li><a
 								href="<c:url value="/quan-ly/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
-								<c:if test = "${Models!=null}">class="mm-active"</c:if>>
-									<i class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra vào
+								<c:if test = "${Models!=null}">class="mm-active"</c:if>> <i
+									class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra
+									vào
 							</a></li>
 							<li><a
 								href="<c:url value="/quan-ly/khach-hang/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
@@ -78,9 +79,15 @@
 							<li><a
 								href="<c:url value="/quan-ly/gia/${SystemConstant.DEFAULT_OFFSET}/${SystemConstant.DEFAULT_NUM_ITEM}"></c:url>"
 								<c:if test = "${priceModels != null}">class="mm-active"</c:if>>
-									<i class="metismenu-icon fa fa-money" aria-hidden="true"></i> Quản lý giá
+									<i class="metismenu-icon fa fa-money" aria-hidden="true"></i>
+									Quản lý giá
 							</a></li>
-							
+							<li><a
+								href="<c:url value="/quan-ly/thong-ke/${SystemConstant.CURRENT_YEAR_MONTH_1ST}/${SystemConstant.CURRENT_YEAR_MONTH_DAY }"></c:url>"
+								<c:if test = "${listIncome != null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-bar-chart" aria-hidden="true"></i>
+									Thống kê
+							</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a

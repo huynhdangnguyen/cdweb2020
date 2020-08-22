@@ -32,13 +32,13 @@
 					<div class="row">
 						<div class="col-6">
 							<div>
-								<div class="animated fadeInLeftBig"
-									style="display: flex; justify-content: center; align-items: center;">
+								<div class="animated fadeInLeftBig" style="float: left;">
 									<div
 										style="background-image: url(<c:url value ='/ui-assets/images/logo.png' />
 			); height: 100px; width: 180px; background-size: contain;
-			background-repeat: no-repeat ">
+			background-repeat: no-repeat;">
 									</div>
+									<br><br><br>
 									<h1 style="color: white;">QUẢN LÝ BÃI GIỮ XE</h1>
 								</div>
 							</div>
