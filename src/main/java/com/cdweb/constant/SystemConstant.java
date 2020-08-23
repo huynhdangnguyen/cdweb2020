@@ -21,6 +21,7 @@ public class SystemConstant {
 	public static final String CURRENT_YEAR_MONTH_DAY = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 	public static final String CURRENT_YEAR_MONTH_1ST_url = new SimpleDateFormat("yyyy-MM").format(new Date()) + "-01" + "%2000:00:00";
 	public static final String CURRENT_YEAR_MONTH_DAY_url = new SimpleDateFormat("yyyy-MM-dd%20HH:mm:ss").format(new Date());
-	public static byte[] bytes;
-
+	public static byte[] plateInImage;
+	public static byte[] plateOutImage;
+	
 }

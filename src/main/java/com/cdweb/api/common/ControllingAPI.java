@@ -1,9 +1,11 @@
 package com.cdweb.api.common;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,33 +28,51 @@ public class ControllingAPI {
 
 	@Autowired
 	RentDetailService rentDetailService;
-	
+
 	@Autowired
 	HistoryService HistoryService;
-	
+
 	@Autowired
 	ControllingService controllingService;
-	
-	
+
 	@PostMapping("/kiem-soat-xe-vao/{idCardIn}")
 	@ResponseBody
-	public RentDetailModel checkInforIn(@RequestBody byte[] image, @PathVariable("idCardIn") String idCardIn) {
+	public HistoryModel checkInforIn(@RequestBody byte[] image, @PathVariable("idCardIn") String idCardIn) {
+		HistoryModel historyModel = controllingService.getLastHistoryByRentDetailEntity(Long.parseLong(idCardIn));
+
+		historyModel.setPlateInImage(null);
+		
+		SystemConstant.plateOutImage = historyModel.getPlateOutImage();
+		historyModel.setPlateOutImage(null);
+		
 		RentDetailModel rentDetailModel = controllingService.saveHistoryIn(idCardIn, image);
-		return rentDetailModel;
+		historyModel.setRentDetailModel(rentDetailModel);
+		
+		return historyModel;
 	}
-	
+
 	@PostMapping("/kiem-soat-xe-ra/{idCardOut}")
 	@ResponseBody
-	public RentDetailModel checkInforOut(@RequestBody byte[] image, @PathVariable("idCardOut") String idCardOut) {
-		RentDetailModel rentDetailModel = controllingService.saveHistoryOut(idCardOut, image);
-		return rentDetailModel;
+	public HistoryModel checkInforOut(@RequestBody byte[] image, @PathVariable("idCardOut") String idCardOut) {
+		HistoryModel historyModel = controllingService.getLastHistoryByRentDetailEntity(Long.parseLong(idCardOut));
+
+		SystemConstant.plateInImage = historyModel.getPlateInImage();
+		historyModel.setPlateInImage(null);
+		
+		historyModel.setPlateOutImage(null);
+		
+		historyModel = controllingService.saveHistoryOut(idCardOut, image);
+		return historyModel;
 	}
-	
-	@GetMapping(value = "/hinh-anh/{idCardIn}")
+
+	@GetMapping(value = "/hinh-anh/{typeImage}")
 	@ResponseBody()
-	public byte[] image() {
-		return SystemConstant.bytes;
+	public byte[] image(@PathVariable("typeImage") String typeImage) {
+		typeImage = typeImage.toLowerCase();
+		if (typeImage.equals("plateinimage"))
+			return SystemConstant.plateInImage;
+		else
+			return SystemConstant.plateOutImage;
 	}
-	
 
 }

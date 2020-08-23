@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.cdweb.constant.SystemConstant;
 import com.cdweb.entity.HistoryEntity;
+import com.cdweb.entity.LastHistoryEntity;
 import com.cdweb.entity.RentDetailEntity;
 import com.cdweb.model.CustomerModel;
 import com.cdweb.model.HistoryModel;
 import com.cdweb.model.RentDetailModel;
 import com.cdweb.repository.intf.HistoryRepository;
+import com.cdweb.repository.intf.PriceRepository;
 import com.cdweb.repository.intf.RentDetailRepository;
 import com.cdweb.service.intf.ControllingService;
 import com.cdweb.service.intf.RentDetailService;
@@ -20,13 +22,15 @@ import com.cdweb.service.intf.RentDetailService;
 @Service
 public class ControllingServiceImpl implements ControllingService {
 
-
 	@Autowired
 	RentDetailRepository rentDetailRepository;
 
 	@Autowired
 	HistoryRepository historyRepository;
 	
+	@Autowired
+	PriceRepository priceRepository;
+
 	@Override
 	public RentDetailModel saveHistoryIn(String rentDetailId, byte[] plateInImage) {
 		RentDetailEntity rentDetailEntity = new RentDetailEntity();
@@ -42,31 +46,71 @@ public class ControllingServiceImpl implements ControllingService {
 			return null;
 		}
 		try {
-		if(rentDetailEntity.getPlateNo() != null) {
-			historyEntity.setCustomerEntity(rentDetailEntity.getCustomerEntity());
-			historyEntity.setPlateNo(rentDetailEntity.getPlateNo());
-			CustomerModel customerModel = new CustomerModel();
-			BeanUtils.copyProperties(rentDetailEntity.getCustomerEntity(), customerModel);
-			rentDetailModel.setCustomerModel(customerModel);
-		}
-		}catch (Exception e) {
+			if (rentDetailEntity.getPlateNo() != null) {
+				historyEntity.setCustomerEntity(rentDetailEntity.getCustomerEntity());
+				historyEntity.setPlateNo(rentDetailEntity.getPlateNo());
+				CustomerModel customerModel = new CustomerModel();
+				BeanUtils.copyProperties(rentDetailEntity.getCustomerEntity(), customerModel);
+				rentDetailModel.setCustomerModel(customerModel);
+			}
+		} catch (Exception e) {
 		}
 		historyEntity.setPlateInImage(plateInImage);
-		historyEntity.setInDate(new Date(System.currentTimeMillis()));
 		historyRepository.save(historyEntity);
 		return rentDetailModel;
 	}
 
 	@Override
 	public HistoryModel getLastHistoryByRentDetailEntity(Long rentDetailId) {
-		// TODO Auto-generated method stub
-		return null;
+		LastHistoryEntity lastHistoryEntity = historyRepository.getLastHistroEntity(rentDetailId);
+		HistoryEntity historyEntity = historyRepository.getLastOne(lastHistoryEntity.getRentDetailId(),
+				lastHistoryEntity.getInDate());
+		HistoryModel historyModel = new HistoryModel();
+		BeanUtils.copyProperties(historyEntity, historyModel, "faceInImage", "faceOutImage");
+		return historyModel;
 	}
 
 	@Override
-	public RentDetailModel saveHistoryOut(String idCardOut, byte[] image) {
-		// TODO Auto-generated method stub
-		return null;
+	public HistoryModel saveHistoryOut(String rentDetailId, byte[] plateOutImage) {
+		LastHistoryEntity lastHistoryEntity = historyRepository.getLastHistroEntity(Long.parseLong(rentDetailId));
+		HistoryEntity historyEntity = historyRepository.getLastOne(lastHistoryEntity.getRentDetailId(),
+				lastHistoryEntity.getInDate());
+		historyEntity.setPrice(calculatePriceOut(historyEntity));
+		historyEntity.setOutDate(new Date());
+		historyEntity.setPlateOutImage(plateOutImage);
+		historyRepository.save(historyEntity);
+		
+		HistoryModel historyModel = new HistoryModel();
+		BeanUtils.copyProperties(historyEntity, historyModel);
+		
+		RentDetailModel rentDetailModel = new RentDetailModel();
+		BeanUtils.copyProperties(historyEntity.getRentDetailEntity(), rentDetailModel);
+		historyModel.setRentDetailModel(rentDetailModel);
+
+		CustomerModel customerModel = new CustomerModel();
+		BeanUtils.copyProperties(historyEntity.getCustomerEntity(), customerModel);
+		historyModel.setCustomerModel(customerModel);
+		
+		return historyModel;
+	}
+
+	private int calculatePriceOut(HistoryEntity historyOut) {
+		int res = 0;
+		try {
+			historyOut.getCustomerEntity().getId();
+		} catch (Exception e) {
+			res = (int) (priceRepository.getOneByIdAndStatus(historyOut.getRentDetailEntity().getPriceEntity().getId(), SystemConstant.ACTIVATE_STATUS).getDayPrice()
+					* calculateTheNumberOfDays(new Date(System.currentTimeMillis()), historyOut.getInDate()));
+			return res;
+		}
+		if (historyOut.getRentDetailEntity().getEndDate().compareTo(new Date(System.currentTimeMillis())) < 0)
+			res = (int) (priceRepository.getOneByIdAndStatus(historyOut.getRentDetailEntity().getPriceEntity().getId(), SystemConstant.ACTIVATE_STATUS).getDayPrice()
+					* calculateTheNumberOfDays(new Date(System.currentTimeMillis()), historyOut.getRentDetailEntity().getEndDate()));
+		return res;
+	}
+
+	private long calculateTheNumberOfDays(Date startDate, Date endDate) {
+		return (startDate.getTime() - endDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
 	}
 
 }

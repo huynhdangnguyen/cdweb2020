@@ -8,5 +8,5 @@ public interface ControllingService {
 	
 	HistoryModel getLastHistoryByRentDetailEntity(Long rentDetailId);
 
-	RentDetailModel saveHistoryOut(String idCardOut, byte[] image);
+	HistoryModel saveHistoryOut(String idCardOut, byte[] image);
 }
