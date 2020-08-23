@@ -32,9 +32,11 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 	private String determineTargetUrl(Authentication authentication) {
 		List<String> roles = SecurityUtils.getAuthorities();
 		if (isManager(roles)) {
-			return "/quan-ly/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM;
+//			return "/quan-ly/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM;
+			return "/quan-ly/kiem-soat";
 		}
-			return "/nhan-vien/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM;
+//			return "/nhan-vien/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM;
+		return "/nhan-vien/kiem-soat";
 	}
 
 	private boolean isManager(List<String> roles) {

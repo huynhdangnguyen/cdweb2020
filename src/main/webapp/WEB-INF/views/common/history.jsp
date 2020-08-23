@@ -99,7 +99,7 @@
 		</nav>
 	</div>
 
-	<button onclick="a()">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</button>
+
 
 	<script type="text/javascript">
 		function historyDetail(x) {
