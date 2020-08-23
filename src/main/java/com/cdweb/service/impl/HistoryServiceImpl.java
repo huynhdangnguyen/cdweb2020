@@ -30,6 +30,11 @@ public class HistoryServiceImpl implements HistoryService {
 	@Override
 	public HistoryModel saveHistory(HistoryModel historyModel) {
 		HistoryEntity historyEntity = new HistoryEntity();
+		try {
+			historyEntity.getId();
+		}catch (Exception e) {
+			return null;
+		}
 		BeanUtils.copyProperties(historyModel, historyEntity);
 		historyEntity = historyRepository.save(historyEntity);
 		BeanUtils.copyProperties(historyEntity, historyModel);

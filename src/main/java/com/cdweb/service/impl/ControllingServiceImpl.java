@@ -63,7 +63,12 @@ public class ControllingServiceImpl implements ControllingService {
 	@Override
 	public HistoryModel getLastHistoryByRentDetailEntity(Long rentDetailId) {
 		LastHistoryEntity lastHistoryEntity = historyRepository.getLastHistroEntity(rentDetailId);
-		HistoryEntity historyEntity = historyRepository.getLastOne(lastHistoryEntity.getRentDetailId(),
+		try {
+			lastHistoryEntity.getRentDetailId();
+		}catch (Exception e) {
+			return null;
+		}
+		HistoryEntity historyEntity = historyRepository.getLastOne(rentDetailId,
 				lastHistoryEntity.getInDate());
 		HistoryModel historyModel = new HistoryModel();
 		BeanUtils.copyProperties(historyEntity, historyModel, "faceInImage", "faceOutImage");

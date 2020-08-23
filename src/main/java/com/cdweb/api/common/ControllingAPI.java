@@ -40,10 +40,14 @@ public class ControllingAPI {
 	public HistoryModel checkInforIn(@RequestBody byte[] image, @PathVariable("idCardIn") String idCardIn) {
 		HistoryModel historyModel = controllingService.getLastHistoryByRentDetailEntity(Long.parseLong(idCardIn));
 
+		if(historyModel != null) {
 		historyModel.setPlateInImage(null);
 		
 		SystemConstant.plateOutImage = historyModel.getPlateOutImage();
 		historyModel.setPlateOutImage(null);
+		}else {
+			historyModel = new HistoryModel();
+		}
 		
 		RentDetailModel rentDetailModel = controllingService.saveHistoryIn(idCardIn, image);
 		historyModel.setRentDetailModel(rentDetailModel);
