@@ -121,7 +121,7 @@
 	}
 
 	function modifyUser() {
-		if (document.userForm.password.value != document.userForm.retypePassword.value) {
+		if (document.userModifyingForm.password.value != document.userModifyingForm.retypePassword.value) {
 			alert("Mật khẩu phải trùng khớp");
 			return;
 		}

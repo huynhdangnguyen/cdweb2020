@@ -108,6 +108,7 @@ public class ControllingServiceImpl implements ControllingService {
 					* calculateTheNumberOfDays(new Date(System.currentTimeMillis()), historyOut.getInDate()));
 			return res;
 		}
+			
 		if (historyOut.getRentDetailEntity().getEndDate().compareTo(new Date(System.currentTimeMillis())) < 0)
 			res = (int) (priceRepository.getOneByIdAndStatus(historyOut.getRentDetailEntity().getPriceEntity().getId(), SystemConstant.ACTIVATE_STATUS).getDayPrice()
 					* calculateTheNumberOfDays(new Date(System.currentTimeMillis()), historyOut.getRentDetailEntity().getEndDate()));

@@ -39,9 +39,7 @@ public class StatisticServiceImpl implements StatisticService {
 			formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 			Date startDay = formater.parse(startDate);
-			System.out.println(startDate);
 			Date endDay = formater.parse(endDate);
-			System.out.println(endDate);
 
 			Calendar start = Calendar.getInstance();
 			start.setTime(startDay);
@@ -55,10 +53,8 @@ public class StatisticServiceImpl implements StatisticService {
 					(his) -> System.out.println(his.getPlateNo() + "\t" + his.getOutDate() + "\t" + his.getPrice()));
 
 			for (Date date = start.getTime(); start.before(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
-				System.out.println(date);
 				int totalInComeInADay = 0;
 				for (HistoryEntity historyEntity : listHistoryEntity) {
-					System.out.println(historyEntity.getOutDate());
 					if (date.getDate() == historyEntity.getOutDate().getDate()) {
 						try {
 							totalInComeInADay += historyEntity.getPrice();
@@ -69,9 +65,7 @@ public class StatisticServiceImpl implements StatisticService {
 				}
 				formater = new SimpleDateFormat("dd-MM");
 				days.add("'"+formater.format(date)+"'");
-				System.out.println("print days:");
 				for (String days : days) {
-					System.out.println(days);
 				}
 				incomes.add(totalInComeInADay);
 			}

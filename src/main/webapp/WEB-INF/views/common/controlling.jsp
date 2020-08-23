@@ -401,7 +401,7 @@
 																							});
 																			image2.src = window.location.origin
 																					+ "/parkinglotmanagement/api/kiem-soat/hinh-anh/plateInImage";
-																			price.value = historyModel.price;
+																			price.value = historyModel.price + " VNĐ";
 
 																		}
 																	});
@@ -442,8 +442,9 @@
 								plateNo2.value = null;
 								cardType2.value = null;
 								status2.value = null;
-								time2.value = null;
+								time4.value = null;
 								time3.value = null;
+								price.value = null;
 							}
 
 						}, false);
