@@ -91,7 +91,9 @@
 						</div>
 
 						<div class="form-row form-group">
-							
+							<div class="col-md-4">
+								<img id="image1" width="166" height="124" />
+							</div>
 						</div>
 
 					</div>
@@ -181,9 +183,14 @@
 						</div>
 
 						<div class="form-row form-group">
-							<label class="mr-sm-2">Giá tiền</label><input
-								class="form-control" type="text" name="price" id="price"
-								placeholder="Giá tiền" style="color: red;">
+							<div class="col-md-4">
+								<img id="image1" width="166" height="124" />
+							</div>
+							<div class="col-md-8">
+								<label class="mr-sm-2">Giá tiền</label><input
+									class="form-control" type="text" name="price" id="price"
+									placeholder="Giá tiền" style="color: red;">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -259,28 +266,17 @@
 												if (e.key === 'Enter'
 														|| e.keyCode === 13) {
 
-							xhr.addEventListener("readystatechange",
-									function() {
-										if (this.readyState === 4) {
-											var historyModel = JSON.parse(this.responseText);
-											var rentDetailModel = historyModel.rentDetailModel;
-											clearInforCustomerIn();
-											cusName1 = rentDetailModel.customerModel.name;
-											cusID1.value = rentDetailModel.customerModel.id;
-											if(cusID1.value != null)
-											cardType1.value = "Thẻ tháng";
-											else
-											cardType1.value = "Thẻ ngày";
-											plateNo1.value = rentDetailModel.plateNo;
-											if(rentDetailModel.endDate > new Date().getTime())
-												status1.value = "Còn thời hạn";
-											else
-												status1.value = "Hết thời hạn";
-											time1.value = new Date().toLocaleString('en-GB', { timeZone: 'UTC' });
-											time2.value = new Date(historyModel.outDate).toLocaleString('en-GB', { timeZone: 'UTC' });
-											image1.src = window.location.origin +"/parkinglotmanagement/api/kiem-soat/hinh-anh/plateOutImage";
-										}
-									});
+													context1.drawImage(video1,
+															0, 0, 250, 187);
+													var dataURL = canvas1
+															.toDataURL();
+													var blobBin = atob(dataURL
+															.split(',')[1]);
+													var arr = [];
+													for (var i = 0; i < blobBin.length; i++) {
+														arr.push(blobBin
+																.charCodeAt(i));
+													}
 
 													var xhr = new XMLHttpRequest();
 
@@ -289,13 +285,11 @@
 																	"readystatechange",
 																	function() {
 																		if (this.readyState === 4) {
-																			image1.src = window.location.origin
-																					+ "/parkinglotmanagement/api/kiem-soat/";
-																			var rentDetailModel = JSON
+																			var historyModel = JSON
 																					.parse(this.responseText);
+																			var rentDetailModel = historyModel.rentDetailModel;
 																			clearInforCustomerIn();
-																			document
-																					.getElementById('cusName1').value = rentDetailModel.customerModel.name;
+																			cusName1.value = rentDetailModel.customerModel.name;
 																			cusID1.value = rentDetailModel.customerModel.id;
 																			if (cusID1.value != null)
 																				cardType1.value = "Thẻ tháng";
@@ -312,7 +306,16 @@
 																							'en-GB',
 																							{
 																								timeZone : 'UTC'
-																							})
+																							});
+																			time2.value = new Date(
+																					historyModel.outDate)
+																					.toLocaleString(
+																							'en-GB',
+																							{
+																								timeZone : 'UTC'
+																							});
+																			image1.src = window.location.origin
+																					+ "/parkinglotmanagement/api/kiem-soat/hinh-anh/plateOutImage";
 																		}
 																	});
 
@@ -335,55 +338,104 @@
 												}
 											});
 
-							xhr.addEventListener("readystatechange",
-									function() {
-										if (this.readyState === 4) {
-											var historyModel = JSON.parse(this.responseText);
-											var rentDetailModel = historyModel.rentDetailModel;
-											cusName2.value = historyModel.customerModel.name;
-											cusID2.value = historyModel.customerModel.id;
-											if(cusID2.value != null)
-											cardType2.value = "Thẻ tháng";
-											else
-											cardType2.value = "Thẻ ngày";
-											plateNo2.value = rentDetailModel.plateNo;
-											if(rentDetailModel.endDate > new Date().getTime())
-												status2.value = "Còn thời hạn";
-											else
-												status2.value = "Hết thời hạn";
-											time3.value = new Date().toLocaleString('en-GB', { timeZone: 'UTC' })
-											time4.value = new Date(historyModel.InDate).toLocaleString('en-GB', { timeZone: 'UTC' });
-											image2.src = window.location.origin +"/parkinglotmanagement/api/kiem-soat/hinh-anh/plateInImage";
-											price.value = historyModel.price;
-										}
-									});
+							$("#cardID2")
+									.on(
+											'keyup',
+											function(e) {
+												if (e.key === 'Enter'
+														|| e.keyCode === 13) {
 
-							xhr.open("Post",
-									window.location.origin +"/parkinglotmanagement/api/kiem-soat/kiem-soat-xe-ra/"+ cardID2.value);
-							xhr.setRequestHeader("Content-Type",
-									"application/json");
-							xhr.send(new Blob([new Uint8Array(arr)], {type: 'image/png'}));
-						}
-					});
-					function clearInforCustomerIn(){
-						image1.value = null;
-						cusID1.value = null;
-						cusName1.value = null;
-						plateNo1.value = null;
-						cardType1.value = null;
-						status1.value = null;
-						time1.value = null;
-					}
-					function clearInforCustomerOut(){
-						image2.src = null;
-						cusID2.value = null;
-						cusName2.value = null;
-						cusID2.value = null;
-						plateNo2.value = null;
-						cardType2.value = null;
-						status2.value = null;
-						time2.value = null;
-					}
+													context2.drawImage(video2,
+															0, 0, 250, 187);
+													var dataURL = canvas2
+															.toDataURL();
+													var blobBin = atob(dataURL
+															.split(',')[1]);
+													var arr = [];
+													for (var i = 0; i < blobBin.length; i++) {
+														arr.push(blobBin
+																.charCodeAt(i));
+													}
+
+													var xhr = new XMLHttpRequest();
+
+													xhr
+															.addEventListener(
+																	"readystatechange",
+																	function() {
+																		if (this.readyState === 4) {
+																			var historyModel = JSON
+																					.parse(this.responseText);
+																			var rentDetailModel = historyModel.rentDetailModel;
+																			cusName2.value = historyModel.customerModel.name;
+																			cusID2.value = historyModel.customerModel.id;
+																			if (cusID2.value != null)
+																				cardType2.value = "Thẻ tháng";
+																			else
+																				cardType2.value = "Thẻ ngày";
+																			plateNo2.value = rentDetailModel.plateNo;
+																			if (rentDetailModel.endDate > new Date()
+																					.getTime())
+																				status2.value = "Còn thời hạn";
+																			else
+																				status2.value = "Hết thời hạn";
+																			time3.value = new Date()
+																					.toLocaleString(
+																							'en-GB',
+																							{
+																								timeZone : 'UTC'
+																							})
+																			time4.value = new Date(
+																					historyModel.InDate)
+																					.toLocaleString(
+																							'en-GB',
+																							{
+																								timeZone : 'UTC'
+																							});
+																			image2.src = window.location.origin
+																					+ "/parkinglotmanagement/api/kiem-soat/hinh-anh/plateInImage";
+																			price.value = historyModel.price;
+
+																		}
+																	});
+
+													xhr
+															.open(
+																	"Post",
+																	window.location.origin
+																			+ "/parkinglotmanagement/api/kiem-soat/kiem-soat-xe-ra/"
+																			+ cardID2.value);
+													xhr.setRequestHeader(
+															"Content-Type",
+															"application/json");
+													xhr
+															.send(new Blob(
+																	[ new Uint8Array(
+																			arr) ],
+																	{
+																		type : 'image/png'
+																	}));
+												}
+											});
+							function clearInforCustomerIn() {
+								image1.value = null;
+								cusID1.value = null;
+								cusName1.value = null;
+								plateNo1.value = null;
+								cardType1.value = null;
+								status1.value = null;
+								time1.value = null;
+							}
+							function clearInforCustomerOut() {
+								image2.src = null;
+								cusID2.value = null;
+								cusName2.value = null;
+								cusID2.value = null;
+								plateNo2.value = null;
+								cardType2.value = null;
+								status2.value = null;
+								time2.value = null;
+							}
 
 						}, false);
 	</script>
