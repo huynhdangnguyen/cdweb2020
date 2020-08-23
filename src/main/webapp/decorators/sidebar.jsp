@@ -48,10 +48,9 @@
 					<c:choose>
 						<c:when
 							test="${SecurityUtils.getAuthorities().contains('MANAGER')}">
-							<li><a
-								href="<c:url value="/quan-ly/kiem-soat"></c:url>"
-								class="mm-active"> <i
-									class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra
+							<li><a href="<c:url value="/quan-ly/kiem-soat"></c:url>"
+								<c:if test = "${customerModels==null && userModels == null && rentDetailModels==null && historyModels==null && priceModels == null && listIncomes == null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra
 									vào
 							</a></li>
 							<li><a
@@ -90,10 +89,9 @@
 							</a></li>
 						</c:when>
 						<c:otherwise>
-						<li><a
-								href="<c:url value="/nhan-vien/kiem-soat"></c:url>"
-								class="mm-active"> <i
-									class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra
+							<li><a href="<c:url value="/nhan-vien/kiem-soat"></c:url>"
+								<c:if test = "${customerModels==null && rentDetailModels==null && historyModels==null}">class="mm-active"</c:if>>
+									<i class="metismenu-icon fa fa-motorcycle"></i> Kiểm soát xe ra
 									vào
 							</a></li>
 							<li><a
