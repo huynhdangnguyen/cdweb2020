@@ -83,13 +83,18 @@ public class ControllingServiceImpl implements ControllingService {
 		HistoryModel historyModel = new HistoryModel();
 		BeanUtils.copyProperties(historyEntity, historyModel);
 		
+			
 		RentDetailModel rentDetailModel = new RentDetailModel();
 		BeanUtils.copyProperties(historyEntity.getRentDetailEntity(), rentDetailModel);
 		historyModel.setRentDetailModel(rentDetailModel);
 
+		try {
 		CustomerModel customerModel = new CustomerModel();
 		BeanUtils.copyProperties(historyEntity.getCustomerEntity(), customerModel);
 		historyModel.setCustomerModel(customerModel);
+		}catch (Exception e) {
+			
+		}
 		
 		return historyModel;
 	}
