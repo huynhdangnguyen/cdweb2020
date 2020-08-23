@@ -277,9 +277,7 @@
 														arr.push(blobBin
 																.charCodeAt(i));
 													}
-
 													var xhr = new XMLHttpRequest();
-
 													xhr
 															.addEventListener(
 																	"readystatechange",
@@ -289,8 +287,20 @@
 																					.parse(this.responseText);
 																			var rentDetailModel = historyModel.rentDetailModel;
 																			clearInforCustomerIn();
-																			cusName1.value = rentDetailModel.customerModel.name;
-																			cusID1.value = rentDetailModel.customerModel.id;
+																			if (rentDetailModel.customerModel != null) {
+
+																				cusName1.value = rentDetailModel.customerModel.name;
+																				cusID1.value = rentDetailModel.customerModel.id;
+																				time2.value = new Date(
+																						historyModel.outDate)
+																						.toLocaleString(
+																								'en-GB',
+																								{
+																									timeZone : 'UTC'
+																								});
+																				image1.src = window.location.origin
+																						+ "/parkinglotmanagement/api/kiem-soat/hinh-anh/plateOutImage";
+																			}
 																			if (cusID1.value != null)
 																				cardType1.value = "Thẻ tháng";
 																			else
@@ -307,15 +317,6 @@
 																							{
 																								timeZone : 'UTC'
 																							});
-																			time2.value = new Date(
-																					historyModel.outDate)
-																					.toLocaleString(
-																							'en-GB',
-																							{
-																								timeZone : 'UTC'
-																							});
-																			image1.src = window.location.origin
-																					+ "/parkinglotmanagement/api/kiem-soat/hinh-anh/plateOutImage";
 																		}
 																	});
 
@@ -364,15 +365,19 @@
 																	"readystatechange",
 																	function() {
 																		if (this.readyState === 4) {
+																			clearInforCustomerOut();
 																			var historyModel = JSON
 																					.parse(this.responseText);
 																			var rentDetailModel = historyModel.rentDetailModel;
-																			cusName2.value = historyModel.customerModel.name;
-																			cusID2.value = historyModel.customerModel.id;
-																			if (cusID2.value != null)
-																				cardType2.value = "Thẻ tháng";
-																			else
-																				cardType2.value = "Thẻ ngày";
+																			if (historyModel.customerModel != null) {
+
+																				cusName2.value = historyModel.customerModel.name;
+																				cusID2.value = historyModel.customerModel.id;
+																				if (cusID2.value != null)
+																					cardType2.value = "Thẻ tháng";
+																				else
+																					cardType2.value = "Thẻ ngày";
+																			}
 																			plateNo2.value = rentDetailModel.plateNo;
 																			if (rentDetailModel.endDate > new Date()
 																					.getTime())
@@ -386,7 +391,7 @@
 																								timeZone : 'UTC'
 																							})
 																			time4.value = new Date(
-																					historyModel.InDate)
+																					historyModel.inDate)
 																					.toLocaleString(
 																							'en-GB',
 																							{
@@ -418,16 +423,17 @@
 												}
 											});
 							function clearInforCustomerIn() {
-								image1.value = null;
+								image1.src = "";
 								cusID1.value = null;
 								cusName1.value = null;
 								plateNo1.value = null;
 								cardType1.value = null;
 								status1.value = null;
 								time1.value = null;
+								time2.value = null;
 							}
 							function clearInforCustomerOut() {
-								image2.src = null;
+								image2.src = "";
 								cusID2.value = null;
 								cusName2.value = null;
 								cusID2.value = null;
@@ -435,6 +441,7 @@
 								cardType2.value = null;
 								status2.value = null;
 								time2.value = null;
+								time3.value = null;
 							}
 
 						}, false);
