@@ -10,16 +10,23 @@
 	<div id="main-body">
 		<div class="row">
 			<div class="col-6">
-				<div class="card">
+				<div class="card" style="border: 1px solid grey;">
 					<div style="padding-top: 10px">
 						<h5 class="card-title" style="text-align: center">Xe vào</h5>
-						<div class="main-container">
-							<div class="fixer-container" style="">
-								<video id="video1" width="250" height="187" autoplay></video>
-								<canvas id="can1" width="250" height="187"></canvas>
+						<div class=""
+							style="border: 1px solid grey; margin: 0px 10px 0px 10px; padding: 10px;">
+							<div class=""
+								style="display: flex; justify-content: center; align-items: center; height: 187px;">
+								<div style="border: 1px solid grey;">
+									<video id="video1" width="250" height="187" autoplay></video>
+								</div>
+								<div style="border: 1px solid grey;">
+									<canvas id="can1" width="250" height="187"></canvas>
+								</div>
 							</div>
 						</div>
 					</div>
+
 					<div style="padding: 0px 10px 5px 10px">
 						<div class="form-row ">
 							<div class="col-md-6">
@@ -95,13 +102,19 @@
 
 			<!----------------------------------------------------------------------------------------------------------------------------------------->
 			<div class="col-6">
-				<div class="card">
+				<div class="card" style="border: 1px solid grey;">
 					<div style="padding-top: 10px">
 						<h5 class="card-title" style="text-align: center">Xe ra</h5>
-						<div class="main-container">
-							<div class="fixer-container" style="">
-								<video id="video2" width="250" height="187" autoplay></video>
-								<canvas id="can2" width="250" height="187"></canvas>
+						<div class=""
+							style="border: 1px solid grey; margin: 0px 10px 0px 10px; padding: 10px;">
+							<div class=""
+								style="display: flex; justify-content: center; align-items: center; height: 187px;">
+								<div style="border: 1px solid grey;">
+									<video id="video2" width="250" height="187" autoplay></video>
+								</div>
+								<div style="border: 1px solid grey;">
+									<canvas id="can2" width="250" height="187"></canvas>
+								</div>
 							</div>
 						</div>
 					</div>
