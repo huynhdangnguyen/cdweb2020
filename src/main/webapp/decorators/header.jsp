@@ -10,7 +10,7 @@
 <head>
 </head>
 
-<body>
+<body id="body">
 	<div class="app-header header-shadow">
 		<div class="app-header__logo">
 			<div class="custom_logo"
@@ -20,7 +20,7 @@
 			</div>
 			<div class="header__pane ml-auto">
 				<div>
-					<button type="button"
+					<button  type="button"
 						class="hamburger close-sidebar-btn hamburger--elastic"
 						data-class="closed-sidebar">
 						<span class="hamburger-box"> <span class="hamburger-inner"></span>
@@ -31,7 +31,7 @@
 		</div>
 		<div class="app-header__mobile-menu">
 			<div>
-				<button type="button"
+				<button  type="button"
 					class="hamburger hamburger--elastic mobile-toggle-nav">
 					<span class="hamburger-box"> <span class="hamburger-inner"></span>
 					</span>

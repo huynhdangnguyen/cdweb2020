@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.cdweb.constant.SystemConstant"%>
 <div class="form-row">
-	<div class="col-md-8"></div>
-	<div class="col-md-4">
+	<div class="col-md-7"></div>
+	<div class="col-md-5">
 		<div class="position-relative form-group" style="float: right;">
 			<form class="form-inline" name="searchRentDetailForm">
 				<div class="mb-2 mr-sm-2 mb-sm-0 position-relative form-group">

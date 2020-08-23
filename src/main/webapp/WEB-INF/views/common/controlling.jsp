@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Kiểm soát xe ra vào</title>
 </head>
-<body>
+<body >
 	<div id="main-body">
 		<div class="row">
 			<div class="col-6">
@@ -446,7 +446,7 @@
 								time3.value = null;
 								price.value = null;
 							}
-
+							
 						}, false);
 	</script>
 </body>

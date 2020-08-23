@@ -45,8 +45,8 @@ public class LoginController {
 		if (!auth.getName().equals("anonymousUser")) {
 			List<String> roles = SecurityUtils.getAuthorities();
 			if(roles.contains("MANAGER"))
-				return new ModelAndView("redirect:/quan-ly/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM);
-			return new ModelAndView("redirect:/nhan-vien/khach-hang/" + SystemConstant.DEFAULT_OFFSET + "/" + SystemConstant.DEFAULT_NUM_ITEM);
+				return new ModelAndView("redirect:/quan-ly/kiem-soat");
+			return new ModelAndView("redirect:/nhan-vien/kiem-soat");
 		}
 		return new ModelAndView("common/login");
 	}
