@@ -5,26 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Kiểm soát xe ra vào</title>
+	
 </head>
 <body >
+
 	<div id="main-body">
 		<div class="row">
 			<div class="col-6">
 				<div class="card" style="border: 1px solid grey;">
 					<div style="padding-top: 10px">
 						<h5 class="card-title" style="text-align: center">Xe vào</h5>
-						<div class=""
-							style="border: 1px solid grey; margin: 0px 10px 0px 10px; padding: 10px;">
-							<div class=""
-								style="display: flex; justify-content: center; align-items: center; height: 187px;">
-								<div style="border: 1px solid grey;">
-									<video id="video1" width="250" height="187" autoplay></video>
+						<div style="border: 1px; margin: 0px 10px 0px 10px; display: flex; justify-content: center; align-items: center; height: 187px;">
+								<div style="border: 1px solid black; width: 50%">
+									<video id="video1" autoplay="" width="100%" height="187px"></video>
 								</div>
-								<div style="border: 1px solid grey;">
-									<canvas id="can1" width="250" height="187"></canvas>
+								<div style="border: 1px solid black; width:50%">
+									<canvas id="can1" height="187px" width="auto"></canvas>
 								</div>
 							</div>
-						</div>
 					</div>
 
 					<div style="padding: 0px 10px 5px 10px">
@@ -105,18 +103,14 @@
 				<div class="card" style="border: 1px solid grey;">
 					<div style="padding-top: 10px">
 						<h5 class="card-title" style="text-align: center">Xe ra</h5>
-						<div class=""
-							style="border: 1px solid grey; margin: 0px 10px 0px 10px; padding: 10px;">
-							<div class=""
-								style="display: flex; justify-content: center; align-items: center; height: 187px;">
-								<div style="border: 1px solid grey;">
-									<video id="video2" width="250" height="187" autoplay></video>
+						<div style="border: 1px; margin: 0px 10px 0px 10px; display: flex; justify-content: center; align-items: center; height: 187px;">
+								<div style="border: 1px solid grey; width: 50%">
+									<video id="video2" autoplay="" height="187" width="100%"></video>
 								</div>
-								<div style="border: 1px solid grey;">
-									<canvas id="can2" width="250" height="187"></canvas>
+								<div style="border: 1px solid grey; width:50%">
+									<canvas id="can2" style=" width:100%; height:187px"></canvas>
 								</div>
 							</div>
-						</div>
 					</div>
 					<div style="padding: 0px 10px 5px 10px">
 
@@ -228,7 +222,6 @@
 								navigator.mediaDevices
 										.getUserMedia(mediaConfig).then(
 												function(stream) {
-													//video.src = window.URL.createObjectURL(stream);
 													video1.srcObject = stream;
 													video2.srcObject = stream;
 													video1.play();
@@ -237,27 +230,27 @@
 							}
 
 							/* Legacy code below! */
-							else if (navigator.getUserMedia) { // Standard
-								navigator.getUserMedia(mediaConfig, function(
-										stream) {
-									video1.src = stream;
-									video1.play();
-								}, errBack);
-							} else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
-								navigator.webkitGetUserMedia(mediaConfig,
-										function(stream) {
-											video1.src = window.webkitURL
-													.createObjectURL(stream);
-											video1.play();
-										}, errBack);
-							} else if (navigator.mozGetUserMedia) { // Mozilla-prefixed
-								navigator.mozGetUserMedia(mediaConfig,
-										function(stream) {
-											video1.src = window.URL
-													.createObjectURL(stream);
-											video1.play();
-										}, errBack);
-							}
+//							else if (navigator.getUserMedia) { // Standard
+//								navigator.getUserMedia(mediaConfig, function(
+//										stream) {
+//									video1.src = stream;
+//									video1.play();
+//								}, errBack);
+//							} else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+//								navigator.webkitGetUserMedia(mediaConfig,
+//										function(stream) {
+//											video1.src = window.webkitURL
+//													.createObjectURL(stream);
+//											video1.play();
+//										}, errBack);
+//							} else if (navigator.mozGetUserMedia) { // Mozilla-prefixed
+//								navigator.mozGetUserMedia(mediaConfig,
+//										function(stream) {
+//											video1.src = window.URL
+//													.createObjectURL(stream);
+//											video1.play();
+//										}, errBack);
+//							}
 
 							$("#cardID1")
 									.on(
@@ -267,7 +260,7 @@
 														|| e.keyCode === 13) {
 
 													context1.drawImage(video1,
-															0, 0, 250, 187);
+															0, 0, video1.clientWidth, video1.clientHeight);
 													var dataURL = canvas1
 															.toDataURL();
 													var blobBin = atob(dataURL
@@ -347,9 +340,8 @@
 											function(e) {
 												if (e.key === 'Enter'
 														|| e.keyCode === 13) {
-
 													context2.drawImage(video2,
-															0, 0, 250, 187);
+															0, 0, document.getElementById('video2').clientWidth, document.getElementById('video2').clientHeight);
 													var dataURL = canvas2
 															.toDataURL();
 													var blobBin = atob(dataURL
@@ -446,7 +438,6 @@
 								time3.value = null;
 								price.value = null;
 							}
-							
 						}, false);
 	</script>
 </body>

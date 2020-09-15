@@ -46,10 +46,6 @@
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-
 	<!-- sitemesh -->
 	<filter>
 		<filter-name>sitemesh</filter-name>
@@ -62,5 +58,7 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
